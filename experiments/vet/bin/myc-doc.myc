@@ -1,0 +1,40 @@
+// nodule: doc.bin_kw.myc_u2D_doc
+// `myc-doc` — the M-363 documentation BUILD CLI: project the corpus into the doc-IR, **emit** the
+// HTML/Typst/JSON views, run the **§4.1 quality-bar lint** over the model, and build the curated
+// **BOOK** view (§`mycelium_doc::book`).
+//
+// Usage:
+// ```text
+//   myc-doc build      [--repo-root .] [--out target/doc]     # project + emit every view
+//                      [--manifest <p.json>]                  #   scope emission to a subset (cluster PDF)
+//                      [--full|--no-cache]                    #   bypass the differential re-emit cache
+//   myc-doc book       [--repo-root .] [--out target/doc]     # + the curated chaptered book (book/)
+//   myc-doc lint       [--repo-root .]                        # run the 8 §4.1 checks (gate)
+//   myc-doc status                                            # print the lint's active status
+//   myc-doc lib-index  [--repo-root .] [--out docs/lib-index] # M-1004: docs/lib-index/ from lib/*.myc
+// ```
+//
+// Exit codes (mirroring the Wave-A toolchain): `0` ok · `1` an error-severity finding · `64` usage ·
+// `66` I/O. Never-silent (G2): every failure is an explicit message with remediation, never a panic.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc.bin_kw.myc_u2D_doc;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: doc.doc_lint) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type CheckStatus = Active | PartiallyDormant(Bytes) | Dormant(Bytes);
+type Severity = Error | Warning | Info;
+
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn EX_OK() => Binary{8} = 0b0000_0000; // 0
+
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn EX_FINDING() => Binary{8} = 0b0000_0001; // 1
+
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn EX_USAGE() => Binary{8} = 0b0100_0000; // 64
+
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn EX_IO() => Binary{8} = 0b0100_0010; // 66
+
+fn usage() => Bytes = ("usage: myc-doc <build|book|lint|status|lib-index> [--repo-root <dir>] [--out <dir>]\n              [--manifest <path.json>]  (build: scope emission to a subset)\n              [--full|--no-cache]       (build: force a full re-emit, bypass the diff cache)");

@@ -1,0 +1,11 @@
+// nodule: doc.emit.json
+// The machine projection (spec §3 — JSON / JSONL for search · tooling · LSP hover, G11). Two views:
+// `doc-model.json` (the whole content-addressed model, serialized) and `search-index.jsonl` (one
+// compact record per node). Both carry each node's content address, so the dual-projection-parity
+// lint can confirm this and the HTML view are two renderers of *one* IR.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc.emit.json;
+
+

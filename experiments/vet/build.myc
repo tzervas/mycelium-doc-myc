@@ -1,0 +1,19 @@
+// nodule: doc.build
+// Build orchestration: walk the corpus + research evidence base + schemas + example project roots,
+// project each into the doc-IR, **resolve cross-references against the assembled model**, and hand
+// back a finalized
+// [`DocModel`]. This is the drift-proof projection toolchain's entry point — everything downstream
+// (emit, §4.1 lint) is a pure function of the model it returns.
+//
+// Honest scope (spec §8): HTML + Typst(→PDF) + machine JSON are built; **EPUB is a deferral** — the
+// Typst path can fan out to EPUB later, but shipping a half-EPUB would violate "never a half-build"
+// (§4.1), so v0 emits a deferral note instead of a broken artifact.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc.build;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: doc.ir) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type SourceKind = Rfc | Adr | Note | Spec | Devlog | Api | Other;
+type XrefResolution = Unresolved | Internal(Bytes) | ExternalUrl | OutOfScope | Dead(Bytes);
+type XrefTarget = XrefTarget(Bytes, XrefResolution);

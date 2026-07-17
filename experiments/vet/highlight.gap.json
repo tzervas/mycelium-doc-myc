@@ -1,0 +1,107 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-doc/src/highlight.rs",
+  "emitted_items": [],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/highlight.rs",
+      "line": 26,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_l1 :: lexer :: lex_with_comments ;",
+      "reason": "`use mycelium_l1.lexer::lex_with_comments` — `mycelium_l1.lexer` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/highlight.rs",
+      "line": 27,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_l1 :: token :: Tok ;",
+      "reason": "`use mycelium_l1.token::Tok` — `mycelium_l1.token` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/highlight.rs",
+      "line": 29,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The CSS class (a `tok-*` suffix from the reviewed design system in [`crate::theme::READING_CSS`])\"] # [doc = \" for a lexed token, or `None` for tokens that carry no highlight — delimiters (`()[]{}`, `:` `,`\"] # [doc = \" `;` `.`), plain identifiers, and `Eof` — which are emitted as plain (default-ink) text, an\"] # [doc = \" explicit choice, never a silent drop.\"] # [doc = \"\"] # [doc = \" The design system's seven code classes are `tok-kw` · `tok-type` · `tok-num` · `tok-str` ·\"] # [doc = \" `tok-com` · `tok-fn` · `tok-op`. This lexical layer maps to six of them here; the seventh,\"] # [doc = \" `tok-fn`, is assigned by [`highlight`]'s fn-position heuristic (an identifier immediately followed\"] # [doc = \" by `(`), since the lexer cannot otherwise tell a function name from a binding (VR-5). The\"] # [doc = \" guarantee-strength members (`Exact/Proven/Empirical/Declared`) fold into `tok-kw` — they are\"] # [doc = \" reserved keyword vocabulary, and the design's 7-class palette has no separate member class (FLAG:\"] # [doc = \" a per-member lattice colouring — amber `Empirical`, clay `Declared` — is a possible enhancement).\"] # [doc = \"\"] # [doc = \" **Exhaustive on purpose** (no `_` arm): an unmapped future token is a compile error, not a silent\"] # [doc = \" gap (G2).\"] fn classify (tok : & Tok) -> Option < & 'static str > { let class = match tok { Tok :: Nodule | Tok :: Phylum | Tok :: Colony | Tok :: Hypha | Tok :: Fuse | Tok :: Mesh | Tok :: Graft | Tok :: Cyst | Tok :: Xloc | Tok :: Forage | Tok :: Backbone | Tok :: Tier | Tok :: Reclaim | Tok :: Consume | Tok :: Grow | Tok :: Derive | Tok :: Use | Tok :: Pub | Tok :: Priv | Tok :: Type | Tok :: Trait | Tok :: Impl | Tok :: Fn | Tok :: Matured | Tok :: Thaw | Tok :: Let | Tok :: In | Tok :: If | Tok :: Then | Tok :: Else | Tok :: Match | Tok :: For | Tok :: Swap | Tok :: Default | Tok :: Paradigm | Tok :: With | Tok :: Wild | Tok :: Spore | Tok :: Wrapping | Tok :: To | Tok :: Policy | Tok :: Lambda | Tok :: Object | Tok :: Via | Tok :: Lower | Tok :: Strength (_) => \"tok-kw\" , Tok :: Binary | Tok :: Ternary | Tok :: Dense | Tok :: Vsa | Tok :: BinShort | Tok :: TernShort | Tok :: EmbShort | Tok :: HvecShort | Tok :: Seq | Tok :: Bytes | Tok :: Float | Tok :: Substrate | Tok :: Sparse | Tok :: Scalar (_) => \"tok-type\" , Tok :: BinLit (_) | Tok :: TritLit (_) | Tok :: Int (_) | Tok :: BytesLit (_) | Tok :: FloatLit (_) => { \"tok-num\" } Tok :: StrLit (_) => \"tok-str\" , Tok :: Plus | Tok :: Minus | Tok :: Star | Tok :: Slash | Tok :: Percent | Tok :: Question | Tok :: Caret | Tok :: Amp | Tok :: AmpAmp | Tok :: Eq | Tok :: EqEq | Tok :: Arrow | Tok :: FatArrow | Tok :: Bang | Tok :: BangEq | Tok :: Pipe | Tok :: PipePipe | Tok :: At | Tok :: AtStdSys | Tok :: LAngle | Tok :: RAngle | Tok :: Shl | Tok :: Shr => \"tok-op\" , Tok :: Ident (_) | Tok :: LParen | Tok :: RParen | Tok :: LBrace | Tok :: RBrace | Tok :: LBracket | Tok :: RBracket | Tok :: Colon | Tok :: ColonColon | Tok :: Comma | Tok :: Semi | Tok :: Dot | Tok :: Eof => return None , } ; Some (class) }",
+      "reason": "unsupported expression form `return None`",
+      "item_name": "classify"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/highlight.rs",
+      "line": 160,
+      "col": 1,
+      "category": "MacroInvocation",
+      "rust_construct": "MacroInvocation",
+      "snippet": "# [doc = \" Is `lang` a Mycelium fence we highlight? (`myc` or `myc-checked` — both go through the L1 lexer.)\"] # [must_use] pub fn is_myc_lang (lang : & str) -> bool { matches ! (lang , \"myc\" | \"myc-checked\") }",
+      "reason": "expression-position macro `matches` — no macro system in this grammar fragment (`write!`/`format!` lower to pure `Bytes` per DN-127/M-1090 WU-3)",
+      "item_name": "is_myc_lang"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/highlight.rs",
+      "line": 166,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" One lexical item resolved to a single-line char span, plus its highlight class (`None` = plain).\"] struct Item { line : u32 , col : u32 , len : u32 , class : Option < & 'static str > , }",
+      "reason": "struct `Item` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "Item"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/highlight.rs",
+      "line": 174,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" Highlight `source` as Mycelium, or `None` to signal the caller should emit plain escaped text.\"] # [doc = \"\"] # [doc = \" Returns `Some(html)` where each classified token is wrapped in `<span class=\\\"tok-…\\\">…</span>` and\"] # [doc = \" everything else (whitespace, delimiters, comments-are-`tok-com`) is preserved verbatim\"] # [doc = \" (escaped). The stripped-of-tags text equals `html_escape(source)` exactly — never fabricated,\"] # [doc = \" never partial (G2). `None` on: a non-`myc` language, a non-ASCII source, or a lexer error.\"] # [must_use] pub fn highlight (lang : & str , source : & str) -> Option < String > { if ! is_myc_lang (lang) || ! source . is_ascii () { return None ; } let (toks , comments) = lex_with_comments (source) . ok () ? ; let line_len : Vec < u32 > = source . split ('\\n') . map (| l | l . strip_suffix ('\\r') . unwrap_or (l) . chars () . count () as u32) . collect () ; let len_of = | line : u32 | -> u32 { line . checked_sub (1) . and_then (| z | line_len . get (z as usize) . copied ()) . unwrap_or (0) } ; struct Raw { line : u32 , col : u32 , class : Option < & 'static str > , comment : bool , } let mut raws : Vec < Raw > = Vec :: with_capacity (toks . len () + comments . len ()) ; for (j , s) in toks . iter () . enumerate () { if matches ! (s . tok , Tok :: Eof) { continue ; } let class = if matches ! (& s . tok , Tok :: Ident (_)) && matches ! (toks . get (j + 1) . map (| n | & n . tok) , Some (Tok :: LParen)) { Some (\"tok-fn\") } else { classify (& s . tok) } ; raws . push (Raw { line : s . pos . line , col : s . pos . col , class , comment : false , }) ; } for c in & comments { raws . push (Raw { line : c . line , col : c . col , class : Some (\"tok-com\") , comment : true , }) ; } raws . sort_by_key (| r | (r . line , r . col)) ; let mut items : Vec < Item > = Vec :: with_capacity (raws . len ()) ; for i in 0 .. raws . len () { let r = & raws [i] ; let len = if r . comment { len_of (r . line) . saturating_sub (r . col . saturating_sub (1)) } else { let raw_end = match raws . get (i + 1) { Some (next) if next . line == r . line => next . col , _ => len_of (r . line) + 1 , } ; trimmed_len (source , r . line , r . col , raw_end) } ; if len == 0 { continue ; } items . push (Item { line : r . line , col : r . col , len , class : r . class , }) ; } Some (reconstruct (source , & items)) }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "highlight"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/highlight.rs",
+      "line": 267,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" The trimmed char length of a token occupying `[col, raw_end)` (1-based, exclusive) on `line` —\"] # [doc = \" the raw span minus trailing whitespace separating it from the next boundary. Recomputed from the\"] # [doc = \" source line's chars (exact for ASCII).\"] fn trimmed_len (source : & str , line : u32 , col : u32 , raw_end : u32) -> u32 { let Some (text) = source . split ('\\n') . nth (line . saturating_sub (1) as usize) . map (| l | l . strip_suffix ('\\r') . unwrap_or (l)) else { return 0 ; } ; let chars : Vec < char > = text . chars () . collect () ; let start = col . saturating_sub (1) as usize ; let end = (raw_end . saturating_sub (1) as usize) . min (chars . len ()) ; if end <= start { return 0 ; } let mut e = end ; while e > start && chars [e - 1] . is_whitespace () { e -= 1 ; } (e - start) as u32 }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "trimmed_len"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/highlight.rs",
+      "line": 291,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" Walk `source` char-by-char, wrapping each classified [`Item`]'s run in a span and emitting\"] # [doc = \" everything else (gaps, delimiters, unclassified tokens) as plain escaped text. Faithful by\"] # [doc = \" construction: every source char is emitted exactly once, escaped — so stripping the tags yields\"] # [doc = \" `html_escape(source)` (G2: never fabricated, never partial).\"] fn reconstruct (source : & str , items : & [Item]) -> String { let chars : Vec < char > = source . chars () . collect () ; let mut out = String :: with_capacity (source . len () + items . len () * 24) ; let mut i = 0usize ; let mut line = 1u32 ; let mut col = 1u32 ; let mut it = 0usize ; while i < chars . len () { while it < items . len () && (items [it] . line , items [it] . col) < (line , col) { it += 1 ; } if it < items . len () && items [it] . line == line && items [it] . col == col { let item = & items [it] ; let take = (item . len as usize) . min (chars . len () - i) ; let open_close = item . class . is_some () ; if let Some (cls) = item . class { out . push_str (\"<span class=\\\"\") ; out . push_str (cls) ; out . push_str (\"\\\">\") ; } for & c in & chars [i .. i + take] { push_escaped (& mut out , c) ; } if open_close { out . push_str (\"</span>\") ; } i += take ; col += take as u32 ; it += 1 ; } else { let c = chars [i] ; push_escaped (& mut out , c) ; i += 1 ; if c == '\\n' { line += 1 ; col = 1 ; } else { col += 1 ; } } } out }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "reconstruct"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/highlight.rs",
+      "line": 340,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Escape one char into `out` (the same rules as [`crate::emit::html_escape`], per-char to avoid a\"] # [doc = \" temporary allocation on the hot loop).\"] fn push_escaped (out : & mut String , c : char) { match c { '&' => out . push_str (\"&amp;\") , '<' => out . push_str (\"&lt;\") , '>' => out . push_str (\"&gt;\") , '\"' => out . push_str (\"&quot;\") , '\\'' => out . push_str (\"&#39;\") , _ => out . push (c) , } }",
+      "reason": "mutating method's tail expression is neither a threaded-binding field/whole-value re-assignment nor (with the method's original return type already `()`/self-chain, and either multiple threaded bindings or one already assigned) an extra value — value-threading only supports a flat sequence of `self.<field> = ..`/`*<param> = ..` re-assignments plus, when the source return type is non-unit, one trailing value expression (DN-125 §5, conservative scope per §6.1)",
+      "item_name": "push_escaped"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/highlight.rs",
+      "line": 353,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Test-only helper: the concatenated *text* of the highlighted HTML (tags stripped) — the property\"] # [doc = \" that must equal `html_escape(source)`. Kept here so the in-crate test (`src/tests/highlight.rs`)\"] # [doc = \" can assert faithfulness without duplicating the tag-strip.\"] # [cfg (test)] # [must_use] pub (crate) fn strip_tags (html : & str) -> String { let mut out = String :: with_capacity (html . len ()) ; let mut in_tag = false ; for c in html . chars () { match c { '<' => in_tag = true , '>' => in_tag = false , _ if ! in_tag => out . push (c) , _ => { } } } out }",
+      "reason": "qualified/associated-function call `String :: with_capacity` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "strip_tags"
+    }
+  ],
+  "total_top_level_items": 10
+}

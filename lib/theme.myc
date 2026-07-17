@@ -1,0 +1,29 @@
+// nodule: doc.theme
+// The **shared reading theme** (spec §5 — "one reviewed template", the shared visual language). One
+// self-contained stylesheet + a little inline JS, embedded in every page: **no external CDN, font,
+// or asset is fetched** (the site is fully offline-capable — every byte is inlined here). The theme
+// is tuned for *comfortable, low-fatigue reading* (the pedagogically-critical requirement): a
+// legible measure, generous line-height, soft light/dark palettes (never stark `#000`/`#fff`), a
+// persistent navigation sidebar, an "on this page" table of contents, comfortable tables with
+// overflow scrolling, and calm lexical syntax colours.
+//
+// ## One stylesheet, many renderers
+// [`READING_CSS`] is the single source of truth for the corpus site ([`crate::emit::html`]) *and*
+// the book ([`crate::book`]) — both embed the same string, so they share one visual language (§5).
+// It carries the selectors both need (the corpus sidebar/search *and* the book pager/breadcrumb);
+// unused selectors on a given page are harmless and keep the theme DRY (one const, not two).
+//
+// ## Light / dark, never-silent
+// The palette follows `prefers-color-scheme` by default and a **persisted toggle** overrides it
+// (`data-theme` on `:root`, remembered in `localStorage`). [`HEAD_THEME_INIT`] runs in `<head>`
+// *before* first paint so there is no flash of the wrong theme. Both palettes are tuned for reading
+// comfort and sufficient contrast (WCAG AA target — `Empirical/Declared`: chosen for legibility, not
+// verified by an automated contrast checker in this crate; the §4.1 legibility lint checks the
+// *structural* aspects — semantic landmarks, labelled nav, heading order — colour-contrast remains
+// its honestly-named dormant sub-aspect).
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc.theme;
+
+

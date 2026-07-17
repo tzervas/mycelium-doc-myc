@@ -1,0 +1,230 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+  "emitted_items": [
+    "co-include:Level,Provenance,SourceKind,XrefResolution,XrefTarget",
+    "Block"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 8,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: collections :: BTreeSet ;",
+      "reason": "`use std.collections::BTreeSet` — `std.collections` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 10,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: ir :: { Level , Node , Payload , Provenance , SourceKind , XrefResolution , XrefTarget } ;",
+      "reason": "`use ir::Node` — `Node` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Level,Provenance,SourceKind,XrefResolution,XrefTarget"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 10,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: ir :: { Level , Node , Payload , Provenance , SourceKind , XrefResolution , XrefTarget } ;",
+      "reason": "`use ir::Payload` — `Payload` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Level,Provenance,SourceKind,XrefResolution,XrefTarget"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 12,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" Allocates globally-unique, stable anchor slugs (so deep links never collide — §4.1 navigability).\"] # [derive (Debug , Default)] pub struct AnchorAlloc { used : BTreeSet < String > , }",
+      "reason": "struct `AnchorAlloc` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "AnchorAlloc"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 18,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl AnchorAlloc { # [doc = \" A fresh allocator.\"] # [must_use] pub fn new () -> Self { AnchorAlloc :: default () } # [doc = \" Slugify `base` (optionally namespaced under `ns`) and make it unique by `-N` suffixing.\"] pub fn alloc (& mut self , ns : Option < & str > , base : & str) -> String { let slug = slugify (base) ; let slug = if slug . is_empty () { \"x\" . to_owned () } else { slug } ; let candidate = match ns { Some (n) => format ! (\"{n}--{slug}\") , None => slug , } ; if self . used . insert (candidate . clone ()) { return candidate ; } for n in 2 .. { let c = format ! (\"{candidate}-{n}\") ; if self . used . insert (c . clone ()) { return c ; } } unreachable ! (\"the integer suffix space is unbounded\") } }",
+      "reason": "no member of this impl block could be transpiled (2 sub-issue(s)): impl method `new` body: qualified/associated-function call `AnchorAlloc :: default` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133); impl method `alloc` body: method call `.is_empty(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__is_empty` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `is_empty(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "AnchorAlloc"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 50,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" A GitHub-style anchor slug: lowercase, non-alphanumerics → `-`, collapsed, trimmed.\"] # [must_use] pub fn slugify (s : & str) -> String { let mut out = String :: with_capacity (s . len ()) ; let mut prev_dash = false ; for ch in s . chars () { if ch . is_ascii_alphanumeric () { out . push (ch . to_ascii_lowercase ()) ; prev_dash = false ; } else if ! prev_dash { out . push ('-') ; prev_dash = true ; } } out . trim_matches ('-') . to_owned () }",
+      "reason": "qualified/associated-function call `String :: with_capacity` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "slugify"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 67,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" A tokenized markdown block (the parser's intermediate before the section tree is built).\"] # [derive (Debug , Clone , PartialEq , Eq)] enum Block { Heading { level : u8 , text : String , line : u32 , } , Code { lang : String , source : String , line : u32 , } , Para { text : String , line : u32 , } , }",
+      "reason": "enum `Block` variant `Heading` named field(s) `level, text, line` emitted positionally as `Heading(Binary{8}, Bytes, Binary{32})` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped",
+      "item_name": "Block"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 67,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" A tokenized markdown block (the parser's intermediate before the section tree is built).\"] # [derive (Debug , Clone , PartialEq , Eq)] enum Block { Heading { level : u8 , text : String , line : u32 , } , Code { lang : String , source : String , line : u32 , } , Para { text : String , line : u32 , } , }",
+      "reason": "enum `Block` variant `Code` named field(s) `lang, source, line` emitted positionally as `Code(Bytes, Bytes, Binary{32})` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped",
+      "item_name": "Block"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 67,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" A tokenized markdown block (the parser's intermediate before the section tree is built).\"] # [derive (Debug , Clone , PartialEq , Eq)] enum Block { Heading { level : u8 , text : String , line : u32 , } , Code { lang : String , source : String , line : u32 , } , Para { text : String , line : u32 , } , }",
+      "reason": "enum `Block` variant `Para` named field(s) `text, line` emitted positionally as `Para(Bytes, Binary{32})` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped",
+      "item_name": "Block"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 67,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" A tokenized markdown block (the parser's intermediate before the section tree is built).\"] # [derive (Debug , Clone , PartialEq , Eq)] enum Block { Heading { level : u8 , text : String , line : u32 , } , Code { lang : String , source : String , line : u32 , } , Para { text : String , line : u32 , } , }",
+      "reason": "enum `Block` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "Block"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 67,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" A tokenized markdown block (the parser's intermediate before the section tree is built).\"] # [derive (Debug , Clone , PartialEq , Eq)] enum Block { Heading { level : u8 , text : String , line : u32 , } , Code { lang : String , source : String , line : u32 , } , Para { text : String , line : u32 , } , }",
+      "reason": "enum `Block` derive(Eq): covered by co-occurring PartialEq → `fn eq_Block` (product-row collision policy; DN-128 / ONESHOT C2) — not a second emission",
+      "item_name": "Block"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 86,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" Tokenize markdown into a flat block list (a CommonMark subset: ATX headings, ```fenced code,\"] # [doc = \" paragraphs). Table rows and lists fall into paragraphs — fine for projection (we structure, we\"] # [doc = \" do not re-typeset).\"] fn tokenize (src : & str) -> Vec < Block > { let lines : Vec < & str > = src . lines () . collect () ; let mut blocks = Vec :: new () ; let mut i = 0 ; while i < lines . len () { let raw = lines [i] ; let trimmed = raw . trim_start () ; if let Some (rest) = trimmed . strip_prefix (\"```\") { let lang = rest . trim () . to_owned () ; let start = (i + 1) as u32 ; let mut body = String :: new () ; i += 1 ; while i < lines . len () && ! lines [i] . trim_start () . starts_with (\"```\") { body . push_str (lines [i]) ; body . push ('\\n') ; i += 1 ; } if i < lines . len () { i += 1 ; } blocks . push (Block :: Code { lang , source : body , line : start , }) ; continue ; } if let Some ((level , text)) = parse_heading (trimmed) { blocks . push (Block :: Heading { level , text , line : (i + 1) as u32 , }) ; i += 1 ; continue ; } if trimmed . is_empty () { i += 1 ; continue ; } let start = (i + 1) as u32 ; let mut para = String :: new () ; while i < lines . len () { let t = lines [i] . trim_start () ; if t . is_empty () || t . starts_with (\"```\") || parse_heading (t) . is_some () { break ; } if ! para . is_empty () { para . push ('\\n') ; } para . push_str (lines [i] . trim_end ()) ; i += 1 ; } blocks . push (Block :: Para { text : para , line : start , }) ; } blocks }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "tokenize"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 154,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" Parse an ATX heading line into `(level, text)` (1–6 `#`, then required space).\"] fn parse_heading (trimmed : & str) -> Option < (u8 , String) > { if ! trimmed . starts_with ('#') { return None ; } let hashes = trimmed . chars () . take_while (| & c | c == '#') . count () ; if ! (1 ..= 6) . contains (& hashes) { return None ; } let rest = & trimmed [hashes ..] ; let text = rest . strip_prefix (' ') ? . trim () ; Some ((hashes as u8 , text . to_owned ())) }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "parse_heading"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 168,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Extract inline `[text](target)` link targets from a paragraph (the cross-reference seed).\"] # [must_use] pub fn extract_links (text : & str) -> Vec < String > { let bytes = text . as_bytes () ; let mut out = Vec :: new () ; let mut i = 0 ; while i < bytes . len () { if bytes [i] == b']' && i + 1 < bytes . len () && bytes [i + 1] == b'(' { let mut j = i + 2 ; let mut depth = 1 ; while j < bytes . len () && depth > 0 { match bytes [j] { b'(' => depth += 1 , b')' => depth -= 1 , _ => { } } if depth == 0 { break ; } j += 1 ; } if j <= bytes . len () { let target = & text [i + 2 .. j] ; let target = target . split_whitespace () . next () . unwrap_or (\"\") . to_owned () ; if ! target . is_empty () { out . push (target) ; } } i = j + 1 ; } else { i += 1 ; } } out }",
+      "reason": "method call `.as_bytes(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__as_bytes` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `as_bytes(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "extract_links"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 206,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Whether a fenced example is held to the type-check bar (§4.1 #4). Only a `myc-checked` info\"] # [doc = \" string opts in — a plain ```myc fence stays *illustrative* (most prose snippets are partial, not\"] # [doc = \" complete nodule programs; tagging every one would falsely redden the gate). Complete `.myc`\"] # [doc = \" programs in the `examples/` corpus are the checked source the apiref generator captures.\"] fn is_checked_lang (lang : & str) -> bool { let l = lang . split_whitespace () . next () . unwrap_or (\"\") ; matches ! (l , \"myc-checked\") }",
+      "reason": "method call `.unwrap_or(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__unwrap_or` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `unwrap_or(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "is_checked_lang"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 215,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The fence language, normalized (the first token of the info string).\"] fn norm_lang (lang : & str) -> String { let l = lang . split_whitespace () . next () . unwrap_or (\"\") ; if l . is_empty () { \"text\" . to_owned () } else { l . to_owned () } }",
+      "reason": "method call `.unwrap_or(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__unwrap_or` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `unwrap_or(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "norm_lang"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 225,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Project a markdown source into a [`Payload::Document`] node.\"] # [doc = \"\"] # [doc = \" `path` is the repo-relative source (provenance); `source_kind` selects the corpus family. The\"] # [doc = \" document title is the first H1 (else the path stem). The lead prose before the first heading is\"] # [doc = \" the document's `minimal` summary; H2 sections are `medium`, deeper sections `detailed` (graded\"] # [doc = \" depth, §4.1 #3).\"] # [must_use] pub fn ingest (path : & str , src : & str , source_kind : SourceKind , alloc : & mut AnchorAlloc) -> Node { let blocks = tokenize (src) ; let stem = path_stem (path) ; let doc_anchor = alloc . alloc (None , & stem) ; let title = blocks . iter () . find_map (| b | match b { Block :: Heading { level : 1 , text , .. } => Some (text . clone ()) , _ => None , }) . unwrap_or_else (| | stem . clone ()) ; let mut children = Vec :: new () ; let first_sec = blocks . iter () . position (| b | matches ! (b , Block :: Heading { level , .. } if * level >= 2)) . unwrap_or (blocks . len ()) ; let lead : Vec < Block > = blocks [.. first_sec] . iter () . filter (| b | ! matches ! (b , Block :: Heading { level : 1 , .. })) . cloned () . collect () ; for n in blocks_to_nodes (& lead , path , & doc_anchor , Level :: Minimal , alloc) { children . push (n) ; } let rest : Vec < Block > = blocks [first_sec ..] . iter () . filter (| b | ! matches ! (b , Block :: Heading { level : 1 , .. })) . cloned () . collect () ; let (sections , _) = build_sections (& rest , 0 , 2 , path , & doc_anchor , alloc) ; children . extend (sections) ; Node :: new (doc_anchor , Some (title) , None , Provenance { source : path . to_owned () , line : 1 , } , Payload :: Document { source_kind } , children ,) }",
+      "reason": "method call `.alloc(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__alloc` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `alloc(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "ingest"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 284,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The file stem (no directory, no extension).\"] fn path_stem (path : & str) -> String { let file = path . rsplit ('/') . next () . unwrap_or (path) ; file . rsplit_once ('.') . map_or (file , | (s , _) | s) . to_owned () }",
+      "reason": "method call `.unwrap_or(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__unwrap_or` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `unwrap_or(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "path_stem"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 290,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Recursively build sections from `blocks` starting at `start`, consuming everything until a heading\"] # [doc = \" of level `<= parent_level`. Returns `(nodes, next_index)`.\"] fn build_sections (blocks : & [Block] , parent_level : u8 , grade_from : u8 , path : & str , ns : & str , alloc : & mut AnchorAlloc ,) -> (Vec < Node > , usize) { let mut nodes = Vec :: new () ; let mut i = 0 ; while i < blocks . len () { match & blocks [i] { Block :: Heading { level , .. } if * level <= parent_level => break , Block :: Heading { level , text , line } => { let lvl = * level ; let anchor = alloc . alloc (Some (ns) , text) ; let mut body_blocks = Vec :: new () ; i += 1 ; while i < blocks . len () && ! matches ! (blocks [i] , Block :: Heading { .. }) { body_blocks . push (blocks [i] . clone ()) ; i += 1 ; } let graded = if lvl <= grade_from { Level :: Medium } else { Level :: Detailed } ; let mut sec_children = blocks_to_nodes (& body_blocks , path , & anchor , graded , alloc) ; let (sub , consumed) = build_sections (& blocks [i ..] , lvl , grade_from , path , & anchor , alloc) ; i += consumed ; sec_children . extend (sub) ; nodes . push (Node :: new (anchor , Some (text . clone ()) , Some (graded) , Provenance { source : path . to_owned () , line : * line , } , Payload :: Section , sec_children ,)) ; } _ => { let mut run = Vec :: new () ; while i < blocks . len () && ! matches ! (blocks [i] , Block :: Heading { .. }) { run . push (blocks [i] . clone ()) ; i += 1 ; } nodes . extend (blocks_to_nodes (& run , path , ns , Level :: Medium , alloc)) ; } } } (nodes , i) }",
+      "reason": "qualified/associated-function call `Vec :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "build_sections"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 352,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Turn a run of leaf blocks (paras + code) into prose / example / xref nodes.\"] fn blocks_to_nodes (blocks : & [Block] , path : & str , ns : & str , level : Level , alloc : & mut AnchorAlloc ,) -> Vec < Node > { let mut nodes = Vec :: new () ; for b in blocks { match b { Block :: Para { text , line } => { let anchor = alloc . alloc (Some (ns) , & first_words (text)) ; nodes . push (Node :: new (anchor . clone () , None , Some (level) , Provenance { source : path . to_owned () , line : * line , } , Payload :: Prose { text : text . clone () } , vec ! [] ,)) ; for raw in extract_links (text) { let xa = alloc . alloc (Some (& anchor) , \"xref\") ; nodes . push (Node :: new (xa , None , None , Provenance { source : path . to_owned () , line : * line , } , Payload :: Xref { target : XrefTarget { raw , resolution : XrefResolution :: Unresolved , } , } , vec ! [] ,)) ; } } Block :: Code { lang , source , line } => { let anchor = alloc . alloc (Some (ns) , \"example\") ; nodes . push (Node :: new (anchor , None , Some (level) , Provenance { source : path . to_owned () , line : * line , } , Payload :: Example { lang : norm_lang (lang) , source : source . clone () , checked : is_checked_lang (lang) , } , vec ! [] ,)) ; } Block :: Heading { .. } => unreachable ! (\"headings handled by build_sections\") , } } nodes }",
+      "reason": "qualified/associated-function call `Vec :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "blocks_to_nodes"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 421,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The first few words of a paragraph, for a readable anchor slug.\"] fn first_words (text : & str) -> String { text . split_whitespace () . take (6) . collect :: < Vec < _ > > () . join (\" \") }",
+      "reason": "method call `.join(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__join` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `join(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "first_words"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "line": 429,
+      "col": 1,
+      "category": "TestItem",
+      "rust_construct": "TestItem",
+      "snippet": "# [cfg (test)] mod tests { use super :: * ; # [test] fn slugify_is_github_style () { assert_eq ! (slugify (\"Hello, World!\") , \"hello-world\") ; assert_eq ! (slugify (\"§4.1 Quality bar\") , \"4-1-quality-bar\") ; assert_eq ! (slugify (\"  --x--  \") , \"x\") ; } # [test] fn anchors_are_unique () { let mut a = AnchorAlloc :: new () ; assert_eq ! (a . alloc (None , \"Intro\") , \"intro\") ; assert_eq ! (a . alloc (None , \"Intro\") , \"intro-2\") ; assert_eq ! (a . alloc (Some (\"doc\") , \"Intro\") , \"doc--intro\") ; } # [test] fn headings_parse () { assert_eq ! (parse_heading (\"## Hi there\") , Some ((2 , \"Hi there\" . to_owned ()))) ; assert_eq ! (parse_heading (\"#nope\") , None) ; assert_eq ! (parse_heading (\"not a heading\") , None) ; assert_eq ! (parse_heading (\"####### too deep\") , None) ; } # [test] fn links_extract_inline_targets () { let links = extract_links (\"see [the RFC](RFC-0013.md#levels) and [home](https://x.io).\") ; assert_eq ! (links , vec ! [\"RFC-0013.md#levels\" , \"https://x.io\"]) ; } # [test] fn tokenize_separates_headings_code_and_paras () { let src = \"# Title\\n\\nIntro para.\\n\\n## Sec\\n\\n```myc\\nfn f() = 0\\n```\\n\\nmore.\\n\" ; let blocks = tokenize (src) ; assert ! (matches ! (blocks [0] , Block :: Heading { level : 1 , .. })) ; assert ! (matches ! (& blocks [1] , Block :: Para { text , .. } if text == \"Intro para.\")) ; assert ! (matches ! (blocks [2] , Block :: Heading { level : 2 , .. })) ; assert ! (matches ! (& blocks [3] , Block :: Code { lang , .. } if lang == \"myc\")) ; } # [test] fn ingest_builds_a_graded_document_tree () { let src = \"# My Doc\\n\\nThe summary line.\\n\\n## First\\n\\nBody of first.\\n\\n### Deep\\n\\nDeep body.\\n\\n## Second\\n\\nBody two.\\n\" ; let mut alloc = AnchorAlloc :: new () ; let doc = ingest (\"docs/spec/my-doc.md\" , src , SourceKind :: Spec , & mut alloc) ; assert_eq ! (doc . title . as_deref () , Some (\"My Doc\")) ; let lead = doc . children . iter () . find (| n | matches ! (n . payload , Payload :: Prose { .. })) . unwrap () ; assert_eq ! (lead . level , Some (Level :: Minimal)) ; let secs : Vec < & Node > = doc . children . iter () . filter (| n | matches ! (n . payload , Payload :: Section)) . collect () ; assert_eq ! (secs . len () , 2) ; assert_eq ! (secs [0] . level , Some (Level :: Medium)) ; let deep = secs [0] . children . iter () . find (| n | matches ! (n . payload , Payload :: Section)) . unwrap () ; assert_eq ! (deep . level , Some (Level :: Detailed)) ; } # [test] fn a_myc_checked_fence_is_marked_checked () { let src = \"# D\\n\\n```myc-checked\\nfn f() -> Binary{8} = 0b0\\n```\\n\\n```text\\nillustrative\\n```\\n\" ; let mut alloc = AnchorAlloc :: new () ; let doc = ingest (\"d.md\" , src , SourceKind :: Note , & mut alloc) ; let examples : Vec < & Node > = { let mut v = Vec :: new () ; doc . walk (& mut | n | { if matches ! (n . payload , Payload :: Example { .. }) { v . push (n) ; } }) ; v } ; assert_eq ! (examples . len () , 2) ; let checked = examples . iter () . filter (| n | matches ! (& n . payload , Payload :: Example { checked : true , .. })) . count () ; assert_eq ! (checked , 1) ; } }",
+      "reason": "#[cfg(test)] item — out of scope for this PoC's transpilation surface (excluded from the expressible-fraction denominator, but recorded, never silently skipped)",
+      "item_name": "tests"
+    }
+  ],
+  "total_top_level_items": 17
+}

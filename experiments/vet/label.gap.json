@@ -1,0 +1,87 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-doc/src/label.rs",
+  "emitted_items": [],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/label.rs",
+      "line": 11,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: ir :: Node ;",
+      "reason": "`use ir::Node` — `Node` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/label.rs",
+      "line": 13,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" A concise navigation label for `node` (see the module rules). Never empty. Inline markdown is\"] # [doc = \" stripped up front ([`crate::inline::to_plain`]), so word-capping can never split a `` `code` ``\"] # [doc = \" span and leave a dangling backtick in the label.\"] # [doc = \"\"] # [doc = \" - **ID'd** (`RFC-NNNN`/`ADR-NNN`/`DN-NN`): `\\\"<ID> · <short title>\\\"` — the title with the ID (and a\"] # [doc = \"   `Design Note ` prefix) stripped, cut at the first of `—`/`(`/`:`, word-capped ~30.\"] # [doc = \" - **Stdlib spec** (`docs/spec/stdlib/…`): the module name (`std.vsa`).\"] # [doc = \" - **Everything else**: the title (a leading `Spec … —` stripped), cut at the first of `—`/`(`/`:`,\"] # [doc = \"   word-capped ~32.\"] # [must_use] pub fn short_label (node : & Node) -> String { let raw = node . title . as_deref () . unwrap_or (& node . anchor) ; let plain = crate :: inline :: to_plain (raw) ; let title = plain . trim () ; if title . is_empty () { return node . anchor . clone () ; } if let Some (id) = doc_id (& node . anchor) { let short = shorten (after_id (title , & id) , 30) ; return if short . is_empty () { id } else { format ! (\"{id} \\u{b7} {short}\") } ; } if node . provenance . source . contains (\"/stdlib/\") { if let Some (m) = std_module (title) { return m ; } } let base = after_em_dash (title) . unwrap_or (title) ; let short = shorten (base , 32) ; if short . is_empty () { hard_cap (title , 30) } else { short } }",
+      "reason": "method call `.unwrap_or(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__unwrap_or` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `unwrap_or(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "short_label"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/label.rs",
+      "line": 60,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" The display ID (`RFC-0002`/`ADR-010`/`DN-01`) parsed from a doc anchor slug, if it is an ID'd doc.\"] fn doc_id (anchor : & str) -> Option < String > { for (pfx , up) in [(\"rfc-\" , \"RFC-\") , (\"adr-\" , \"ADR-\") , (\"dn-\" , \"DN-\")] { if let Some (rest) = anchor . strip_prefix (pfx) { let num : String = rest . chars () . take_while (char :: is_ascii_digit) . collect () ; if ! num . is_empty () { return Some (format ! (\"{up}{num}\")) ; } } } None }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "doc_id"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/label.rs",
+      "line": 73,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "# [doc = \" The part of `title` after the (case-sensitive) `id` occurrence, with leading separators/space\"] # [doc = \" trimmed. Falls back to the whole title if the id is not found in it.\"] fn after_id < 'a > (title : & 'a str , id : & str) -> & 'a str { match title . find (id) { Some (pos) => title [pos + id . len () ..] . trim_start_matches (| c : char | ! c . is_alphanumeric ()) , None => title , } }",
+      "reason": "lifetime parameter `'a` has no grammar surface",
+      "item_name": "after_id"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/label.rs",
+      "line": 82,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The part of `title` after the first em-dash (`—`), trimmed — for stripping a `Spec … —` prefix.\"] fn after_em_dash (title : & str) -> Option < & str > { title . split_once ('\\u{2014}') . map (| (_ , rest) | rest . trim ()) }",
+      "reason": "method call `.map(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__map` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `map(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "after_em_dash"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/label.rs",
+      "line": 87,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The `std.<module>` token in a stdlib spec title (`Spec — \\\\`std.vsa\\\\` (…)` → `std.vsa`).\"] fn std_module (title : & str) -> Option < String > { let start = title . find (\"std.\") ? ; let tail = & title [start ..] ; let end = tail . find (| c : char | ! (c . is_ascii_alphanumeric () || c == '_' || c == '.')) . unwrap_or (tail . len ()) ; let m = tail [.. end] . trim_end_matches ('.') ; (m . len () > \"std\" . len ()) . then (| | m . to_owned ()) }",
+      "reason": "unsupported expression form `title . find (\"std.\") ?`",
+      "item_name": "std_module"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/label.rs",
+      "line": 98,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Cut `s` at the first of `—`/`(`/`:`, then word-cap to ~`cap` chars (with an ellipsis when it must\"] # [doc = \" truncate mid-title). Deterministic; empty only if `s` is empty/whitespace.\"] fn shorten (s : & str , cap : usize) -> String { let s = s . trim () ; if s . is_empty () { return String :: new () ; } let mut cut = s . len () ; for pat in [\"\\u{2014}\" , \"(\" , \":\"] { if let Some (p) = s . find (pat) { cut = cut . min (p) ; } } let head = s [.. cut] . trim () ; if head . chars () . count () <= cap { return head . to_owned () ; } let mut out = String :: new () ; for w in head . split_whitespace () { let add = w . chars () . count () + usize :: from (! out . is_empty ()) ; if out . chars () . count () + add > cap { break ; } if ! out . is_empty () { out . push (' ') ; } out . push_str (w) ; } if out . is_empty () { out = head . chars () . take (cap) . collect () ; } out . push ('\\u{2026}') ; out }",
+      "reason": "method call `.trim(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__trim` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `trim(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "shorten"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/label.rs",
+      "line": 133,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Hard fallback: the first `cap` chars of `s` plus an ellipsis (never blank unless `s` is).\"] fn hard_cap (s : & str , cap : usize) -> String { let s = s . trim () ; if s . chars () . count () <= cap { return s . to_owned () ; } let mut out : String = s . chars () . take (cap) . collect () ; out . push ('\\u{2026}') ; out }",
+      "reason": "method call `.trim(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__trim` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `trim(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "hard_cap"
+    }
+  ],
+  "total_top_level_items": 8
+}

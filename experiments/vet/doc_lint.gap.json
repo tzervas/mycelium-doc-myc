@@ -1,0 +1,356 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+  "emitted_items": [
+    "co-include:XrefResolution",
+    "Severity",
+    "impl Severity",
+    "Finding",
+    "CheckStatus",
+    "CheckOutcome",
+    "DocLintReport",
+    "err"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 9,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_l1 :: { check_nodule , parse } ;",
+      "reason": "`use mycelium_l1::check_nodule` — `mycelium_l1` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_l1::parse` — `mycelium_l1` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 11,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: emit ;",
+      "reason": "`use ::emit` — `emit` is not among sibling ``'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 12,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: ir :: { DocModel , Payload , XrefResolution } ;",
+      "reason": "`use ir::DocModel` — `DocModel` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:XrefResolution"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 12,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: ir :: { DocModel , Payload , XrefResolution } ;",
+      "reason": "`use ir::Payload` — `Payload` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:XrefResolution"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 14,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The eight §4.1 checks, by canonical name — the single source of truth (`mycelium-lint` re-exports\"] # [doc = \" this as `DOC_QUALITY_CHECKS`).\"] pub const CHECK_NAMES : & [& str] = & [\"single-template-conformance\" , \"navigability\" , \"progressive-disclosure\" , \"checked-examples\" , \"no-dead-xref\" , \"dual-projection-parity\" , \"no-hallucinated-prose\" , \"legibility-accessibility\" ,] ;",
+      "reason": "top-level `const CHECK_NAMES` — co-emit (ORACLE-R1 A4) only covers plain unsigned integer types (`u8`/`u16`/`u32`/`u64`/`u128`/`usize`); other types have no const item production and no faithful zero-arg-fn encoding (gap, never fabricate)",
+      "item_name": "CHECK_NAMES"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 27,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Finding severity (mirrors the lattice's never-silent posture: an error gates, a warning advises).\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub enum Severity { # [doc = \" A build failure — gates the doc check.\"] Error , # [doc = \" An advisory — surfaced, not gated.\"] Warning , # [doc = \" Informational — counts and honest gaps.\"] Info , }",
+      "reason": "enum `Severity` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "Severity"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 27,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Finding severity (mirrors the lattice's never-silent posture: an error gates, a warning advises).\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub enum Severity { # [doc = \" A build failure — gates the doc check.\"] Error , # [doc = \" An advisory — surfaced, not gated.\"] Warning , # [doc = \" Informational — counts and honest gaps.\"] Info , }",
+      "reason": "enum `Severity` derive(Copy) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "Severity"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 27,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Finding severity (mirrors the lattice's never-silent posture: an error gates, a warning advises).\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub enum Severity { # [doc = \" A build failure — gates the doc check.\"] Error , # [doc = \" An advisory — surfaced, not gated.\"] Warning , # [doc = \" Informational — counts and honest gaps.\"] Info , }",
+      "reason": "enum `Severity` derive(Eq): covered by co-occurring PartialEq → `fn eq_Severity` (product-row collision policy; DN-128 / ONESHOT C2) — not a second emission",
+      "item_name": "Severity"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 38,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "impl Severity { # [doc = \" The canonical label.\"] # [must_use] pub fn as_str (self) -> & 'static str { match self { Severity :: Error => \"error\" , Severity :: Warning => \"warning\" , Severity :: Info => \"info\" , } } }",
+      "reason": "dropped non-doc attribute(s) on method `as_str`: # [must_use]",
+      "item_name": "impl Severity"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 50,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" One finding from a check.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct Finding { # [doc = \" Which check raised it.\"] pub check : String , # [doc = \" Its severity.\"] pub severity : Severity , # [doc = \" The node anchor it concerns (or the document).\"] pub anchor : String , # [doc = \" The author-facing message.\"] pub message : String , }",
+      "reason": "struct `Finding` named field(s) `check, severity, anchor, message` emitted positionally as `Finding(Bytes, Severity, Bytes, Bytes)` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped (matches `lib/std/*.myc` hand-ports)",
+      "item_name": "Finding"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 50,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" One finding from a check.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct Finding { # [doc = \" Which check raised it.\"] pub check : String , # [doc = \" Its severity.\"] pub severity : Severity , # [doc = \" The node anchor it concerns (or the document).\"] pub anchor : String , # [doc = \" The author-facing message.\"] pub message : String , }",
+      "reason": "struct `Finding` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "Finding"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 50,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" One finding from a check.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct Finding { # [doc = \" Which check raised it.\"] pub check : String , # [doc = \" Its severity.\"] pub severity : Severity , # [doc = \" The node anchor it concerns (or the document).\"] pub anchor : String , # [doc = \" The author-facing message.\"] pub message : String , }",
+      "reason": "struct `Finding` derive(...) names Eq not in the DN-128 standard-derive set this leaf builds (Debug/Default/Clone/Copy/PartialEq/PartialOrd/Hash all recognized; bare Eq/Ord are deliberately NOT recognized — see emit/derives/mod.rs::TABLE's doc for why) — dropped, no confirmed Mycelium surface",
+      "item_name": "Finding"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 63,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Whether a check is fully active, partly dormant (named sub-aspects await machinery), or dormant.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub enum CheckStatus { # [doc = \" Fully implemented over the IR.\"] Active , # [doc = \" Active, but a named sub-aspect is not yet implementable (honest — never faked green).\"] PartiallyDormant (String) , # [doc = \" Not yet implementable (an explicit dormant entry; never a faked green).\"] Dormant (String) , }",
+      "reason": "enum `CheckStatus` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "CheckStatus"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 63,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Whether a check is fully active, partly dormant (named sub-aspects await machinery), or dormant.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub enum CheckStatus { # [doc = \" Fully implemented over the IR.\"] Active , # [doc = \" Active, but a named sub-aspect is not yet implementable (honest — never faked green).\"] PartiallyDormant (String) , # [doc = \" Not yet implementable (an explicit dormant entry; never a faked green).\"] Dormant (String) , }",
+      "reason": "enum `CheckStatus` derive(Eq): covered by co-occurring PartialEq → `fn eq_CheckStatus` (product-row collision policy; DN-128 / ONESHOT C2) — not a second emission",
+      "item_name": "CheckStatus"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 74,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" The outcome of one check.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct CheckOutcome { # [doc = \" The check name.\"] pub name : String , # [doc = \" Its status.\"] pub status : CheckStatus , # [doc = \" A one-line human summary.\"] pub summary : String , # [doc = \" Any findings.\"] pub findings : Vec < Finding > , }",
+      "reason": "struct `CheckOutcome` named field(s) `name, status, summary, findings` emitted positionally as `CheckOutcome(Bytes, CheckStatus, Bytes, Vec[Finding])` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped (matches `lib/std/*.myc` hand-ports)",
+      "item_name": "CheckOutcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 74,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" The outcome of one check.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct CheckOutcome { # [doc = \" The check name.\"] pub name : String , # [doc = \" Its status.\"] pub status : CheckStatus , # [doc = \" A one-line human summary.\"] pub summary : String , # [doc = \" Any findings.\"] pub findings : Vec < Finding > , }",
+      "reason": "struct `CheckOutcome` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "CheckOutcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 74,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" The outcome of one check.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct CheckOutcome { # [doc = \" The check name.\"] pub name : String , # [doc = \" Its status.\"] pub status : CheckStatus , # [doc = \" A one-line human summary.\"] pub summary : String , # [doc = \" Any findings.\"] pub findings : Vec < Finding > , }",
+      "reason": "struct `CheckOutcome` derive(...) names Eq not in the DN-128 standard-derive set this leaf builds (Debug/Default/Clone/Copy/PartialEq/PartialOrd/Hash all recognized; bare Eq/Ord are deliberately NOT recognized — see emit/derives/mod.rs::TABLE's doc for why) — dropped, no confirmed Mycelium surface",
+      "item_name": "CheckOutcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 87,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" The full §4.1 lint report.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct DocLintReport { # [doc = \" One outcome per check, in `CHECK_NAMES` order.\"] pub outcomes : Vec < CheckOutcome > , }",
+      "reason": "struct `DocLintReport` named field(s) `outcomes` emitted positionally as `DocLintReport(Vec[CheckOutcome])` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped (matches `lib/std/*.myc` hand-ports)",
+      "item_name": "DocLintReport"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 87,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" The full §4.1 lint report.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct DocLintReport { # [doc = \" One outcome per check, in `CHECK_NAMES` order.\"] pub outcomes : Vec < CheckOutcome > , }",
+      "reason": "struct `DocLintReport` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "DocLintReport"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 87,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" The full §4.1 lint report.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct DocLintReport { # [doc = \" One outcome per check, in `CHECK_NAMES` order.\"] pub outcomes : Vec < CheckOutcome > , }",
+      "reason": "struct `DocLintReport` derive(...) names Eq not in the DN-128 standard-derive set this leaf builds (Debug/Default/Clone/Copy/PartialEq/PartialOrd/Hash all recognized; bare Eq/Ord are deliberately NOT recognized — see emit/derives/mod.rs::TABLE's doc for why) — dropped, no confirmed Mycelium surface",
+      "item_name": "DocLintReport"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 94,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl DocLintReport { # [doc = \" Whether any finding is error-severity (the gate condition).\"] # [must_use] pub fn has_errors (& self) -> bool { self . outcomes . iter () . any (| o | o . findings . iter () . any (| f | f . severity == Severity :: Error)) } # [doc = \" Every error-severity finding, flattened.\"] # [must_use] pub fn errors (& self) -> Vec < & Finding > { self . outcomes . iter () . flat_map (| o | o . findings . iter ()) . filter (| f | f . severity == Severity :: Error) . collect () } }",
+      "reason": "no member of this impl block could be transpiled (2 sub-issue(s)): impl method `has_errors` body: method call `.any(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__any` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `any(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered); impl method `errors` body: method call `.collect(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__collect` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `collect(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "DocLintReport"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 114,
+      "col": 1,
+      "category": "MacroInvocation",
+      "rust_construct": "MacroInvocation",
+      "snippet": "# [doc = \" Run all eight §4.1 checks over the model.\"] # [must_use] pub fn lint (model : & DocModel) -> DocLintReport { DocLintReport { outcomes : vec ! [check_single_template (model) , check_navigability (model) , check_progressive_disclosure (model) , check_checked_examples (model) , check_no_dead_xref (model) , check_dual_projection_parity (model) , check_no_hallucinated_prose (model) , check_legibility_accessibility (model) ,] , } }",
+      "reason": "expression-position macro `vec` — no macro system in this grammar fragment (`write!`/`format!` lower to pure `Bytes` per DN-127/M-1090 WU-3)",
+      "item_name": "lint"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 132,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn check_single_template (model : & DocModel) -> CheckOutcome { let mut findings = Vec :: new () ; for doc in & model . documents { if ! matches ! (doc . payload , Payload :: Document { .. }) { findings . push (err (\"single-template-conformance\" , & doc . anchor , \"top-level node is not a Document — divergent structure\" ,)) ; } if doc . title . as_deref () . unwrap_or (\"\") . trim () . is_empty () { findings . push (err (\"single-template-conformance\" , & doc . anchor , \"document has no title (the one template requires a header title)\" ,)) ; } if doc . children . is_empty () { findings . push (err (\"single-template-conformance\" , & doc . anchor , \"document has no body (index→detail requires content)\" ,)) ; } } CheckOutcome { name : \"single-template-conformance\" . to_owned () , status : CheckStatus :: Active , summary : format ! (\"{} documents conform to the one template (title + body)\" , model . documents . len ()) , findings , } }",
+      "reason": "qualified/associated-function call `Vec :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "check_single_template"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 169,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn check_navigability (model : & DocModel) -> CheckOutcome { let mut findings = Vec :: new () ; let n_nodes = model . all_nodes () . len () ; let n_anchors = model . anchors . len () ; if model . documents . is_empty () { findings . push (err (\"navigability\" , \"(model)\" , \"no documents — nothing is reachable from the index\" ,)) ; } if n_anchors != n_nodes { findings . push (err (\"navigability\" , \"(model)\" , & format ! (\"anchor collision: {n_nodes} nodes but {n_anchors} unique anchors — \\\n                 a node is unreachable / a deep link would collide\") ,)) ; } CheckOutcome { name : \"navigability\" . to_owned () , status : CheckStatus :: Active , summary : format ! (\"{n_nodes} nodes, all uniquely anchored and reachable from the index; search index present\") , findings , } }",
+      "reason": "qualified/associated-function call `Vec :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "check_navigability"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 201,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn check_progressive_disclosure (model : & DocModel) -> CheckOutcome { let mut findings = Vec :: new () ; for doc in & model . documents { let mut levels = std :: collections :: BTreeSet :: new () ; doc . walk (& mut | n | { if let Some (l) = n . level { levels . insert (l . as_str ()) ; } }) ; if levels . is_empty () { findings . push (err (\"progressive-disclosure\" , & doc . anchor , \"no level-graded blocks at all — graded depth (minimal/medium/detailed) is required\" ,)) ; } else if levels . len () == 1 { findings . push (Finding { check : \"progressive-disclosure\" . to_owned () , severity : Severity :: Warning , anchor : doc . anchor . clone () , message : format ! (\"only one depth present ({}) — a richer document should offer graded depth\" , levels . iter () . next () . unwrap ()) , }) ; } } CheckOutcome { name : \"progressive-disclosure\" . to_owned () , status : CheckStatus :: Active , summary : \"every document carries graded depth (RFC-0013 levels reused for docs)\" . to_owned () , findings , } }",
+      "reason": "qualified/associated-function call `Vec :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "check_progressive_disclosure"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 237,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn check_checked_examples (model : & DocModel) -> CheckOutcome { let mut findings = Vec :: new () ; let mut checked = 0usize ; let mut illustrative = 0usize ; for node in model . all_nodes () { if let Payload :: Example { lang , source , checked : is_checked , } = & node . payload { if * is_checked { checked += 1 ; if let Err (msg) = type_check_example (source) { findings . push (err (\"checked-examples\" , & node . anchor , & format ! (\"checked example ({lang}) does not type-check via the trusted L1 checker: {msg}\") ,)) ; } } else { illustrative += 1 ; findings . push (Finding { check : \"checked-examples\" . to_owned () , severity : Severity :: Info , anchor : node . anchor . clone () , message : format ! (\"illustrative example ({lang}) — honestly not CI-checked (tag ```myc-checked to enforce)\") , }) ; } } } CheckOutcome { name : \"checked-examples\" . to_owned () , status : CheckStatus :: Active , summary : format ! (\"{checked} checked examples type-check (myc-check pipeline); {illustrative} illustrative, honestly flagged\") , findings , } }",
+      "reason": "qualified/associated-function call `Vec :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "check_checked_examples"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 282,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Type-check an example by the same pipeline the `myc-check` gate uses (parse → check_nodule).\"] fn type_check_example (source : & str) -> Result < () , String > { let nodule = parse (source) . map_err (| e | format ! (\"parse: {e}\")) ? ; check_nodule (& nodule) . map_err (| e | format ! (\"check: {e}\")) ? ; Ok (()) }",
+      "reason": "unsupported expression form `parse (source) . map_err (| e | format ! (\"parse: {e}\")) ?`",
+      "item_name": "type_check_example"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 290,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn check_no_dead_xref (model : & DocModel) -> CheckOutcome { let mut findings = Vec :: new () ; let (mut internal , mut external , mut out_of_scope) = (0usize , 0usize , 0usize) ; for node in model . all_nodes () { if let Payload :: Xref { target } = & node . payload { match & target . resolution { XrefResolution :: Internal { .. } => internal += 1 , XrefResolution :: ExternalUrl => external += 1 , XrefResolution :: OutOfScope => out_of_scope += 1 , XrefResolution :: Dead { reason } => findings . push (err (\"no-dead-xref\" , & node . anchor , & format ! (\"dead cross-reference `{}`: {reason}\" , target . raw) ,)) , XrefResolution :: Unresolved => findings . push (err (\"no-dead-xref\" , & node . anchor , & format ! (\"cross-reference `{}` was never resolved (build bug)\" , target . raw) ,)) , } } } CheckOutcome { name : \"no-dead-xref\" . to_owned () , status : CheckStatus :: Active , summary : format ! (\"{internal} internal xrefs resolve; {external} external + {out_of_scope} out-of-scope \\\n             (links.sh owns external reachability)\") , findings , } }",
+      "reason": "qualified/associated-function call `Vec :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "check_no_dead_xref"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 327,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn check_dual_projection_parity (model : & DocModel) -> CheckOutcome { let html = emit :: html :: render_concat (model) ; let json = emit :: json :: render_model_json (model) ; let model_ids = model . id_set () ; let html_ids = extract_hashes (& html) ; let json_ids = extract_hashes (& json) ; let mut findings = Vec :: new () ; let missing_html : Vec < & String > = model_ids . difference (& html_ids) . collect () ; let missing_json : Vec < & String > = model_ids . difference (& json_ids) . collect () ; if ! missing_html . is_empty () { findings . push (err (\"dual-projection-parity\" , \"(model)\" , & format ! (\"{} node(s) present in the IR are missing from the HTML view (e.g. {})\" , missing_html . len () , missing_html . first () . map (| s | s . as_str ()) . unwrap_or (\"\")) ,)) ; } if ! missing_json . is_empty () { findings . push (err (\"dual-projection-parity\" , \"(model)\" , & format ! (\"{} node(s) present in the IR are missing from the JSON view\" , missing_json . len ()) ,)) ; } if html_ids != model_ids || json_ids != model_ids { let extra_html = html_ids . difference (& model_ids) . count () ; let extra_json = json_ids . difference (& model_ids) . count () ; if extra_html > 0 || extra_json > 0 { findings . push (err (\"dual-projection-parity\" , \"(model)\" , & format ! (\"a view carries content addresses absent from the IR (html +{extra_html}, json +{extra_json})\") ,)) ; } } CheckOutcome { name : \"dual-projection-parity\" . to_owned () , status : CheckStatus :: Active , summary : format ! (\"HTML and JSON are two views of {} content-addressed nodes (same hashes — G11/ADR-003)\" , model_ids . len ()) , findings , } }",
+      "reason": "qualified/associated-function call `emit :: html :: render_concat` — no established Mycelium surface form for a Rust conversion-op body; emitting the bare last-segment name would fabricate a call (e.g. `from(...)` is not a Mycelium builtin)",
+      "item_name": "check_dual_projection_parity"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 384,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Extract every `blake3:<64 hex>` content address appearing in `s`.\"] fn extract_hashes (s : & str) -> std :: collections :: BTreeSet < String > { let mut out = std :: collections :: BTreeSet :: new () ; let bytes = s . as_bytes () ; let pat = b\"blake3:\" ; let mut i = 0 ; while i + pat . len () + 64 <= bytes . len () { if & bytes [i .. i + pat . len ()] == pat { let digest = & bytes [i + pat . len () .. i + pat . len () + 64] ; if digest . iter () . all (u8 :: is_ascii_hexdigit) { out . insert (format ! (\"blake3:{}\" , std :: str :: from_utf8 (digest) . unwrap ())) ; i += pat . len () + 64 ; continue ; } } i += 1 ; } out }",
+      "reason": "qualified type path `std :: collections :: BTreeSet < String >` — collapsing to its last segment would risk colliding with an unrelated same-named local type (e.g. `std::cmp::Ordering` vs a local `Ordering`); left an explicit gap rather than guessed (VR-5)",
+      "item_name": "extract_hashes"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 405,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn check_no_hallucinated_prose (model : & DocModel) -> CheckOutcome { let mut findings = Vec :: new () ; let (mut documented , mut undocumented) = (0usize , 0usize) ; for node in model . all_nodes () { match & node . payload { Payload :: ApiItem { summary , .. } => { if node . provenance . source . trim () . is_empty () { findings . push (err (\"no-hallucinated-prose\" , & node . anchor , \"api-item has no provenance — an ungrounded (hallucinated) statement\" ,)) ; } match summary { Some (_) => documented += 1 , None => { undocumented += 1 ; findings . push (Finding { check : \"no-hallucinated-prose\" . to_owned () , severity : Severity :: Info , anchor : node . anchor . clone () , message : \"undocumented — explicit gap, never invented filler (G2)\" . to_owned () , }) ; } } } Payload :: Undocumented { .. } => undocumented += 1 , _ => { } } } CheckOutcome { name : \"no-hallucinated-prose\" . to_owned () , status : CheckStatus :: Active , summary : format ! (\"{documented} api statements all trace to source; {undocumented} gaps flagged, never invented\") , findings , } }",
+      "reason": "qualified/associated-function call `Vec :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "check_no_hallucinated_prose"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 447,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn check_legibility_accessibility (model : & DocModel) -> CheckOutcome { let mut findings = Vec :: new () ; let html = emit :: html :: render_concat (model) ; if ! html . contains (\"<main>\") { findings . push (err (\"legibility-accessibility\" , \"(html)\" , \"no <main> landmark — non-semantic layout\" ,)) ; } if ! html . contains (\"lang=\\\"en\\\"\") { findings . push (err (\"legibility-accessibility\" , \"(html)\" , \"no document language declared (`lang`)\" ,)) ; } if ! html . contains (\"aria-label\") { findings . push (err (\"legibility-accessibility\" , \"(html)\" , \"navigation is not labelled (`aria-label`)\" ,)) ; } for chunk in html . split (\"<img\") . skip (1) { let tag_end = chunk . find ('>') . unwrap_or (chunk . len ()) ; if ! chunk [.. tag_end] . contains (\"alt=\") { findings . push (err (\"legibility-accessibility\" , \"(html)\" , \"an <img> lacks alt text\" ,)) ; } } let code_blocks = html . matches (\"<pre><code\") . count () ; let classed = html . matches (\"<pre><code class=\\\"language-\") . count () ; if classed != code_blocks { findings . push (err (\"legibility-accessibility\" , \"(html)\" , & format ! (\"{} of {code_blocks} code blocks lack a language class\" , code_blocks - classed) ,)) ; } for skip in heading_order_skips (& html) { findings . push (err (\"legibility-accessibility\" , \"(html)\" , & skip)) ; } CheckOutcome { name : \"legibility-accessibility\" . to_owned () , status : CheckStatus :: PartiallyDormant (\"structural checks active (semantic landmarks, lang, labelled nav, alt text, code language \\\n             classes, heading order); colour-contrast + typography need a rendering engine — dormant\" . to_owned () ,) , summary : \"semantic, accessible HTML by construction (structural aspects checked)\" . to_owned () , findings , } }",
+      "reason": "qualified/associated-function call `Vec :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "check_legibility_accessibility"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 513,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Detect heading-level skips (e.g. an `<h1>` followed by an `<h3>`) across the rendered HTML.\"] fn heading_order_skips (html : & str) -> Vec < String > { let mut skips = Vec :: new () ; let mut prev : Option < u8 > = None ; let bytes = html . as_bytes () ; let mut i = 0 ; while i + 2 < bytes . len () { if bytes [i] == b'<' && bytes [i + 1] == b'h' && bytes [i + 2] . is_ascii_digit () { let level = bytes [i + 2] - b'0' ; if (1 ..= 6) . contains (& level) { if let Some (p) = prev { if level > p + 1 { skips . push (format ! (\"heading order skips from h{p} to h{level} (must be contiguous)\")) ; } } prev = Some (level) ; } } i += 1 ; } skips }",
+      "reason": "qualified/associated-function call `Vec :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "heading_order_skips"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "line": 547,
+      "col": 1,
+      "category": "TestItem",
+      "rust_construct": "TestItem",
+      "snippet": "# [cfg (test)] mod tests { use super :: * ; use crate :: corpus :: { ingest , AnchorAlloc } ; use crate :: ir :: { Level , Node , Payload , Provenance , SourceKind , XrefResolution , XrefTarget } ; fn prov () -> Provenance { Provenance { source : \"d.md\" . to_owned () , line : 1 , } } fn small_model () -> DocModel { let mut a = AnchorAlloc :: new () ; let src = \"# Doc\\n\\nLead summary.\\n\\n## Sec\\n\\nBody.\\n\\n```myc-checked\\nnodule ex;\\nfn f() => Binary{8} = 0b0000_0000;\\n```\\n\" ; DocModel :: new (vec ! [ingest (\"docs/spec/d.md\" , src , SourceKind :: Spec , & mut a ,)]) } # [test] fn the_check_names_match_the_canonical_eight () { assert_eq ! (CHECK_NAMES . len () , 8) ; let report = lint (& small_model ()) ; let names : Vec < & str > = report . outcomes . iter () . map (| o | o . name . as_str ()) . collect () ; assert_eq ! (names , CHECK_NAMES) ; } # [test] fn a_clean_small_model_passes_every_check () { let report = lint (& small_model ()) ; assert ! (! report . has_errors () , \"errors: {:?}\" , report . errors ()) ; } # [test] fn a_checked_example_that_does_not_type_check_is_an_error () { let bad = Node :: new (\"ex\" , None , Some (Level :: Medium) , prov () , Payload :: Example { lang : \"myc\" . to_owned () , source : \"this is not valid myc !!!\" . to_owned () , checked : true , } , vec ! [] ,) ; let doc = Node :: new (\"doc\" , Some (\"D\" . to_owned ()) , Some (Level :: Minimal) , prov () , Payload :: Document { source_kind : SourceKind :: Note , } , vec ! [bad] ,) ; let report = lint (& DocModel :: new (vec ! [doc])) ; assert ! (report . errors () . iter () . any (| f | f . check == \"checked-examples\")) ; } # [test] fn a_dead_xref_fails_the_no_dead_xref_check () { let xref = Node :: new (\"x\" , None , None , prov () , Payload :: Xref { target : XrefTarget { raw : \"RFC-9999.md\" . to_owned () , resolution : XrefResolution :: Dead { reason : \"no such doc\" . to_owned () , } , } , } , vec ! [] ,) ; let doc = Node :: new (\"doc\" , Some (\"D\" . to_owned ()) , Some (Level :: Minimal) , prov () , Payload :: Document { source_kind : SourceKind :: Note , } , vec ! [Node :: new (\"doc--s\" , Some (\"S\" . to_owned ()) , Some (Level :: Medium) , prov () , Payload :: Section , vec ! [xref] ,)] ,) ; let report = lint (& DocModel :: new (vec ! [doc])) ; assert ! (report . errors () . iter () . any (| f | f . check == \"no-dead-xref\")) ; } # [test] fn extract_hashes_finds_addresses () { let h = \"x blake3:\" . to_owned () + & \"a\" . repeat (64) + \" y\" ; let set = extract_hashes (& h) ; assert_eq ! (set . len () , 1) ; } # [test] fn heading_skip_is_detected () { let skips = heading_order_skips (\"<h1>a</h1><h3>b</h3>\") ; assert_eq ! (skips . len () , 1) ; assert ! (heading_order_skips (\"<h1>a</h1><h2>b</h2><h3>c</h3>\") . is_empty ()) ; } # [test] fn parity_holds_for_a_real_model () { let report = lint (& small_model ()) ; let parity = report . outcomes . iter () . find (| o | o . name == \"dual-projection-parity\") . unwrap () ; assert ! (parity . findings . iter () . all (| f | f . severity != Severity :: Error)) ; } }",
+      "reason": "#[cfg(test)] item — out of scope for this PoC's transpilation surface (excluded from the expressible-fraction denominator, but recorded, never silently skipped)",
+      "item_name": "tests"
+    }
+  ],
+  "total_top_level_items": 25
+}

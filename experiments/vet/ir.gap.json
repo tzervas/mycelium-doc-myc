@@ -1,0 +1,366 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+  "emitted_items": [
+    "Level",
+    "impl Level",
+    "SourceKind",
+    "impl SourceKind",
+    "Provenance",
+    "XrefResolution",
+    "XrefTarget",
+    "impl XrefResolution"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 11,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: collections :: BTreeMap ;",
+      "reason": "`use std.collections::BTreeMap` — `std.collections` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 13,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_core :: ContentHash ;",
+      "reason": "`use mycelium_core::ContentHash` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 14,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use serde :: Serialize ;",
+      "reason": "`use serde::Serialize` — `serde` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 16,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: hash :: DocHasher ;",
+      "reason": "`use hash::DocHasher` — `DocHasher` is not among sibling `hash`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 18,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" Graded depth (RFC-0013's `minimal / medium / detailed` levels, reused for docs — §4.1 progressive\"] # [doc = \" disclosure). A reader picks how deep to go over *one* truth, never three divergent ones.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , Serialize)] # [serde (rename_all = \"lowercase\")] pub enum Level { # [doc = \" A one-line summary.\"] Minimal , # [doc = \" The working explanation.\"] Medium , # [doc = \" The full normative detail.\"] Detailed , }",
+      "reason": "dropped non-doc non-derive attribute(s) on enum `Level`: # [serde (rename_all = \"lowercase\")]",
+      "item_name": "Level"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 18,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Graded depth (RFC-0013's `minimal / medium / detailed` levels, reused for docs — §4.1 progressive\"] # [doc = \" disclosure). A reader picks how deep to go over *one* truth, never three divergent ones.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , Serialize)] # [serde (rename_all = \"lowercase\")] pub enum Level { # [doc = \" A one-line summary.\"] Minimal , # [doc = \" The working explanation.\"] Medium , # [doc = \" The full normative detail.\"] Detailed , }",
+      "reason": "enum `Level` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "Level"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 18,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Graded depth (RFC-0013's `minimal / medium / detailed` levels, reused for docs — §4.1 progressive\"] # [doc = \" disclosure). A reader picks how deep to go over *one* truth, never three divergent ones.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , Serialize)] # [serde (rename_all = \"lowercase\")] pub enum Level { # [doc = \" A one-line summary.\"] Minimal , # [doc = \" The working explanation.\"] Medium , # [doc = \" The full normative detail.\"] Detailed , }",
+      "reason": "enum `Level` derive(Copy) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "Level"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 18,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Graded depth (RFC-0013's `minimal / medium / detailed` levels, reused for docs — §4.1 progressive\"] # [doc = \" disclosure). A reader picks how deep to go over *one* truth, never three divergent ones.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , Serialize)] # [serde (rename_all = \"lowercase\")] pub enum Level { # [doc = \" A one-line summary.\"] Minimal , # [doc = \" The working explanation.\"] Medium , # [doc = \" The full normative detail.\"] Detailed , }",
+      "reason": "enum `Level` derive(Eq): covered by co-occurring PartialEq → `fn eq_Level` (product-row collision policy; DN-128 / ONESHOT C2) — not a second emission",
+      "item_name": "Level"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 18,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" Graded depth (RFC-0013's `minimal / medium / detailed` levels, reused for docs — §4.1 progressive\"] # [doc = \" disclosure). A reader picks how deep to go over *one* truth, never three divergent ones.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , Serialize)] # [serde (rename_all = \"lowercase\")] pub enum Level { # [doc = \" A one-line summary.\"] Minimal , # [doc = \" The working explanation.\"] Medium , # [doc = \" The full normative detail.\"] Detailed , }",
+      "reason": "enum `Level` derive(...) names Serialize not in the DN-128 enum-derive set this leaf builds (Debug/PartialEq/Clone/Copy recognized; bare Eq is a satisfied co-occurrence note; Hash/PartialOrd/Ord/Default stay product-only for now) — dropped, no confirmed Mycelium surface",
+      "item_name": "Level"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 31,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "impl Level { # [doc = \" The canonical label.\"] # [must_use] pub fn as_str (self) -> & 'static str { match self { Level :: Minimal => \"minimal\" , Level :: Medium => \"medium\" , Level :: Detailed => \"detailed\" , } } fn tag (self) -> u8 { match self { Level :: Minimal => 1 , Level :: Medium => 2 , Level :: Detailed => 3 , } } }",
+      "reason": "dropped non-doc attribute(s) on method `as_str`: # [must_use]",
+      "item_name": "impl Level"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 51,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" Which corpus family a [`Payload::Document`] was projected from (drives ordering + the template's\"] # [doc = \" section grouping; part of the navigable index).\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , Serialize)] # [serde (rename_all = \"kebab-case\")] pub enum SourceKind { # [doc = \" An RFC (normative design).\"] Rfc , # [doc = \" An ADR (architecture decision).\"] Adr , # [doc = \" A design note (DN-*) or other note.\"] Note , # [doc = \" A spec / contract document.\"] Spec , # [doc = \" A devlog narrative entry.\"] Devlog , # [doc = \" A projected code/API reference unit (a `.myc` nodule or a JSON schema).\"] Api , # [doc = \" Other corpus markdown (glossary, index, charter, …).\"] Other , }",
+      "reason": "dropped non-doc non-derive attribute(s) on enum `SourceKind`: # [serde (rename_all = \"kebab-case\")]",
+      "item_name": "SourceKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 51,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Which corpus family a [`Payload::Document`] was projected from (drives ordering + the template's\"] # [doc = \" section grouping; part of the navigable index).\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , Serialize)] # [serde (rename_all = \"kebab-case\")] pub enum SourceKind { # [doc = \" An RFC (normative design).\"] Rfc , # [doc = \" An ADR (architecture decision).\"] Adr , # [doc = \" A design note (DN-*) or other note.\"] Note , # [doc = \" A spec / contract document.\"] Spec , # [doc = \" A devlog narrative entry.\"] Devlog , # [doc = \" A projected code/API reference unit (a `.myc` nodule or a JSON schema).\"] Api , # [doc = \" Other corpus markdown (glossary, index, charter, …).\"] Other , }",
+      "reason": "enum `SourceKind` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "SourceKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 51,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Which corpus family a [`Payload::Document`] was projected from (drives ordering + the template's\"] # [doc = \" section grouping; part of the navigable index).\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , Serialize)] # [serde (rename_all = \"kebab-case\")] pub enum SourceKind { # [doc = \" An RFC (normative design).\"] Rfc , # [doc = \" An ADR (architecture decision).\"] Adr , # [doc = \" A design note (DN-*) or other note.\"] Note , # [doc = \" A spec / contract document.\"] Spec , # [doc = \" A devlog narrative entry.\"] Devlog , # [doc = \" A projected code/API reference unit (a `.myc` nodule or a JSON schema).\"] Api , # [doc = \" Other corpus markdown (glossary, index, charter, …).\"] Other , }",
+      "reason": "enum `SourceKind` derive(Copy) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "SourceKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 51,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Which corpus family a [`Payload::Document`] was projected from (drives ordering + the template's\"] # [doc = \" section grouping; part of the navigable index).\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , Serialize)] # [serde (rename_all = \"kebab-case\")] pub enum SourceKind { # [doc = \" An RFC (normative design).\"] Rfc , # [doc = \" An ADR (architecture decision).\"] Adr , # [doc = \" A design note (DN-*) or other note.\"] Note , # [doc = \" A spec / contract document.\"] Spec , # [doc = \" A devlog narrative entry.\"] Devlog , # [doc = \" A projected code/API reference unit (a `.myc` nodule or a JSON schema).\"] Api , # [doc = \" Other corpus markdown (glossary, index, charter, …).\"] Other , }",
+      "reason": "enum `SourceKind` derive(Eq): covered by co-occurring PartialEq → `fn eq_SourceKind` (product-row collision policy; DN-128 / ONESHOT C2) — not a second emission",
+      "item_name": "SourceKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 51,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" Which corpus family a [`Payload::Document`] was projected from (drives ordering + the template's\"] # [doc = \" section grouping; part of the navigable index).\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , Serialize)] # [serde (rename_all = \"kebab-case\")] pub enum SourceKind { # [doc = \" An RFC (normative design).\"] Rfc , # [doc = \" An ADR (architecture decision).\"] Adr , # [doc = \" A design note (DN-*) or other note.\"] Note , # [doc = \" A spec / contract document.\"] Spec , # [doc = \" A devlog narrative entry.\"] Devlog , # [doc = \" A projected code/API reference unit (a `.myc` nodule or a JSON schema).\"] Api , # [doc = \" Other corpus markdown (glossary, index, charter, …).\"] Other , }",
+      "reason": "enum `SourceKind` derive(...) names Serialize not in the DN-128 enum-derive set this leaf builds (Debug/PartialEq/Clone/Copy recognized; bare Eq is a satisfied co-occurrence note; Hash/PartialOrd/Ord/Default stay product-only for now) — dropped, no confirmed Mycelium surface",
+      "item_name": "SourceKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 72,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "impl SourceKind { # [doc = \" The canonical label.\"] # [must_use] pub fn as_str (self) -> & 'static str { match self { SourceKind :: Rfc => \"rfc\" , SourceKind :: Adr => \"adr\" , SourceKind :: Note => \"note\" , SourceKind :: Spec => \"spec\" , SourceKind :: Devlog => \"devlog\" , SourceKind :: Api => \"api\" , SourceKind :: Other => \"other\" , } } }",
+      "reason": "dropped non-doc attribute(s) on method `as_str`: # [must_use]",
+      "item_name": "impl SourceKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 88,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" Where a node was projected from (append-only provenance, §9 — \\\"generated from\\\"). Metadata, **not\"] # [doc = \" identity** (ADR-003): provenance is recorded but never perturbs the content hash, so re-flowing a\"] # [doc = \" source line does not break a deep link.\"] # [derive (Debug , Clone , PartialEq , Eq , Serialize)] pub struct Provenance { # [doc = \" The repo-relative source path the node projects.\"] pub source : String , # [doc = \" The 1-based source line (0 when not line-addressable).\"] pub line : u32 , }",
+      "reason": "struct `Provenance` named field(s) `source, line` emitted positionally as `Provenance(Bytes, Binary{32})` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped (matches `lib/std/*.myc` hand-ports)",
+      "item_name": "Provenance"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 88,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Where a node was projected from (append-only provenance, §9 — \\\"generated from\\\"). Metadata, **not\"] # [doc = \" identity** (ADR-003): provenance is recorded but never perturbs the content hash, so re-flowing a\"] # [doc = \" source line does not break a deep link.\"] # [derive (Debug , Clone , PartialEq , Eq , Serialize)] pub struct Provenance { # [doc = \" The repo-relative source path the node projects.\"] pub source : String , # [doc = \" The 1-based source line (0 when not line-addressable).\"] pub line : u32 , }",
+      "reason": "struct `Provenance` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "Provenance"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 88,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" Where a node was projected from (append-only provenance, §9 — \\\"generated from\\\"). Metadata, **not\"] # [doc = \" identity** (ADR-003): provenance is recorded but never perturbs the content hash, so re-flowing a\"] # [doc = \" source line does not break a deep link.\"] # [derive (Debug , Clone , PartialEq , Eq , Serialize)] pub struct Provenance { # [doc = \" The repo-relative source path the node projects.\"] pub source : String , # [doc = \" The 1-based source line (0 when not line-addressable).\"] pub line : u32 , }",
+      "reason": "struct `Provenance` derive(...) names Eq, Serialize not in the DN-128 standard-derive set this leaf builds (Debug/Default/Clone/Copy/PartialEq/PartialOrd/Hash all recognized; bare Eq/Ord are deliberately NOT recognized — see emit/derives/mod.rs::TABLE's doc for why) — dropped, no confirmed Mycelium surface",
+      "item_name": "Provenance"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 99,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" How a cross-reference resolved against the model (the §4.1 `no-dead-xref` verdict).\"] # [derive (Debug , Clone , PartialEq , Eq , Serialize)] # [serde (tag = \"resolution\" , rename_all = \"kebab-case\")] pub enum XrefResolution { # [doc = \" Not yet resolved (the ingest-time placeholder; the build always resolves before finalizing —\"] # [doc = \" seeing this in the lint is a bug, reported never-silently).\"] Unresolved , # [doc = \" Resolved to an intra-model anchor (a content address via the index).\"] Internal { # [doc = \" The resolved anchor.\"] anchor : String , } , # [doc = \" An `http(s)://` URL — out of scope here; `links.sh` / the browser own external reachability.\"] ExternalUrl , # [doc = \" A non-`.md`, non-corpus relative target (a script, `mailto:`, …) — not a doc xref.\"] OutOfScope , # [doc = \" A same-repo `.md`/anchor target that does **not** resolve — a build failure (§4.1 #5).\"] Dead { # [doc = \" Why it is dead, in author-facing terms.\"] reason : String , } , }",
+      "reason": "dropped non-doc non-derive attribute(s) on enum `XrefResolution`: # [serde (tag = \"resolution\" , rename_all = \"kebab-case\")]",
+      "item_name": "XrefResolution"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 99,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" How a cross-reference resolved against the model (the §4.1 `no-dead-xref` verdict).\"] # [derive (Debug , Clone , PartialEq , Eq , Serialize)] # [serde (tag = \"resolution\" , rename_all = \"kebab-case\")] pub enum XrefResolution { # [doc = \" Not yet resolved (the ingest-time placeholder; the build always resolves before finalizing —\"] # [doc = \" seeing this in the lint is a bug, reported never-silently).\"] Unresolved , # [doc = \" Resolved to an intra-model anchor (a content address via the index).\"] Internal { # [doc = \" The resolved anchor.\"] anchor : String , } , # [doc = \" An `http(s)://` URL — out of scope here; `links.sh` / the browser own external reachability.\"] ExternalUrl , # [doc = \" A non-`.md`, non-corpus relative target (a script, `mailto:`, …) — not a doc xref.\"] OutOfScope , # [doc = \" A same-repo `.md`/anchor target that does **not** resolve — a build failure (§4.1 #5).\"] Dead { # [doc = \" Why it is dead, in author-facing terms.\"] reason : String , } , }",
+      "reason": "enum `XrefResolution` variant `Internal` named field(s) `anchor` emitted positionally as `Internal(Bytes)` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped",
+      "item_name": "XrefResolution"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 99,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" How a cross-reference resolved against the model (the §4.1 `no-dead-xref` verdict).\"] # [derive (Debug , Clone , PartialEq , Eq , Serialize)] # [serde (tag = \"resolution\" , rename_all = \"kebab-case\")] pub enum XrefResolution { # [doc = \" Not yet resolved (the ingest-time placeholder; the build always resolves before finalizing —\"] # [doc = \" seeing this in the lint is a bug, reported never-silently).\"] Unresolved , # [doc = \" Resolved to an intra-model anchor (a content address via the index).\"] Internal { # [doc = \" The resolved anchor.\"] anchor : String , } , # [doc = \" An `http(s)://` URL — out of scope here; `links.sh` / the browser own external reachability.\"] ExternalUrl , # [doc = \" A non-`.md`, non-corpus relative target (a script, `mailto:`, …) — not a doc xref.\"] OutOfScope , # [doc = \" A same-repo `.md`/anchor target that does **not** resolve — a build failure (§4.1 #5).\"] Dead { # [doc = \" Why it is dead, in author-facing terms.\"] reason : String , } , }",
+      "reason": "enum `XrefResolution` variant `Dead` named field(s) `reason` emitted positionally as `Dead(Bytes)` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped",
+      "item_name": "XrefResolution"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 99,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" How a cross-reference resolved against the model (the §4.1 `no-dead-xref` verdict).\"] # [derive (Debug , Clone , PartialEq , Eq , Serialize)] # [serde (tag = \"resolution\" , rename_all = \"kebab-case\")] pub enum XrefResolution { # [doc = \" Not yet resolved (the ingest-time placeholder; the build always resolves before finalizing —\"] # [doc = \" seeing this in the lint is a bug, reported never-silently).\"] Unresolved , # [doc = \" Resolved to an intra-model anchor (a content address via the index).\"] Internal { # [doc = \" The resolved anchor.\"] anchor : String , } , # [doc = \" An `http(s)://` URL — out of scope here; `links.sh` / the browser own external reachability.\"] ExternalUrl , # [doc = \" A non-`.md`, non-corpus relative target (a script, `mailto:`, …) — not a doc xref.\"] OutOfScope , # [doc = \" A same-repo `.md`/anchor target that does **not** resolve — a build failure (§4.1 #5).\"] Dead { # [doc = \" Why it is dead, in author-facing terms.\"] reason : String , } , }",
+      "reason": "enum `XrefResolution` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "XrefResolution"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 99,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" How a cross-reference resolved against the model (the §4.1 `no-dead-xref` verdict).\"] # [derive (Debug , Clone , PartialEq , Eq , Serialize)] # [serde (tag = \"resolution\" , rename_all = \"kebab-case\")] pub enum XrefResolution { # [doc = \" Not yet resolved (the ingest-time placeholder; the build always resolves before finalizing —\"] # [doc = \" seeing this in the lint is a bug, reported never-silently).\"] Unresolved , # [doc = \" Resolved to an intra-model anchor (a content address via the index).\"] Internal { # [doc = \" The resolved anchor.\"] anchor : String , } , # [doc = \" An `http(s)://` URL — out of scope here; `links.sh` / the browser own external reachability.\"] ExternalUrl , # [doc = \" A non-`.md`, non-corpus relative target (a script, `mailto:`, …) — not a doc xref.\"] OutOfScope , # [doc = \" A same-repo `.md`/anchor target that does **not** resolve — a build failure (§4.1 #5).\"] Dead { # [doc = \" Why it is dead, in author-facing terms.\"] reason : String , } , }",
+      "reason": "enum `XrefResolution` derive(Eq): covered by co-occurring PartialEq → `fn eq_XrefResolution` (product-row collision policy; DN-128 / ONESHOT C2) — not a second emission",
+      "item_name": "XrefResolution"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 99,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" How a cross-reference resolved against the model (the §4.1 `no-dead-xref` verdict).\"] # [derive (Debug , Clone , PartialEq , Eq , Serialize)] # [serde (tag = \"resolution\" , rename_all = \"kebab-case\")] pub enum XrefResolution { # [doc = \" Not yet resolved (the ingest-time placeholder; the build always resolves before finalizing —\"] # [doc = \" seeing this in the lint is a bug, reported never-silently).\"] Unresolved , # [doc = \" Resolved to an intra-model anchor (a content address via the index).\"] Internal { # [doc = \" The resolved anchor.\"] anchor : String , } , # [doc = \" An `http(s)://` URL — out of scope here; `links.sh` / the browser own external reachability.\"] ExternalUrl , # [doc = \" A non-`.md`, non-corpus relative target (a script, `mailto:`, …) — not a doc xref.\"] OutOfScope , # [doc = \" A same-repo `.md`/anchor target that does **not** resolve — a build failure (§4.1 #5).\"] Dead { # [doc = \" Why it is dead, in author-facing terms.\"] reason : String , } , }",
+      "reason": "enum `XrefResolution` derive(...) names Serialize not in the DN-128 enum-derive set this leaf builds (Debug/PartialEq/Clone/Copy recognized; bare Eq is a satisfied co-occurrence note; Hash/PartialOrd/Ord/Default stay product-only for now) — dropped, no confirmed Mycelium surface",
+      "item_name": "XrefResolution"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 122,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" The resolved-or-not target of a cross-reference.\"] # [derive (Debug , Clone , PartialEq , Eq , Serialize)] pub struct XrefTarget { # [doc = \" The raw link target as authored (e.g. `RFC-0013.md#levels`, `#section`, `https://…`).\"] pub raw : String , # [doc = \" The resolution verdict.\"] pub resolution : XrefResolution , }",
+      "reason": "struct `XrefTarget` named field(s) `raw, resolution` emitted positionally as `XrefTarget(Bytes, XrefResolution)` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped (matches `lib/std/*.myc` hand-ports)",
+      "item_name": "XrefTarget"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 122,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" The resolved-or-not target of a cross-reference.\"] # [derive (Debug , Clone , PartialEq , Eq , Serialize)] pub struct XrefTarget { # [doc = \" The raw link target as authored (e.g. `RFC-0013.md#levels`, `#section`, `https://…`).\"] pub raw : String , # [doc = \" The resolution verdict.\"] pub resolution : XrefResolution , }",
+      "reason": "struct `XrefTarget` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "XrefTarget"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 122,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" The resolved-or-not target of a cross-reference.\"] # [derive (Debug , Clone , PartialEq , Eq , Serialize)] pub struct XrefTarget { # [doc = \" The raw link target as authored (e.g. `RFC-0013.md#levels`, `#section`, `https://…`).\"] pub raw : String , # [doc = \" The resolution verdict.\"] pub resolution : XrefResolution , }",
+      "reason": "struct `XrefTarget` derive(...) names Eq, Serialize not in the DN-128 standard-derive set this leaf builds (Debug/Default/Clone/Copy/PartialEq/PartialOrd/Hash all recognized; bare Eq/Ord are deliberately NOT recognized — see emit/derives/mod.rs::TABLE's doc for why) — dropped, no confirmed Mycelium surface",
+      "item_name": "XrefTarget"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 143,
+      "col": 1,
+      "category": "PayloadVariant",
+      "rust_construct": "PayloadVariant",
+      "snippet": "# [doc = \" The kind-specific content of a node. The variant **is** the node's type; shared fields (anchor,\"] # [doc = \" title, level, provenance, children) live on [`Node`].\"] # [derive (Debug , Clone , PartialEq , Eq , Serialize)] # [serde (tag = \"kind\" , rename_all = \"kebab-case\")] pub enum Payload { # [doc = \" A whole projected source document (an RFC/ADR/note/spec/devlog file, or an API unit).\"] Document { # [doc = \" The corpus family.\"] source_kind : SourceKind , } , # [doc = \" A heading and the block run beneath it.\"] Section , # [doc = \" A paragraph / text block.\"] Prose { # [doc = \" The prose text (normalized, projected verbatim — never rewritten).\"] text : String , } , # [doc = \" A fenced code example. `checked` examples must type-check (§4.1 #4); illustrative ones are\"] # [doc = \" honestly flagged as not-CI-checked, never silently treated as verified.\"] Example { # [doc = \" The fence language tag (`myc`, `text`, …).\"] lang : String , # [doc = \" The example source, verbatim.\"] source : String , # [doc = \" Whether this example is held to the type-check bar.\"] checked : bool , } , # [doc = \" A cross-reference to another node.\"] Xref { # [doc = \" The resolved-or-not target.\"] target : XrefTarget , } , # [doc = \" A projected API item (a `.myc` nodule header, a `fn` signature, or a JSON-schema field).\"] # [doc = \" `summary: None` is the explicit *undocumented* state (G2) — rendered, never invented.\"] ApiItem { # [doc = \" The signature / declaration, when one was projected.\"] signature : Option < String > , # [doc = \" The `@summary` (or schema `description`) projected from the source, or `None`.\"] summary : Option < String > , } , # [doc = \" An explicit \\\"undocumented\\\" marker — a visible, honest gap, never filler prose (G2).\"] Undocumented { # [doc = \" What is undocumented, in author-facing terms.\"] what : String , } , # [doc = \" The generated index root (the navigable index→detail entry point, §4.1 #2).\"] Index , }",
+      "reason": "enum `Payload` has a named-field variant referencing a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "Payload"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 192,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl Payload { fn tag (& self) -> u8 { match self { Payload :: Document { .. } => 1 , Payload :: Section => 2 , Payload :: Prose { .. } => 3 , Payload :: Example { .. } => 4 , Payload :: Xref { .. } => 5 , Payload :: ApiItem { .. } => 6 , Payload :: Undocumented { .. } => 7 , Payload :: Index => 8 , } } # [doc = \" The canonical kind label (for diagnostics / the machine projection).\"] # [must_use] pub fn kind_str (& self) -> & 'static str { match self { Payload :: Document { .. } => \"document\" , Payload :: Section => \"section\" , Payload :: Prose { .. } => \"prose\" , Payload :: Example { .. } => \"example\" , Payload :: Xref { .. } => \"xref\" , Payload :: ApiItem { .. } => \"api-item\" , Payload :: Undocumented { .. } => \"undocumented\" , Payload :: Index => \"index\" , } } }",
+      "reason": "no member of this impl block could be transpiled (2 sub-issue(s)): impl method `tag` body: struct-variant pattern `Document { .. }` names a constructor with no confirmed in-file layout -- resolved only for an emitted, in-file struct (or, once DN-132's SS5.1 variant-aware `StructLayout` population lands, an in-file enum's named-field variant); never a guessed field-index arity (DN-132 SS5.1/OQ-4, VR-5/G2); impl method `kind_str` body: struct-variant pattern `Document { .. }` names a constructor with no confirmed in-file layout -- resolved only for an emitted, in-file struct (or, once DN-132's SS5.1 variant-aware `StructLayout` population lands, an in-file enum's named-field variant); never a guessed field-index arity (DN-132 SS5.1/OQ-4, VR-5/G2)",
+      "item_name": "Payload"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 222,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" One node of the content-addressed doc-IR.\"] # [derive (Debug , Clone , PartialEq , Eq , Serialize)] pub struct Node { # [doc = \" The content address (BLAKE3 over the projected content + child ids — ADR-003).\"] pub id : ContentHash , # [doc = \" A stable, globally-unique slug used for navigation + deep links.\"] pub anchor : String , # [doc = \" The display title, when the node has one.\"] pub title : Option < String > , # [doc = \" The graded depth, when this is a level-graded block.\"] pub level : Option < Level > , # [doc = \" Where this node was projected from (metadata, not identity).\"] pub provenance : Provenance , # [doc = \" The kind-specific content.\"] pub payload : Payload , # [doc = \" Child nodes (already content-addressed — their ids feed this node's hash).\"] pub children : Vec < Node > , }",
+      "reason": "struct `Node` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "Node"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 241,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "# [doc = \" Iterative destruction (RFC-0041 §4.5's doc-IR member of the iterative-destruction class).\"] # [doc = \"\"] # [doc = \" The **derived** recursive `Drop` this replaces walks the `children` spine one host-stack frame\"] # [doc = \" per depth level, so a deep tree (confirmed empirically down to n=50,000 — `guard_hole_census.rs`,\"] # [doc = \" `src/tests/ir.rs::walk_does_not_overflow_on_a_deep_chain`) overflows the stack on drop, independent\"] # [doc = \" of (and previously un-closed by) the [`Node::walk`] host-stack guard. `mycelium-doc` is a tooling\"] # [doc = \" crate, not the frozen kernel/L1 core §4.5 otherwise tracks, so this lands as a normal fix (no\"] # [doc = \" within-freeze channel needed).\"] # [doc = \"\"] # [doc = \" Mechanics: `mem::take` the drop target's `children` into an explicit worklist `Vec<Node>`, then\"] # [doc = \" drain it depth-first, at each step also `mem::take`-ing the popped node's own `children` onto the\"] # [doc = \" worklist *before* that node is allowed to drop. By the time a worklist node's implicit drop glue\"] # [doc = \" re-enters this `impl Drop` (recursively, once per node), its `children` is already empty — so the\"] # [doc = \" recursion never goes deeper than one level; the depth that used to live on the host stack now lives\"] # [doc = \" in the worklist `Vec` on the heap. **No observable change** (destruction-order-only): `Node` has no\"] # [doc = \" `Drop`-visible side effects (no external resources), only memory to reclaim, so reordering *which*\"] # [doc = \" sibling frees first is unobservable — only that every node frees exactly once, which this\"] # [doc = \" preserves. A worklist-`Vec` allocation during `drop` is acceptable here (unlike the OOM/unwind-\"] # [doc = \" critical kernel path in §4.5): `mycelium-doc` is a build-time tooling crate, not on the interpreter's\"] # [doc = \" panic/unwind hot path.\"] impl Drop for Node { fn drop (& mut self) { let mut worklist : Vec < Node > = std :: mem :: take (& mut self . children) ; while let Some (mut next) = worklist . pop () { worklist . extend (std :: mem :: take (& mut next . children)) ; } } }",
+      "reason": "trait-impl of non-prelude trait `Drop` — no ambient trait definition and synthetic trait emission is refused (DN-34 §8.8 / DN-122 MVP); gapped the whole impl so the residual cannot file-poison myc-check (G2; express gap-close 2026-07-16)",
+      "item_name": "Node"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 274,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl Node { # [doc = \" Build a node, computing its content address from its content + children (ADR-003). Provenance\"] # [doc = \" is **not** hashed (metadata, not identity) so a re-flowed source line keeps the deep link\"] # [doc = \" stable.\"] # [must_use] pub fn new (anchor : impl Into < String > , title : Option < String > , level : Option < Level > , provenance : Provenance , payload : Payload , children : Vec < Node > ,) -> Node { let anchor = anchor . into () ; let mut h = DocHasher :: new () ; h . tag (payload . tag ()) ; h . str (& anchor) ; h . opt_str (title . as_deref ()) ; h . tag (level . map_or (0 , Level :: tag)) ; match & payload { Payload :: Document { source_kind } => { h . str (source_kind . as_str ()) ; } Payload :: Section | Payload :: Index => { } Payload :: Prose { text } => { h . str (text) ; } Payload :: Example { lang , source , checked , } => { h . str (lang) . str (source) . u64 (u64 :: from (* checked)) ; } Payload :: Xref { target } => { h . str (& target . raw) . tag (target . resolution . tag ()) ; if let XrefResolution :: Internal { anchor } = & target . resolution { h . str (anchor) ; } if let XrefResolution :: Dead { reason } = & target . resolution { h . str (reason) ; } } Payload :: ApiItem { signature , summary } => { h . opt_str (signature . as_deref ()) . opt_str (summary . as_deref ()) ; } Payload :: Undocumented { what } => { h . str (what) ; } } h . u64 (children . len () as u64) ; for c in & children { h . child (& c . id) ; } Node { id : h . finish () , anchor , title , level , provenance , payload , children , } } # [doc = \" Depth-first pre-order visit of this node and its descendants.\"] # [doc = \"\"] # [doc = \" **RFC-0041 §4.7 guard-hole close (W1, RR-29).** The whole walk runs on\"] # [doc = \" [`mycelium_workstack::ensure_sufficient_stack`]'s grown worker stack (a 256 MiB\"] # [doc = \" lazily-committed thread), so a pathologically deep IR tree (thousands of nested sections)\"] # [doc = \" walks to completion instead of overflowing the caller's host stack — `walk` stays infallible\"] # [doc = \" (`()`); the fix is that it now never `SIGABRT`s. The budget passed is\"] # [doc = \" `mycelium_workstack::RecursionBudget::default()` — its depth/mem/step ceilings play no role in\"] # [doc = \" W1 (the guard body only grows the host stack; it does not charge against the budget), so this\"] # [doc = \" closes the host-stack hole only — it does not introduce a new refusal path, and behavior is\"] # [doc = \" otherwise unchanged (`Declared`: a real depth/work-step ceiling for doc-IR walks is future\"] # [doc = \" work, not introduced silently here).\"] # [doc = \"\"] # [doc = \" The guard is applied **once**, at this public entry — the recursion itself runs through\"] # [doc = \" [`walk_inner`](Self::walk_inner), which does **not** re-guard per level (guarding every\"] # [doc = \" recursive step would spawn a worker thread per node: wrong and needlessly expensive).\"] pub fn walk < 'a > (& 'a self , f : & mut (dyn FnMut (& 'a Node) + Send)) { let budget = mycelium_workstack :: RecursionBudget :: default () ; mycelium_workstack :: ensure_sufficient_stack (& budget , move | | self . walk_inner (f)) ; } # [doc = \" The unguarded recursive body of [`walk`](Self::walk). Runs entirely on the worker stack the\"] # [doc = \" public entry already established.\"] fn walk_inner < 'a > (& 'a self , f : & mut dyn FnMut (& 'a Node)) { f (self) ; for c in & self . children { c . walk_inner (f) ; } } }",
+      "reason": "no member of this impl block could be transpiled (3 sub-issue(s)): impl method `new` signature: unsupported Rust type form `impl Into < String >`; impl method `walk` signature: lifetime parameter `'a` has no grammar surface; impl method `walk_inner` signature: lifetime parameter `'a` has no grammar surface",
+      "item_name": "Node"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 373,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" The whole projected corpus: top-level documents plus the navigable index over every node.\"] # [derive (Debug , Clone , Serialize)] pub struct DocModel { # [doc = \" The top-level [`Payload::Document`] nodes, in projection order.\"] pub documents : Vec < Node > , # [doc = \" anchor → content address, over **every** node (the search/navigation index, §4.1 #2).\"] pub anchors : BTreeMap < String , ContentHash > , }",
+      "reason": "struct `DocModel` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "DocModel"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "line": 382,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl DocModel { # [doc = \" Assemble a model from projected documents, building the anchor index. The builders allocate\"] # [doc = \" globally-unique anchors, so a collision would be an internal bug; if one ever slips through,\"] # [doc = \" the duplicate key collapses here and the **navigability lint catches it** (it errors when the\"] # [doc = \" anchor count is below the node count — §4.1 #2). The detection is at lint time, not here.\"] # [must_use] pub fn new (documents : Vec < Node >) -> DocModel { let mut anchors = BTreeMap :: new () ; for d in & documents { d . walk (& mut | n | { anchors . insert (n . anchor . clone () , n . id . clone ()) ; }) ; } DocModel { documents , anchors } } # [doc = \" Every node across every document, depth-first (the order a reader meets them).\"] # [must_use] pub fn all_nodes (& self) -> Vec < & Node > { let mut v = Vec :: new () ; for d in & self . documents { d . walk (& mut | n | v . push (n)) ; } v } # [doc = \" The set of content addresses present in the model (used by the dual-projection-parity lint).\"] # [must_use] pub fn id_set (& self) -> std :: collections :: BTreeSet < String > { self . all_nodes () . iter () . map (| n | n . id . as_str () . to_owned ()) . collect () } }",
+      "reason": "no member of this impl block could be transpiled (3 sub-issue(s)): impl method `new` body: qualified/associated-function call `BTreeMap :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133); impl method `all_nodes` body: qualified/associated-function call `Vec :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133); impl method `id_set` signature: qualified type path `std :: collections :: BTreeSet < String >` — collapsing to its last segment would risk colliding with an unrelated same-named local type (e.g. `std::cmp::Ordering` vs a local `Ordering`); left an explicit gap rather than guessed (VR-5)",
+      "item_name": "DocModel"
+    }
+  ],
+  "total_top_level_items": 19
+}

@@ -1,0 +1,127 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/typst.rs",
+  "emitted_items": [],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/typst.rs",
+      "line": 15,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: inline :: { self , Span } ;",
+      "reason": "`use inline::{self, ..}` — `self` binds the module ITSELF as a local name; there is no \"import a nodule as a name\" construct in this grammar, so this leaf cannot resolve (distinct from an ordinary lookup miss); `use inline::Span` — `Span` is not among sibling `inline`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/typst.rs",
+      "line": 16,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: ir :: { DocModel , Node , Payload } ;",
+      "reason": "`use ir::DocModel` — `DocModel` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use ir::Node` — `Node` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use ir::Payload` — `Payload` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/typst.rs",
+      "line": 18,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "# [doc = \" Render parsed inline [`Span`]s to Typst markup: `#strong[…]`, `#emph[…]`, `#raw(\\\"…\\\")` for inline\"] # [doc = \" code, and `#link(\\\"…\\\")[…]` for **external** links only (internal/relative links render as their\"] # [doc = \" text — their resolved navigation is the `Xref` node, so the inline path never emits a broken PDF\"] # [doc = \" link to a raw `.md` path). Function forms are used throughout so code/link content with Typst\"] # [doc = \" metacharacters is robust (never a broken `.typ`).\"] # [doc = \"\"] # [doc = \" Each inline **call** (`#raw`/`#strong`/`#emph`/`#link`) is followed by a zero-width space\"] # [doc = \" ([`CALL_SEP`]): in Typst markup a `(` or `[` immediately after a call is parsed as a *curried\"] # [doc = \" call* on its result (so a projected `` `math`(f64) `` → `#raw(\\\"math\\\")(f64)` would be a call, not\"] # [doc = \" text — a `typst compile` failure). The zero-width break terminates the call so the following char\"] # [doc = \" is literal text, while remaining invisible in the PDF (G2: every `.typ` compiles, output unchanged).\"] fn render_inline_typst (spans : & [Span < '_ >]) -> String { let mut out = String :: new () ; for span in spans { match span { Span :: Text (t) => out . push_str (& escape (t)) , Span :: Code (c) => { out . push_str (& format ! (\"#raw(\\\"{}\\\"){CALL_SEP}\" , escape_str (c))) ; } Span :: Strong (inner) => { out . push_str (\"#strong[\") ; out . push_str (& render_inline_typst (inner)) ; out . push_str (& format ! (\"]{CALL_SEP}\")) ; } Span :: Em (inner) => { out . push_str (\"#emph[\") ; out . push_str (& render_inline_typst (inner)) ; out . push_str (& format ! (\"]{CALL_SEP}\")) ; } Span :: Link { text , href } => { if inline :: is_external (href) { out . push_str (& format ! (\"#link(\\\"{}\\\")[\" , escape_str (href))) ; out . push_str (& render_inline_typst (text)) ; out . push_str (& format ! (\"]{CALL_SEP}\")) ; } else { out . push_str (& render_inline_typst (text)) ; } } } } out }",
+      "reason": "generic type path `Span < '_ >` — type argument `'_` is not a type (lifetime / const-generic / associated-type binding-or-constraint); `type_args` admits only type_refs, so left an explicit gap (VR-5)",
+      "item_name": "render_inline_typst"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/typst.rs",
+      "line": 61,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The zero-width space appended after each inline Typst call to terminate a possible curried-call\"] # [doc = \" chain (see [`render_inline_typst`]). Invisible in the rendered PDF.\"] const CALL_SEP : & str = \"\\u{200b}\" ;",
+      "reason": "top-level `const CALL_SEP` — co-emit (ORACLE-R1 A4) only covers plain unsigned integer types (`u8`/`u16`/`u32`/`u64`/`u128`/`usize`); other types have no const item production and no faithful zero-arg-fn encoding (gap, never fabricate)",
+      "item_name": "CALL_SEP"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/typst.rs",
+      "line": 65,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Parse + render inline markdown in `text` to Typst markup (the common one-shot).\"] fn inline_typst (text : & str) -> String { render_inline_typst (& inline :: parse (text)) }",
+      "reason": "qualified/associated-function call `inline :: parse` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "inline_typst"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/typst.rs",
+      "line": 70,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Render a whole prose block to Typst, **line by line**, so the emitted `.typ` always compiles.\"] # [doc = \"\"] # [doc = \" Two robustness invariants, both never-silent (G2 — every `.typ` compiles):\"] # [doc = \" - **Per-line inline parsing.** Prose carries embedded newlines (soft wraps / the rows of a\"] # [doc = \"   projected pipe-table joined by the block parser). Parsing the *whole* block risks an unbalanced\"] # [doc = \"   backtick/marker pairing across lines (inverting text↔code and colliding Typst's `[]`/`\\\"\\\"`\"] # [doc = \"   delimiters). Parsing each line independently bounds any unbalanced marker to that one line\"] # [doc = \"   (where it degrades to literal text), so the delimiters stay balanced.\"] # [doc = \" - **Leading-markup guard.** Typst reads block markup only at a LINE START — `/ ` (description-list\"] # [doc = \"   term), `- `/`+ ` (bullets), `= ` (heading), `N.`/`N)` (ordered list). A rendered line beginning\"] # [doc = \"   with one is prefixed with a zero-width `#h(0pt)` so the trigger is no longer at line start and\"] # [doc = \"   Typst reads it as literal text. Our own inline markup (`#strong[…]` etc.) starts with `#` — never\"] # [doc = \"   a trigger char — so it is left untouched.\"] fn render_prose_typst (text : & str) -> String { let mut out = String :: with_capacity (text . len () + 16) ; for (i , line) in text . split ('\\n') . enumerate () { if i > 0 { out . push ('\\n') ; } let rendered = inline_typst (line) ; if line_starts_block_markup (rendered . trim_start ()) { out . push_str (\"#h(0pt)\") ; } out . push_str (& rendered) ; } out }",
+      "reason": "qualified/associated-function call `String :: with_capacity` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "render_prose_typst"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/typst.rs",
+      "line": 98,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Whether a (leading-whitespace-trimmed) line begins with a Typst block-markup trigger.\"] fn line_starts_block_markup (t : & str) -> bool { let b = t . as_bytes () ; match b . first () { Some (b'/' | b'-' | b'+' | b'=') => true , Some (d) if d . is_ascii_digit () => { let end = b . iter () . take_while (| c | c . is_ascii_digit ()) . count () ; matches ! (b . get (end) , Some (b'.' | b')')) } _ => false , } }",
+      "reason": "method call `.as_bytes(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__as_bytes` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `as_bytes(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "line_starts_block_markup"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/typst.rs",
+      "line": 115,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Render the whole model to one Typst document source.\"] # [must_use] pub fn render (model : & DocModel) -> String { let mut out = String :: new () ; out . push_str (\"// Generated from the Mycelium corpus — a projection, never a parallel truth (ADR-003/G11).\\n\\\n         // Compile with: typst compile doc.typ doc.pdf  (skipped gracefully when typst is absent).\\n\\\n         #set document(title: \\\"Mycelium Documentation\\\")\\n\\\n         #set page(numbering: \\\"1\\\", margin: (x: 2.2cm, y: 2.4cm))\\n\\\n         #set text(font: \\\"New Computer Modern\\\", size: 10.5pt)\\n\\\n         #set heading(numbering: \\\"1.1\\\")\\n\\\n         // Print-legible code (§8.2): a light tinted box with a HAIRLINE border (never a filled dark\\n\\\n         // panel), code ~0.82x body with tighter leading so lines fit without wrapping. Light-only.\\n\\\n         #show raw.where(block: true): it => {\\n\\\n         set text(size: 8.6pt)\\n\\\n         set par(leading: 0.42em)\\n\\\n         block(fill: rgb(\\\"#e4e9d9\\\"), stroke: 0.5pt + rgb(\\\"#cfd5c1\\\"), radius: 3pt, inset: (x: 8pt, y: 7pt), width: 100%, breakable: true, it)\\n\\\n         }\\n\\n\\\n         #align(center)[#text(18pt)[*Mycelium Documentation*]]\\n\\\n         #align(center)[_A projection of the cited corpus._]\\n\\n\\\n         #outline()\\n\\n\" ,) ; for doc in & model . documents { render_doc (doc , & mut out) ; } out }",
+      "reason": "qualified/associated-function call `String :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "render"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/typst.rs",
+      "line": 143,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn render_doc (doc : & Node , out : & mut String) { out . push_str (& format ! (\"// cid: {}\\n\" , doc . id . as_str ())) ; out . push_str (& format ! (\"= {}\\n\\n\" , escape (doc . title . as_deref () . unwrap_or (& doc . anchor)))) ; for c in & doc . children { render_node (c , 2 , out) ; } out . push ('\\n') ; }",
+      "reason": "mutating method body statement is neither a `let`, a supported `self.<field>`/`*<param>` re-assignment, nor (in tail position) the method's own return value — value-threading deliberately refuses any shape outside a flat re-assignment sequence rather than risk an unsound rebind (DN-125 §6.1, never-silent G2/VR-5)",
+      "item_name": "render_doc"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/typst.rs",
+      "line": 155,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn render_node (node : & Node , depth : usize , out : & mut String) { out . push_str (& format ! (\"// cid: {}\\n\" , node . id . as_str ())) ; match & node . payload { Payload :: Section => { let eq = \"=\" . repeat (depth . clamp (2 , 6)) ; out . push_str (& format ! (\"{eq} {}\\n\\n\" , inline_typst (node . title . as_deref () . unwrap_or (\"\")))) ; for c in & node . children { render_node (c , depth + 1 , out) ; } } Payload :: Prose { text } => { out . push_str (& render_prose_typst (text)) ; out . push_str (\"\\n\\n\") ; } Payload :: Example { lang , source , .. } => { let body = source . strip_suffix ('\\n') . unwrap_or (source) ; out . push_str (& format ! (\"```{lang}\\n{body}\\n```\\n\\n\")) ; } Payload :: ApiItem { signature , summary } => { let eq = \"=\" . repeat (depth . clamp (2 , 6)) ; out . push_str (& format ! (\"{eq} `{}`\\n\\n\" , escape (signature . as_deref () . unwrap_or (\"\")))) ; match summary { Some (s) => { out . push_str (& escape (s)) ; out . push_str (\"\\n\\n\") ; } None => out . push_str (\"_undocumented — no summary projected from source._\\n\\n\") , } for c in & node . children { render_node (c , depth + 1 , out) ; } } Payload :: Undocumented { what } => { out . push_str (& format ! (\"_undocumented: {}_\\n\\n\" , escape (what))) ; } Payload :: Xref { target } => { out . push_str (& format ! (\"#link(\\\"{}\\\")[{}]\\n\\n\" , escape_str (& target . raw) , escape (& target . raw))) ; } Payload :: Document { .. } | Payload :: Index => { for c in & node . children { render_node (c , depth , out) ; } } } }",
+      "reason": "mutating method body statement is neither a `let`, a supported `self.<field>`/`*<param>` re-assignment, nor (in tail position) the method's own return value — value-threading deliberately refuses any shape outside a flat re-assignment sequence rather than risk an unsound rebind (DN-125 §6.1, never-silent G2/VR-5)",
+      "item_name": "render_node"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/typst.rs",
+      "line": 214,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Escape Typst markup metacharacters in body text. `pub(crate)` for white-box unit testing in\"] # [doc = \" `src/tests/typst.rs`, not a downstream API.\"] # [doc = \"\"] # [doc = \" `[`/`]` are escaped too: content flows into `#strong[…]`/`#emph[…]` **content arguments**, so an\"] # [doc = \" unescaped `]` in the text would close the bracket early and break the `.typ`. (Inside `#raw(\\\"…\\\")`\"] # [doc = \" / `#link(\\\"…\\\")` string arguments the delimiter is a quote, handled by [`escape_str`].)\"] pub (crate) fn escape (s : & str) -> String { let mut out = String :: with_capacity (s . len ()) ; for ch in s . chars () { match ch { '#' | '$' | '*' | '_' | '`' | '<' | '>' | '@' | '\\\\' | '[' | ']' => { out . push ('\\\\') ; out . push (ch) ; } _ => out . push (ch) , } } out }",
+      "reason": "qualified/associated-function call `String :: with_capacity` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "escape"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/typst.rs",
+      "line": 234,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Escape for a Typst **string literal** (used inside `#link(\\\"…\\\")` and `#raw(\\\"…\\\")`). A Typst string\"] # [doc = \" cannot contain a raw newline (or other control char), so those are escaped too — otherwise a\"] # [doc = \" projected inline-code span that captured a newline (e.g. an unbalanced backtick across the rows of\"] # [doc = \" a projected pipe-table) would terminate the string early and break the whole `.typ`. Escaping\"] # [doc = \" `\\\\`, `\\\"`, and the C0 controls makes ANY content a valid single-line string literal (G2: every\"] # [doc = \" emitted `.typ` compiles).\"] fn escape_str (s : & str) -> String { let mut out = String :: with_capacity (s . len () + 2) ; for ch in s . chars () { match ch { '\\\\' => out . push_str (\"\\\\\\\\\") , '\"' => out . push_str (\"\\\\\\\"\") , '\\n' => out . push_str (\"\\\\n\") , '\\r' => out . push_str (\"\\\\r\") , '\\t' => out . push_str (\"\\\\t\") , c if (c as u32) < 0x20 => out . push_str (& format ! (\"\\\\u{{{:x}}}\" , c as u32)) , c => out . push (c) , } } out }",
+      "reason": "qualified/associated-function call `String :: with_capacity` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "escape_str"
+    }
+  ],
+  "total_top_level_items": 12
+}

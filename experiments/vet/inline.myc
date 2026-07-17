@@ -1,0 +1,33 @@
+// nodule: doc.inline
+// **Inline-span parsing** for prose / heading / table-cell text (a CommonMark *subset*, the same
+// "honestly a subset, named as one" discipline as [`crate::corpus`]'s block parser). The corpus
+// parser is block-only, so `**strong**`, `*em*`/`_em_`, inline `` `code` ``, and `[text](url)` reach
+// the doc-IR as **verbatim text** — which then renders as literal `**`/backticks, defeating the
+// comfortable-reading goal. This module parses that text into inline [`Span`]s **at render time**;
+// each emitter ([`crate::emit::html`], [`crate::emit::typst`]) renders the spans to its own markup.
+//
+// ## Render-time, never an IR node (parity-safe)
+// A [`Span`] is a *view* over the node's existing text, **not** a doc-IR node — so it never perturbs
+// a node's content address (ADR-003): the IR keeps the verbatim text, its `data-cid` is unchanged,
+// and the machine JSON view still serialises the raw text. HTML and Typst therefore stay two views
+// of the *same* content-addressed nodes (the §4.1 dual-projection-parity lint holds). The parse is
+// shared here (one grammar); only the rendering differs per emitter.
+//
+// ## The subset, and its honest limits
+// Priority, high→low: inline code `` ` `` (verbatim — `*`/`_` inside backticks are **not** emphasis,
+// per the requirement "inline code first"), then `**strong**`, then `*em*` / `_em_`, then
+// `[text](url)`. `_` does **not** open emphasis intra-word (so `file_index` and `snake_case` in prose
+// are never mangled — the CommonMark left/right-flanking rule, important for this technical corpus).
+// Unbalanced markers are left as literal text (never dropped, never a panic). Recursion is
+// depth-capped ([`MAX_DEPTH`]); beyond it the remainder is literal text (never-silent, no overflow).
+// HTML-escaping is the **emitter's** job, applied per-span *after* parsing (so a `<` in prose is
+// escaped inside the `<strong>`, never interpreted).
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc.inline;
+
+// The maximum inline nesting depth parsed; beyond it the remainder is emitted as literal text (a
+// bound against adversarial input — never a stack overflow, never dropped text).
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn MAX_DEPTH() => Binary{8} = 0b0000_1000; // 8

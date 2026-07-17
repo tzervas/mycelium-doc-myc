@@ -1,0 +1,17 @@
+// nodule: doc.apiref
+// The `gen-apiref` projection (output (d), fully automated — spec §4). API reference is **pure
+// projection from code + schemas + M-359 metadata**, no interpretive layer: a `.myc` nodule's header
+// ([`mycelium_proj::parse_header`]) and `fn` signatures, and the JSON schemas, become api-item IR
+// nodes. A missing `@summary` / schema `description` is an explicit [`Payload::ApiItem`] with
+// `summary: None` (rendered "undocumented") — **never invented** (the prose form of G2). The whole
+// `.myc` source is also captured as a *checked* example, so the §4.1 checked-examples lint type-checks
+// the real, dogfooded code (T7.1/T7.5).
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc.apiref;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: doc.ir) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type Level = Minimal | Medium | Detailed;
+type Provenance = Provenance(Bytes, Binary{32});
+type SourceKind = Rfc | Adr | Note | Spec | Devlog | Api | Other;

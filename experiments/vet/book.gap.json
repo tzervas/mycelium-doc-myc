@@ -1,0 +1,433 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+  "emitted_items": [
+    "co-include:Level,Provenance,SourceKind",
+    "BookError",
+    "BookManifest",
+    "ChapterSpec",
+    "book_shell"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 33,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: collections :: { BTreeMap , BTreeSet } ;",
+      "reason": "`use std.collections::BTreeMap` — `std.collections` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use std.collections::BTreeSet` — `std.collections` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 34,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: fmt ;",
+      "reason": "`use std::fmt` — `std` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 35,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: path :: Path ;",
+      "reason": "`use std.path::Path` — `std.path` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 37,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use serde :: { Deserialize , Serialize } ;",
+      "reason": "`use serde::Deserialize` — `serde` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use serde::Serialize` — `serde` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 39,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: emit :: { html_escape , Artifacts } ;",
+      "reason": "`use emit::html_escape` — `html_escape` is not among sibling `emit`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use emit::Artifacts` — `Artifacts` is not among sibling `emit`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 40,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: inline ;",
+      "reason": "`use ::inline` — `inline` is not among sibling ``'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 41,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: ir :: { DocModel , Level , Node , Payload , Provenance , SourceKind } ;",
+      "reason": "`use ir::DocModel` — `DocModel` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Level,Provenance,SourceKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 41,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: ir :: { DocModel , Level , Node , Payload , Provenance , SourceKind } ;",
+      "reason": "`use ir::Node` — `Node` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Level,Provenance,SourceKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 41,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: ir :: { DocModel , Level , Node , Payload , Provenance , SourceKind } ;",
+      "reason": "`use ir::Payload` — `Payload` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Level,Provenance,SourceKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 42,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: theme ;",
+      "reason": "`use ::theme` — `theme` is not among sibling ``'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 44,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" An HTML nav label: inline markdown stripped ([`inline::to_plain`]) then HTML-escaped — so a\"] # [doc = \" backtick-bearing title (e.g. ``\\\"DN-102 · The `?` Try-Operator\\\"``) reads cleanly in the book nav\"] # [doc = \" instead of leaking literal markdown (mirrors `emit::html`'s `inline_text`).\"] fn nav_label (text : & str) -> String { html_escape (& inline :: to_plain (text)) }",
+      "reason": "qualified/associated-function call `inline :: to_plain` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "nav_label"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 51,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The repo-relative default location of the committed chapter manifest.\"] pub const DEFAULT_MANIFEST_PATH : & str = \"docs/book-manifest.json\" ;",
+      "reason": "top-level `const DEFAULT_MANIFEST_PATH` — co-emit (ORACLE-R1 A4) only covers plain unsigned integer types (`u8`/`u16`/`u32`/`u64`/`u128`/`usize`); other types have no const item production and no faithful zero-arg-fn encoding (gap, never fabricate)",
+      "item_name": "DEFAULT_MANIFEST_PATH"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 54,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" A never-silent book-build error (a broken manifest entry, a bad manifest, an anchor collision) —\"] # [doc = \" surfaced with enough detail to fix it, never a silently-dropped chapter (G2).\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct BookError (pub String) ;",
+      "reason": "struct `BookError` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "BookError"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 54,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" A never-silent book-build error (a broken manifest entry, a bad manifest, an anchor collision) —\"] # [doc = \" surfaced with enough detail to fix it, never a silently-dropped chapter (G2).\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct BookError (pub String) ;",
+      "reason": "struct `BookError` derive(...) names Eq not in the DN-128 standard-derive set this leaf builds (Debug/Default/Clone/Copy/PartialEq/PartialOrd/Hash all recognized; bare Eq/Ord are deliberately NOT recognized — see emit/derives/mod.rs::TABLE's doc for why) — dropped, no confirmed Mycelium surface",
+      "item_name": "BookError"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 59,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl fmt :: Display for BookError { fn fmt (& self , f : & mut fmt :: Formatter < '_ >) -> fmt :: Result { write ! (f , \"{}\" , self . 0) } }",
+      "reason": "trait-impl of non-prelude trait `Display` — no ambient trait definition and synthetic trait emission is refused (DN-34 §8.8 / DN-122 MVP); gapped the whole impl so the residual cannot file-poison myc-check (G2; express gap-close 2026-07-16)",
+      "item_name": "BookError"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 65,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl std :: error :: Error for BookError { }",
+      "reason": "trait-impl of non-prelude trait `Error` — no ambient trait definition and synthetic trait emission is refused (DN-34 §8.8 / DN-122 MVP); gapped the whole impl so the residual cannot file-poison myc-check (G2; express gap-close 2026-07-16)",
+      "item_name": "BookError"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 67,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" The committed chapter manifest (`docs/book-manifest.json`) — curated order, drift-proof globs.\"] # [derive (Debug , Clone , Serialize , Deserialize)] pub struct BookManifest { # [doc = \" The book's title (the ToC page `<h1>`).\"] pub title : String , # [doc = \" A short, hand-authored preface (the one piece of new prose this module authors — spec\"] # [doc = \" \\\"minimal new authoring\\\"; everything else is projected).\"] pub preface : String , # [doc = \" Chapters, in reading order.\"] pub chapters : Vec < ChapterSpec > , }",
+      "reason": "struct `BookManifest` named field(s) `title, preface, chapters` emitted positionally as `BookManifest(Bytes, Bytes, Vec[ChapterSpec])` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped (matches `lib/std/*.myc` hand-ports)",
+      "item_name": "BookManifest"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 67,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" The committed chapter manifest (`docs/book-manifest.json`) — curated order, drift-proof globs.\"] # [derive (Debug , Clone , Serialize , Deserialize)] pub struct BookManifest { # [doc = \" The book's title (the ToC page `<h1>`).\"] pub title : String , # [doc = \" A short, hand-authored preface (the one piece of new prose this module authors — spec\"] # [doc = \" \\\"minimal new authoring\\\"; everything else is projected).\"] pub preface : String , # [doc = \" Chapters, in reading order.\"] pub chapters : Vec < ChapterSpec > , }",
+      "reason": "struct `BookManifest` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "BookManifest"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 67,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" The committed chapter manifest (`docs/book-manifest.json`) — curated order, drift-proof globs.\"] # [derive (Debug , Clone , Serialize , Deserialize)] pub struct BookManifest { # [doc = \" The book's title (the ToC page `<h1>`).\"] pub title : String , # [doc = \" A short, hand-authored preface (the one piece of new prose this module authors — spec\"] # [doc = \" \\\"minimal new authoring\\\"; everything else is projected).\"] pub preface : String , # [doc = \" Chapters, in reading order.\"] pub chapters : Vec < ChapterSpec > , }",
+      "reason": "struct `BookManifest` derive(...) names Serialize, Deserialize not in the DN-128 standard-derive set this leaf builds (Debug/Default/Clone/Copy/PartialEq/PartialOrd/Hash all recognized; bare Eq/Ord are deliberately NOT recognized — see emit/derives/mod.rs::TABLE's doc for why) — dropped, no confirmed Mycelium surface",
+      "item_name": "BookManifest"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 79,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" One chapter: an ordered list of explicit sources, optionally extended by drift-proof globs.\"] # [derive (Debug , Clone , Serialize , Deserialize)] pub struct ChapterSpec { # [doc = \" The chapter title.\"] pub title : String , # [doc = \" Explicit repo-relative source paths, in curated reading order.\"] # [serde (default)] pub sources : Vec < String > , # [doc = \" Glob patterns (a single `*` wildcard per pattern — a hand-rolled subset, not a full glob\"] # [doc = \" engine, the same \\\"honestly a subset\\\" discipline as [`crate::corpus`]'s markdown parser).\"] # [doc = \" Matches are resolved against every ingested document's source path, sorted, and appended\"] # [doc = \" after `sources` — so a new file under the globbed directory is picked up automatically.\"] # [serde (default)] pub globs : Vec < String > , # [doc = \" Source paths to exclude from a `globs` match (e.g. a module `README.md`/template file).\"] # [serde (default)] pub exclude : Vec < String > , }",
+      "reason": "struct `ChapterSpec` named field(s) `title, sources, globs, exclude` emitted positionally as `ChapterSpec(Bytes, Vec[Bytes], Vec[Bytes], Vec[Bytes])` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped (matches `lib/std/*.myc` hand-ports)",
+      "item_name": "ChapterSpec"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 79,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" One chapter: an ordered list of explicit sources, optionally extended by drift-proof globs.\"] # [derive (Debug , Clone , Serialize , Deserialize)] pub struct ChapterSpec { # [doc = \" The chapter title.\"] pub title : String , # [doc = \" Explicit repo-relative source paths, in curated reading order.\"] # [serde (default)] pub sources : Vec < String > , # [doc = \" Glob patterns (a single `*` wildcard per pattern — a hand-rolled subset, not a full glob\"] # [doc = \" engine, the same \\\"honestly a subset\\\" discipline as [`crate::corpus`]'s markdown parser).\"] # [doc = \" Matches are resolved against every ingested document's source path, sorted, and appended\"] # [doc = \" after `sources` — so a new file under the globbed directory is picked up automatically.\"] # [serde (default)] pub globs : Vec < String > , # [doc = \" Source paths to exclude from a `globs` match (e.g. a module `README.md`/template file).\"] # [serde (default)] pub exclude : Vec < String > , }",
+      "reason": "struct `ChapterSpec` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "ChapterSpec"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 79,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" One chapter: an ordered list of explicit sources, optionally extended by drift-proof globs.\"] # [derive (Debug , Clone , Serialize , Deserialize)] pub struct ChapterSpec { # [doc = \" The chapter title.\"] pub title : String , # [doc = \" Explicit repo-relative source paths, in curated reading order.\"] # [serde (default)] pub sources : Vec < String > , # [doc = \" Glob patterns (a single `*` wildcard per pattern — a hand-rolled subset, not a full glob\"] # [doc = \" engine, the same \\\"honestly a subset\\\" discipline as [`crate::corpus`]'s markdown parser).\"] # [doc = \" Matches are resolved against every ingested document's source path, sorted, and appended\"] # [doc = \" after `sources` — so a new file under the globbed directory is picked up automatically.\"] # [serde (default)] pub globs : Vec < String > , # [doc = \" Source paths to exclude from a `globs` match (e.g. a module `README.md`/template file).\"] # [serde (default)] pub exclude : Vec < String > , }",
+      "reason": "struct `ChapterSpec` derive(...) names Serialize, Deserialize not in the DN-128 standard-derive set this leaf builds (Debug/Default/Clone/Copy/PartialEq/PartialOrd/Hash all recognized; bare Eq/Ord are deliberately NOT recognized — see emit/derives/mod.rs::TABLE's doc for why) — dropped, no confirmed Mycelium surface",
+      "item_name": "ChapterSpec"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 98,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Load the committed manifest from `<repo_root>/docs/book-manifest.json`.\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" A missing or unparseable manifest is a `BookError`, never a silent empty book.\"] pub fn load_manifest (repo_root : & Path) -> Result < BookManifest , BookError > { load_manifest_from (& repo_root . join (DEFAULT_MANIFEST_PATH)) }",
+      "reason": "method call `.join(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__join` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `join(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "load_manifest"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 106,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Load a manifest from an **explicit path** — the entry the `--manifest` scoped-emission path uses\"] # [doc = \" (a per-cluster manifest, the same `{title, chapters:[{sources, globs, exclude}]}` shape as the\"] # [doc = \" committed book manifest). [`load_manifest`] is the convenience wrapper for the default location.\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" A missing or unparseable manifest is a `BookError`, never a silent empty subset (G2).\"] pub fn load_manifest_from (path : & Path) -> Result < BookManifest , BookError > { let src = std :: fs :: read_to_string (path) . map_err (| e | BookError (format ! (\"reading {}: {e}\" , path . display ()))) ? ; serde_json :: from_str (& src) . map_err (| e | BookError (format ! (\"parsing {}: {e}\" , path . display ()))) }",
+      "reason": "unsupported expression form `std :: fs :: read_to_string (path) . map_err (| e | BookError (format ! (\"reading {}: {e}\" , path . display ()))) ?`",
+      "item_name": "load_manifest_from"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 118,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" A hand-rolled glob-**subset** matcher — the \\\"honestly a subset, named as one\\\" convention — over\"] # [doc = \" three metacharacters: `*` (any run, including empty), `?` (any one char), and `[…]` **character\"] # [doc = \" classes** with ranges (`[0-9]`, `[a-z]`), literal sets (`[abc]`), and negation (`[!…]`/`[^…]`).\"] # [doc = \" A literal `]` may lead the class (`[]…]`); an unterminated `[` matches a literal `[`. No `**`, no\"] # [doc = \" path-segment semantics (`*` spans `/`) — enough for the committed manifests' bracket globs\"] # [doc = \" (`docs/notes/DN-[5-9][0-9]-*.md`, `DN-1[0-9][0-9]-*.md`), which the old single-`*` matcher could\"] # [doc = \" not express (it resolved those clusters to zero pages — a silent Markdown fallback, now fixed).\"] # [doc = \"\"] # [doc = \" `pub(crate)` for white-box unit testing in `src/tests/book.rs`, not a downstream API.\"] pub (crate) fn glob_match (pattern : & str , candidate : & str) -> bool { let p : Vec < char > = pattern . chars () . collect () ; let c : Vec < char > = candidate . chars () . collect () ; glob_match_at (& p , 0 , & c , 0) }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "glob_match"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 133,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" Match `pattern[pi..]` against `candidate[ci..]` (recursive; `*` backtracks).\"] fn glob_match_at (p : & [char] , mut pi : usize , c : & [char] , mut ci : usize) -> bool { while pi < p . len () { match p [pi] { '*' => { while pi < p . len () && p [pi] == '*' { pi += 1 ; } if pi == p . len () { return true ; } return (ci ..= c . len ()) . any (| k | glob_match_at (p , pi , c , k)) ; } '?' => { if ci >= c . len () { return false ; } pi += 1 ; ci += 1 ; } '[' => match match_class (p , pi , c . get (ci) . copied ()) { Some ((matched , next_pi)) => { if ! matched { return false ; } pi = next_pi ; ci += 1 ; } None => { if c . get (ci) != Some (& '[') { return false ; } pi += 1 ; ci += 1 ; } } , ch => { if c . get (ci) != Some (& ch) { return false ; } pi += 1 ; ci += 1 ; } } } ci == c . len () }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "glob_match_at"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 182,
+      "col": 1,
+      "category": "MacroInvocation",
+      "rust_construct": "MacroInvocation",
+      "snippet": "# [doc = \" Match one candidate char `ch` against the character class starting at `p[pi] == '['`. Returns\"] # [doc = \" `Some((matched, next_pi))` where `next_pi` is just past the closing `]`, or `None` if the class is\"] # [doc = \" unterminated (no closing `]`) — then the caller treats `[` as a literal. `ch == None` (candidate\"] # [doc = \" exhausted) never matches a class.\"] fn match_class (p : & [char] , pi : usize , ch : Option < char >) -> Option < (bool , usize) > { let mut j = pi + 1 ; let negate = matches ! (p . get (j) , Some ('!') | Some ('^')) ; if negate { j += 1 ; } let body_start = j ; let mut end = None ; let mut k = j ; while k < p . len () { if p [k] == ']' && k != body_start { end = Some (k) ; break ; } k += 1 ; } let end = end ? ; let class = & p [body_start .. end] ; let Some (ch) = ch else { return Some ((false , end + 1)) ; } ; let mut matched = false ; let mut m = 0 ; while m < class . len () { if m + 2 < class . len () && class [m + 1] == '-' { if class [m] <= ch && ch <= class [m + 2] { matched = true ; } m += 3 ; } else { if ch == class [m] { matched = true ; } m += 1 ; } } Some ((matched ^ negate , end + 1)) }",
+      "reason": "expression-position macro `matches` — no macro system in this grammar fragment (`write!`/`format!` lower to pure `Bytes` per DN-127/M-1090 WU-3)",
+      "item_name": "match_class"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 226,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Synthesize a single [`Payload::Document`] node wrapping a non-markdown file **verbatim** as an\"] # [doc = \" unchecked example — grounded (the file's exact bytes), never invented. Used for the one\"] # [doc = \" non-`.md` book source (`docs/spec/grammar/mycelium.ebnf`); `checked: false` is honest (it is a\"] # [doc = \" grammar fragment, not a `.myc` program — the checked-examples lint only ever applies to real\"] # [doc = \" nodule source, §4.1 #4).\"] fn synth_verbatim_node (anchor : & str , title : & str , path : & str , lang : & str , src : & str) -> Node { let prov = Provenance { source : path . to_owned () , line : 1 , } ; let body = Node :: new (format ! (\"{anchor}--source\") , None , Some (Level :: Detailed) , prov . clone () , Payload :: Example { lang : lang . to_owned () , source : src . to_owned () , checked : false , } , vec ! [] ,) ; Node :: new (anchor . to_owned () , Some (title . to_owned ()) , None , prov , Payload :: Document { source_kind : SourceKind :: Spec , } , vec ! [body] ,) }",
+      "reason": "struct literal `Provenance { .. }` — not an in-file single-ctor struct or enum struct-variant that emits (no constructor to build; a cross-nodule variant is an honest DN-113/DN-134-OQ-2 resolvability gap, never a fabricated out-of-file reference — VR-5/G2)",
+      "item_name": "synth_verbatim_node"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 260,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" One resolved book page: which chapter it belongs to, and the doc-IR node it projects.\"] struct Page { chapter_idx : usize , node : Node , }",
+      "reason": "struct `Page` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "Page"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 266,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" Resolve every chapter's `sources`/`globs` against the model, synthesizing the one honest\"] # [doc = \" exception (the grammar EBNF). Never-silent: an entry that resolves to nothing is a `BookError`.\"] fn resolve_pages (model : & DocModel , manifest : & BookManifest , repo_root : & Path ,) -> Result < Vec < Page > , BookError > { let by_source : BTreeMap < & str , & Node > = model . documents . iter () . map (| d | (d . provenance . source . as_str () , d)) . collect () ; let mut pages = Vec :: new () ; let mut seen_anchors : BTreeSet < String > = BTreeSet :: new () ; let mut seen_sources : BTreeSet < String > = BTreeSet :: new () ; for (chapter_idx , chapter) in manifest . chapters . iter () . enumerate () { let mut ordered_paths : Vec < String > = chapter . sources . clone () ; if ! chapter . globs . is_empty () { let mut matched : Vec < String > = model . documents . iter () . map (| d | d . provenance . source . clone ()) . filter (| p | chapter . globs . iter () . any (| g | glob_match (g , p))) . filter (| p | ! chapter . exclude . contains (p)) . collect () ; matched . sort () ; ordered_paths . extend (matched) ; } if ordered_paths . is_empty () { return Err (BookError (format ! (\"chapter '{}' resolves to zero pages (empty sources/globs, or every glob match was \\\n                 excluded) — a chapter with no content is a broken book, not a silent skip\" , chapter . title))) ; } for path in ordered_paths { if ! seen_sources . insert (path . clone ()) { return Err (BookError (format ! (\"'{path}' appears in more than one book chapter — a page must have exactly one \\\n                     place in the reading order\"))) ; } let node = if let Some (& n) = by_source . get (path . as_str ()) { n . clone () } else if path . ends_with (\".ebnf\") { let full = repo_root . join (& path) ; let src = std :: fs :: read_to_string (& full) . map_err (| e | { BookError (format ! (\"chapter '{}': cannot read grammar source {path}: {e}\" , chapter . title)) }) ? ; synth_verbatim_node (\"book-grammar-ebnf\" , \"Mycelium Grammar (EBNF)\" , & path , \"ebnf\" , & src ,) } else { return Err (BookError (format ! (\"chapter '{}' references '{path}' but no such document was ingested — fix \\\n                     docs/book-manifest.json or the source path (never a silently-dropped chapter)\" , chapter . title))) ; } ; if ! seen_anchors . insert (node . anchor . clone ()) { return Err (BookError (format ! (\"duplicate book page anchor '{}' (from '{path}') — an anchor collision would \\\n                     silently merge two distinct pages\" , node . anchor))) ; } pages . push (Page { chapter_idx , node }) ; } } Ok (pages) }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "resolve_pages"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 347,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Extract the `<article>...</article>` body from a full rendered page — reusing the *exact* honest\"] # [doc = \" projection [`crate::emit::html::render`] already produced (same `data-cid`s), never re-deriving\"] # [doc = \" content (spec §4: \\\"projection, not authorship\\\").\"] fn extract_article (page_html : & str) -> & str { let start = page_html . find (\"<article\") . unwrap_or (0) ; let end = page_html . rfind (\"</article>\") . map_or (page_html . len () , | i | i + \"</article>\" . len ()) ; & page_html [start .. end] }",
+      "reason": "method call `.unwrap_or(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__unwrap_or` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `unwrap_or(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "extract_article"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 366,
+      "col": 1,
+      "category": "MacroInvocation",
+      "rust_construct": "MacroInvocation",
+      "snippet": "# [doc = \" The shared document skeleton for every book page (chapter page, ToC landing, search) — one\"] # [doc = \" template, the self-contained offline theme, no-flash init, and the theme toggle. `index_prefix`\"] # [doc = \" is `\\\"../\\\"` from a `book/pages/` page and `\\\"\\\"` from `book/index.html`/`book/search.html`.\"] fn book_document (book_title : & str , page_title : & str , index_prefix : & str , sidebar : & str , main : & str ,) -> String { format ! (\"<!DOCTYPE html>\\n<html lang=\\\"en\\\">\\n<head>\\n\\\n         <meta charset=\\\"utf-8\\\">\\n\\\n         <meta name=\\\"viewport\\\" content=\\\"width=device-width,initial-scale=1\\\">\\n\\\n         <title>{page_title} — {book_title}</title>\\n\\\n         <style>{css}</style>\\n{head_init}\\n\\\n         </head>\\n<body>\\n{skip}\\n\\\n         <header class=\\\"site-header\\\"><div class=\\\"bar\\\">\\\n         <p class=\\\"site-title\\\">{book_title}</p>\\\n         <p class=\\\"tagline\\\">A curated linear composition of the honest corpus projection — never a \\\n         parallel truth (ADR-003/G11). <a href=\\\"{index_prefix}search.html\\\">Search the book</a></p>\\\n         {toggle}</div></header>\\n\\\n         <div class=\\\"layout no-toc\\\">\\n{sidebar}\\n\\\n         <main id=\\\"content\\\">\\n{main}\\n</main>\\n</div>\\n\\\n         <footer>Generated by <code>myc-doc book</code> — every page composes the same \\\n         content-addressed article the corpus site renders (dual-projection parity by \\\n         construction). Undocumented items are flagged, never invented (G2).</footer>\\n\\\n         {toggle_js}\\n\\\n         </body>\\n</html>\\n\" , book_title = html_escape (book_title) , page_title = nav_label (page_title) , css = theme :: READING_CSS , head_init = theme :: HEAD_THEME_INIT , skip = theme :: SKIP_LINK , toggle = theme :: THEME_TOGGLE_BUTTON , toggle_js = theme :: THEME_TOGGLE_JS ,) }",
+      "reason": "`format!` — format string uses an unsupported specifier (only plain `{}` / `{{` / `}}` are lowered in this MVP — named/width/precision/Debug-only forms are honest gaps, G2) (DN-127/M-1090 WU-3)",
+      "item_name": "book_document"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 405,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The persistent chapter-tree sidebar: each chapter is a **collapsible `<details>`** group of its\"] # [doc = \" pages (short-labeled, full title in a `title=\\\"\\\"` tooltip), plus a Table-of-contents / Search link\"] # [doc = \" pair at the top. The chapter holding the current page defaults to `open` (others collapsed);\"] # [doc = \" the current page keeps its `aria-current` highlight. `page_prefix` reaches a chapter page\"] # [doc = \" (`\\\"\\\"` from a `book/pages/` page, `\\\"pages/\\\"` from `book/index.html`); `index_prefix` reaches the\"] # [doc = \" ToC/search (`\\\"../\\\"` from a page, `\\\"\\\"` from the index).\"] fn book_sidebar (manifest : & BookManifest , pages : & [Page] , page_prefix : & str , index_prefix : & str , current : Option < & str > ,) -> String { let mut nav = String :: from (\"<nav class=\\\"sidebar\\\" aria-label=\\\"Book navigation\\\">\\n\") ; nav . push_str (& format ! (\"<ul>\\n  <li><a href=\\\"{ip}index.html\\\">Table of contents</a></li>\\n\\\n         \\x20 <li><a href=\\\"{ip}search.html\\\">Search the book</a></li>\\n</ul>\\n\" , ip = index_prefix ,)) ; for (ci , chapter) in manifest . chapters . iter () . enumerate () { let chapter_pages : Vec < & Page > = pages . iter () . filter (| p | p . chapter_idx == ci) . collect () ; if chapter_pages . is_empty () { continue ; } let open = current . is_some_and (| c | chapter_pages . iter () . any (| p | p . node . anchor == c)) ; let mut items = String :: new () ; for page in & chapter_pages { let cur = if current == Some (page . node . anchor . as_str ()) { \" aria-current=\\\"page\\\"\" } else { \"\" } ; items . push_str (& format ! (\"  <li><a href=\\\"{pp}{a}.html\\\"{cur} title=\\\"{full}\\\">{short}</a></li>\\n\" , pp = page_prefix , a = html_escape (& page . node . anchor) , full = nav_label (page_title (& page . node)) , short = nav_label (& crate :: short_label (& page . node)) ,)) ; } nav . push_str (& format ! (\"<details{o}><summary>{n}. {t} <span class=\\\"count\\\">{c}</span></summary>\\n<ul>\\n{items}</ul>\\n</details>\\n\" , o = if open { \" open\" } else { \"\" } , n = ci + 1 , t = html_escape (& chapter . title) , c = chapter_pages . len () ,)) ; } nav . push_str (\"</nav>\") ; nav }",
+      "reason": "qualified/associated-function call `String :: from` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "book_sidebar"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 457,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn page_title (node : & Node) -> & str { node . title . as_deref () . unwrap_or (& node . anchor) }",
+      "reason": "method call `.unwrap_or(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__unwrap_or` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `unwrap_or(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "page_title"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 461,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Resolve a manifest to the **ordered set of ingested documents** it names — the same resolution\"] # [doc = \" (curated `sources` + drift-proof `globs` + `exclude`, and the one synthesized grammar EBNF)\"] # [doc = \" [`build_book`] uses, exposed for **scoped emission** (`myc-doc build --manifest`, per-cluster PDF\"] # [doc = \" export). Ingest the whole corpus first (so cross-references resolve against the *full* anchor\"] # [doc = \" universe — the caller does this), then select and order exactly the manifest's documents.\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" A manifest entry that resolves to no ingested document (or a duplicate/collision) is a\"] # [doc = \" `BookError` — never a silently-empty subset (§4.1 \\\"never a half-build\\\"; G2).\"] pub fn resolve_manifest_docs (model : & DocModel , manifest : & BookManifest , repo_root : & Path ,) -> Result < Vec < Node > , BookError > { Ok (resolve_pages (model , manifest , repo_root) ? . into_iter () . map (| p | p . node) . collect ()) }",
+      "reason": "method call `.collect(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__collect` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `collect(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "resolve_manifest_docs"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 481,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" The manifest's chapters resolved to **(chapter-title, [ingested-doc anchors])**, best-effort over\"] # [doc = \" the *corpus* model — the **semantic spine** for the corpus-site sidebar tree. Unlike\"] # [doc = \" [`resolve_manifest_docs`], this is **lenient and never errors**: a chapter entry that is not an\"] # [doc = \" ingested corpus document (a book-only page like `CONTRIBUTING.md` or the synthesized grammar EBNF,\"] # [doc = \" which the corpus `build` does not include) is simply skipped — those pages exist in the *book*, not\"] # [doc = \" the corpus site. Nothing corpus-side is dropped: every corpus doc still appears in the sidebar's\"] # [doc = \" by-type groups regardless of the semantic spine (G2). `sources` keep their curated order; `globs`\"] # [doc = \" are sorted by source path. Chapters that resolve to no corpus doc are omitted.\"] # [must_use] pub fn resolve_manifest_chapters (model : & DocModel , manifest : & BookManifest ,) -> Vec < (String , Vec < String >) > { let by_source : BTreeMap < & str , & Node > = model . documents . iter () . map (| d | (d . provenance . source . as_str () , d)) . collect () ; let mut out = Vec :: new () ; for chapter in & manifest . chapters { let mut anchors = Vec :: new () ; let mut seen = BTreeSet :: new () ; for src in & chapter . sources { if let Some (n) = by_source . get (src . as_str ()) { if seen . insert (n . anchor . clone ()) { anchors . push (n . anchor . clone ()) ; } } } if ! chapter . globs . is_empty () { let mut matched : Vec < & Node > = model . documents . iter () . filter (| d | { chapter . globs . iter () . any (| g | glob_match (g , & d . provenance . source)) }) . filter (| d | ! chapter . exclude . contains (& d . provenance . source)) . collect () ; matched . sort_by (| a , b | a . provenance . source . cmp (& b . provenance . source)) ; for n in matched { if seen . insert (n . anchor . clone ()) { anchors . push (n . anchor . clone ()) ; } } } if ! anchors . is_empty () { out . push ((chapter . title . clone () , anchors)) ; } } out }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "resolve_manifest_chapters"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 536,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Build every book artifact: the ToC/landing page, one page per chapter entry (prev/next nav), and\"] # [doc = \" the search index + its page.\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" A manifest entry that does not resolve to an ingested document (or a duplicate/collision) is a\"] # [doc = \" `BookError` — a broken book is a build failure, never a silently-incomplete one (§4.1 \\\"never a\"] # [doc = \" half-build\\\").\"] pub fn build_book (model : & DocModel , manifest : & BookManifest , repo_root : & Path ,) -> Result < Artifacts , BookError > { let pages = resolve_pages (model , manifest , repo_root) ? ; let scoped = DocModel :: new (pages . iter () . map (| p | p . node . clone ()) . collect ()) ; let rendered = crate :: emit :: html :: render (& scoped , None) ; let mut arts = Artifacts :: new () ; for (i , page) in pages . iter () . enumerate () { let full_page = rendered . files . get (& format ! (\"pages/{}.html\" , page . node . anchor)) . map_or (\"\" , String :: as_str) ; let article = extract_article (full_page) ; let chapter = & manifest . chapters [page . chapter_idx] ; let prev_link = i . checked_sub (1) . map (| j | & pages [j]) . map (| p | { format ! (\"<a href=\\\"{}.html\\\">← {}</a>\" , html_escape (& p . node . anchor) , nav_label (page_title (& p . node))) }) . unwrap_or_else (| | \"<a href=\\\"../index.html\\\">← Table of contents</a>\" . to_owned ()) ; let next_link = pages . get (i + 1) . map (| p | { format ! (\"<a href=\\\"{}.html\\\">{} →</a>\" , html_escape (& p . node . anchor) , nav_label (page_title (& p . node))) }) . unwrap_or_else (| | \"<a href=\\\"../index.html\\\">Table of contents →</a>\" . to_owned ()) ; let breadcrumb = format ! (\"<p class=\\\"crumb\\\"><a href=\\\"../index.html\\\">Table of contents</a> · Chapter {}: {}</p>\" , page . chapter_idx + 1 , html_escape (& chapter . title)) ; let main = format ! (\"{breadcrumb}\\n{article}\\n\\\n             <div class=\\\"pager\\\"><span>{prev_link}</span><span>{next_link}</span></div>\") ; let sidebar = book_sidebar (manifest , & pages , \"\" , \"../\" , Some (& page . node . anchor)) ; arts . put (format ! (\"book/pages/{}.html\" , page . node . anchor) , book_shell (& manifest . title , page_title (& page . node) , & sidebar , & main) ,) ; } let index_sidebar = book_sidebar (manifest , & pages , \"pages/\" , \"\" , None) ; let mut toc = String :: from (\"<nav aria-label=\\\"Table of contents\\\">\\n\") ; for (ci , chapter) in manifest . chapters . iter () . enumerate () { toc . push_str (& format ! (\"<section><h2>{}. {}</h2>\\n<ol>\\n\" , ci + 1 , html_escape (& chapter . title))) ; for page in pages . iter () . filter (| p | p . chapter_idx == ci) { toc . push_str (& format ! (\"  <li><a href=\\\"pages/{a}.html\\\" data-cid=\\\"{cid}\\\">{t}</a></li>\\n\" , a = html_escape (& page . node . anchor) , cid = html_escape (page . node . id . as_str ()) , t = nav_label (page_title (& page . node)) ,)) ; } toc . push_str (\"</ol></section>\\n\") ; } toc . push_str (\"</nav>\") ; let index_main = format ! (\"<h1>{title}</h1>\\n<p>{preface}</p>\\n{toc}\\n\\\n         <p>{chapters} chapters, {pages} pages. <a href=\\\"search.html\\\">Search the book</a>.</p>\" , title = html_escape (& manifest . title) , preface = html_escape (& manifest . preface) , chapters = manifest . chapters . len () , pages = pages . len () ,) ; arts . put (\"book/index.html\" , book_document (& manifest . title , & manifest . title , \"\" , & index_sidebar , & index_main ,) ,) ; let search_index = render_search_index (& pages , manifest) ; arts . put (\"book/search-index.json\" , search_index) ; arts . put (\"book/assets/search.js\" , SEARCH_JS . to_owned ()) ; let search_main = format ! (\"<h1>Search the book</h1>\\n{SEARCH_PAGE_BODY}\") ; arts . put (\"book/search.html\" , book_document (& manifest . title , \"Search\" , \"\" , & index_sidebar , & search_main) ,) ; Ok (arts) }",
+      "reason": "unsupported expression form `resolve_pages (model , manifest , repo_root) ?`",
+      "item_name": "build_book"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 659,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "# [doc = \" One search record — title, the chapter it lives in, its page URL (relative to `book/`), and a\"] # [doc = \" short snippet (the document's lead prose, when present — grounded, never invented).\"] # [derive (Debug , Serialize)] struct SearchRecord < 'a > { # [doc = \" The page's display title with inline markdown stripped (plain text; the JSON serializer owns\"] # [doc = \" the string escaping) — so literal `**`/backticks never leak into the book search UI.\"] title : String , chapter : & 'a str , url : String , snippet : String , }",
+      "reason": "lifetime parameter `'a` has no grammar surface",
+      "item_name": "SearchRecord"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 671,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn lead_snippet (node : & Node) -> String { let mut snippet = String :: new () ; node . walk (& mut | n | { if snippet . is_empty () { if let Payload :: Prose { text } = & n . payload { snippet = text . chars () . take (200) . collect () ; } } }) ; snippet }",
+      "reason": "qualified/associated-function call `String :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "lead_snippet"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 683,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "fn render_search_index (pages : & [Page] , manifest : & BookManifest) -> String { let records : Vec < SearchRecord < '_ > > = pages . iter () . map (| p | SearchRecord { title : inline :: to_plain (page_title (& p . node)) , chapter : & manifest . chapters [p . chapter_idx] . title , url : format ! (\"pages/{}.html\" , p . node . anchor) , snippet : lead_snippet (& p . node) , }) . collect () ; serde_json :: to_string_pretty (& records) . expect (\"search records are always serializable\") }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "render_search_index"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 696,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" A small, dependency-free client-side substring filter over `search-index.json` — no search\"] # [doc = \" engine, no heavy dep; keeps the crate's dependency posture (KC-3).\"] const SEARCH_JS : & str = \"\\\nasync function mycBookSearch() {\n  const res = await fetch('search-index.json');\n  const records = await res.json();\n  const input = document.getElementById('book-search-box');\n  const out = document.getElementById('book-search-results');\n  function render(q) {\n    out.innerHTML = '';\n    if (!q) { return; }\n    const needle = q.toLowerCase();\n    const hits = records.filter(r =>\n      r.title.toLowerCase().includes(needle) ||\n      r.chapter.toLowerCase().includes(needle) ||\n      r.snippet.toLowerCase().includes(needle)\n    );\n    for (const r of hits) {\n      const li = document.createElement('li');\n      const a = document.createElement('a');\n      a.href = r.url;\n      a.textContent = r.title + ' (' + r.chapter + ')';\n      li.appendChild(a);\n      out.appendChild(li);\n    }\n    if (hits.length === 0) {\n      out.innerHTML = '<li>No matches.</li>';\n    }\n  }\n  input.addEventListener('input', () => render(input.value));\n}\nmycBookSearch();\n\" ;",
+      "reason": "top-level `const SEARCH_JS` — co-emit (ORACLE-R1 A4) only covers plain unsigned integer types (`u8`/`u16`/`u32`/`u64`/`u128`/`usize`); other types have no const item production and no faithful zero-arg-fn encoding (gap, never fabricate)",
+      "item_name": "SEARCH_JS"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "line": 730,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "const SEARCH_PAGE_BODY : & str = \"\\\n<p>Search across every page in the book (title, chapter, and lead summary — client-side, no \\\nserver round-trip).</p>\n<input id=\\\"book-search-box\\\" type=\\\"search\\\" placeholder=\\\"Search the book…\\\" \\\naria-label=\\\"Search the book\\\">\n<ul id=\\\"book-search-results\\\" aria-live=\\\"polite\\\"></ul>\n<script src=\\\"assets/search.js\\\"></script>\" ;",
+      "reason": "top-level `const SEARCH_PAGE_BODY` — co-emit (ORACLE-R1 A4) only covers plain unsigned integer types (`u8`/`u16`/`u32`/`u64`/`u128`/`usize`); other types have no const item production and no faithful zero-arg-fn encoding (gap, never fabricate)",
+      "item_name": "SEARCH_PAGE_BODY"
+    }
+  ],
+  "total_top_level_items": 36
+}

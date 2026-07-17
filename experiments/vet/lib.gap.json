@@ -1,0 +1,291 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+  "emitted_items": [
+    "co-include:BookError,BookManifest,ChapterSpec",
+    "co-include:CheckOutcome,CheckStatus,DocLintReport,Finding,Severity",
+    "co-include:Level,Provenance,SourceKind"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 19,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod apiref ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "apiref"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 20,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod book ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "book"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 21,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod build ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "build"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 22,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod cache ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "cache"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 23,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod corpus ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "corpus"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 24,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod doc_lint ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "doc_lint"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 25,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod emit ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "emit"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 26,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod hash ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "hash"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 27,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod highlight ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "highlight"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 28,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod inline ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "inline"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 29,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod ir ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "ir"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 30,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod label ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "label"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 31,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod lib_index ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "lib_index"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 32,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod theme ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "theme"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 34,
+      "col": 1,
+      "category": "TestItem",
+      "rust_construct": "TestItem",
+      "snippet": "# [cfg (test)] mod tests ;",
+      "reason": "#[cfg(test)] item — out of scope for this PoC's transpilation surface (excluded from the expressible-fraction denominator, but recorded, never silently skipped)",
+      "item_name": "tests"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 37,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use book :: { build_book , load_manifest , load_manifest_from , resolve_manifest_chapters , resolve_manifest_docs , BookError , BookManifest , ChapterSpec , } ;",
+      "reason": "`use book::build_book` — `build_book` is not among sibling `book`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:BookError,BookManifest,ChapterSpec"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 37,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use book :: { build_book , load_manifest , load_manifest_from , resolve_manifest_chapters , resolve_manifest_docs , BookError , BookManifest , ChapterSpec , } ;",
+      "reason": "`use book::load_manifest` — `load_manifest` is not among sibling `book`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:BookError,BookManifest,ChapterSpec"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 37,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use book :: { build_book , load_manifest , load_manifest_from , resolve_manifest_chapters , resolve_manifest_docs , BookError , BookManifest , ChapterSpec , } ;",
+      "reason": "`use book::load_manifest_from` — `load_manifest_from` is not among sibling `book`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:BookError,BookManifest,ChapterSpec"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 37,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use book :: { build_book , load_manifest , load_manifest_from , resolve_manifest_chapters , resolve_manifest_docs , BookError , BookManifest , ChapterSpec , } ;",
+      "reason": "`use book::resolve_manifest_chapters` — `resolve_manifest_chapters` is not among sibling `book`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:BookError,BookManifest,ChapterSpec"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 37,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use book :: { build_book , load_manifest , load_manifest_from , resolve_manifest_chapters , resolve_manifest_docs , BookError , BookManifest , ChapterSpec , } ;",
+      "reason": "`use book::resolve_manifest_docs` — `resolve_manifest_docs` is not among sibling `book`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:BookError,BookManifest,ChapterSpec"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 41,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use build :: { build , emit_all , BuildInput } ;",
+      "reason": "`use build::build` — `build` is not among sibling `build`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use build::emit_all` — `emit_all` is not among sibling `build`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use build::BuildInput` — `BuildInput` is not among sibling `build`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 42,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use cache :: { emit_incremental , DiffCache , EmitReport } ;",
+      "reason": "`use cache::emit_incremental` — `emit_incremental` is not among sibling `cache`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use cache::DiffCache` — `DiffCache` is not among sibling `cache`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use cache::EmitReport` — `EmitReport` is not among sibling `cache`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 43,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use doc_lint :: { lint , CheckOutcome , CheckStatus , DocLintReport , Finding , Severity , CHECK_NAMES , } ;",
+      "reason": "`use doc_lint::lint` — `lint` is not among sibling `doc_lint`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:CheckOutcome,CheckStatus,DocLintReport,Finding,Severity"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 43,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use doc_lint :: { lint , CheckOutcome , CheckStatus , DocLintReport , Finding , Severity , CHECK_NAMES , } ;",
+      "reason": "`use doc_lint::CHECK_NAMES` — `CHECK_NAMES` is not among sibling `doc_lint`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:CheckOutcome,CheckStatus,DocLintReport,Finding,Severity"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 46,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use ir :: { DocModel , Level , Node , Payload , Provenance , SourceKind } ;",
+      "reason": "`use ir::DocModel` — `DocModel` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Level,Provenance,SourceKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 46,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use ir :: { DocModel , Level , Node , Payload , Provenance , SourceKind } ;",
+      "reason": "`use ir::Node` — `Node` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Level,Provenance,SourceKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 46,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use ir :: { DocModel , Level , Node , Payload , Provenance , SourceKind } ;",
+      "reason": "`use ir::Payload` — `Payload` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Level,Provenance,SourceKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "line": 47,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use label :: short_label ;",
+      "reason": "`use label::short_label` — `short_label` is not among sibling `label`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    }
+  ],
+  "total_top_level_items": 21
+}

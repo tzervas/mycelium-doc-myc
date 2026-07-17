@@ -1,0 +1,97 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/json.rs",
+  "emitted_items": [],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/json.rs",
+      "line": 6,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use serde :: Serialize ;",
+      "reason": "`use serde::Serialize` — `serde` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/json.rs",
+      "line": 8,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: emit :: Artifacts ;",
+      "reason": "`use emit::Artifacts` — `Artifacts` is not among sibling `emit`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/json.rs",
+      "line": 9,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: ir :: { DocModel , Node } ;",
+      "reason": "`use ir::DocModel` — `DocModel` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use ir::Node` — `Node` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/json.rs",
+      "line": 11,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "# [doc = \" One search-index record (the LSP-hover / search sidecar shape).\"] # [derive (Debug , Serialize)] struct IndexRecord < 'a > { id : & 'a str , anchor : & 'a str , kind : & 'a str , # [serde (skip_serializing_if = \"Option::is_none\")] title : Option < & 'a str > , # [serde (skip_serializing_if = \"Option::is_none\")] level : Option < & 'a str > , source : & 'a str , line : u32 , }",
+      "reason": "lifetime parameter `'a` has no grammar surface",
+      "item_name": "IndexRecord"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/json.rs",
+      "line": 25,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Render the machine artifacts: the full model JSON + the JSONL search index.\"] # [must_use] pub fn render (model : & DocModel) -> Artifacts { let mut arts = Artifacts :: new () ; arts . put (\"doc-model.json\" , render_model_json (model)) ; arts . put (\"search-index.jsonl\" , render_search_index (model)) ; arts }",
+      "reason": "qualified/associated-function call `Artifacts :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "render"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/json.rs",
+      "line": 34,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The whole model, serialized (pretty) — every node id is present (the parity hook).\"] # [must_use] pub fn render_model_json (model : & DocModel) -> String { serde_json :: to_string_pretty (model) . expect (\"the doc model is always serializable\") }",
+      "reason": "method call `.expect(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__expect` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `expect(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "render_model_json"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/json.rs",
+      "line": 40,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" One JSON record per node, newline-delimited (a streamable search/tooling index).\"] # [must_use] pub fn render_search_index (model : & DocModel) -> String { let mut out = String :: new () ; for node in model . all_nodes () { let rec = record_for (node) ; out . push_str (& serde_json :: to_string (& rec) . expect (\"record is serializable\")) ; out . push ('\\n') ; } out }",
+      "reason": "qualified/associated-function call `String :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "render_search_index"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/json.rs",
+      "line": 52,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "fn record_for (node : & Node) -> IndexRecord < '_ > { IndexRecord { id : node . id . as_str () , anchor : & node . anchor , kind : node . payload . kind_str () , title : node . title . as_deref () , level : node . level . map (crate :: ir :: Level :: as_str) , source : & node . provenance . source , line : node . provenance . line , } }",
+      "reason": "generic type path `IndexRecord < '_ >` — type argument `'_` is not a type (lifetime / const-generic / associated-type binding-or-constraint); `type_args` admits only type_refs, so left an explicit gap (VR-5)",
+      "item_name": "record_for"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/json.rs",
+      "line": 64,
+      "col": 1,
+      "category": "TestItem",
+      "rust_construct": "TestItem",
+      "snippet": "# [cfg (test)] mod tests { use super :: * ; use crate :: corpus :: { ingest , AnchorAlloc } ; use crate :: ir :: SourceKind ; fn model () -> DocModel { let mut a = AnchorAlloc :: new () ; let src = \"# Doc\\n\\nLead.\\n\\n## Sec\\n\\nBody.\\n\" ; DocModel :: new (vec ! [ingest (\"d.md\" , src , SourceKind :: Note , & mut a)]) } # [test] fn the_model_json_carries_every_node_id () { let m = model () ; let json = render_model_json (& m) ; for id in m . id_set () { assert ! (json . contains (& id) , \"missing {id} in model JSON\") ; } } # [test] fn the_search_index_has_one_line_per_node () { let m = model () ; let idx = render_search_index (& m) ; let lines : Vec < & str > = idx . lines () . collect () ; assert_eq ! (lines . len () , m . all_nodes () . len ()) ; for line in lines { let v : serde_json :: Value = serde_json :: from_str (line) . unwrap () ; assert ! (v . get (\"id\") . and_then (| x | x . as_str ()) . unwrap () . starts_with (\"blake3:\")) ; } } }",
+      "reason": "#[cfg(test)] item — out of scope for this PoC's transpilation surface (excluded from the expressible-fraction denominator, but recorded, never silently skipped)",
+      "item_name": "tests"
+    }
+  ],
+  "total_top_level_items": 9
+}

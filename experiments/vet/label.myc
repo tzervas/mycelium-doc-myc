@@ -1,0 +1,16 @@
+// nodule: doc.label
+// Concise **navigation labels** for the sidebar tree. A document's full H1 title is often long
+// ("RFC-0002 — Swap Certificate & Split Regime", "Spec — `std.vsa` (hdc) (hypervector…)") — listing
+// those verbatim makes the nav wrap to several lines and become an unreadable wall. [`short_label`]
+// derives a short, deterministic label; the caller keeps the **full title in a `title=""` tooltip**,
+// so nothing is lost.
+//
+// Deterministic + never-silent (G2): the rules are pure functions of the node's title / anchor /
+// source; if a title cannot be shortened cleanly it falls back to a hard char-cap with an ellipsis —
+// **never blank**.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc.label;
+
+

@@ -1,0 +1,90 @@
+// nodule: doc.ir
+// The **doc-IR**: a typed, content-addressed intermediate the whole corpus (RFCs/ADRs/notes/specs +
+// code + M-359 header metadata) is *projected into* — one navigable model, many renderers. This is a
+// **projection, never a parallel truth** (ADR-003): a node's identity is the hash of its projected
+// content ([`crate::hash`]), so HTML, Typst and JSON are *views of one node* and cannot silently
+// diverge (the §4.1 `dual-projection-parity` lint enforces it).
+//
+// "Undocumented is **flagged**, never invented" (the prose analogue of G2): a missing doc surfaces as
+// an explicit [`Payload::Undocumented`] / an [`Payload::ApiItem`] with `summary: None`, rendered as a
+// visible "undocumented" marker — never papered over with filler.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc.ir;
+
+// Graded depth (RFC-0013's `minimal / medium / detailed` levels, reused for docs — §4.1 progressive
+// disclosure). A reader picks how deep to go over *one* truth, never three divergent ones.
+pub type Level = Minimal | Medium | Detailed;
+
+impl Show[Level] for Level {
+  fn render(x: Level) => Bytes =
+    match x { Minimal => "Minimal", Medium => "Medium", Detailed => "Detailed" };
+};
+
+fn eq_Level(a: Level, b: Level) => Binary{1} =
+  match a { Minimal => match b { Minimal => 0b1, _ => 0b0 }, Medium => match b { Medium => 0b1, _ => 0b0 }, Detailed => match b { Detailed => 0b1, _ => 0b0 } };
+
+impl Level {
+  // The canonical label.
+  fn as_str(self: Level) => Bytes = match self { Minimal => "minimal", Medium => "medium", Detailed => "detailed" };
+  fn tag(self: Level) => Binary{8} = match self { Minimal => 1, Medium => 2, Detailed => 3 };
+};
+
+// Which corpus family a [`Payload::Document`] was projected from (drives ordering + the template's
+// section grouping; part of the navigable index).
+pub type SourceKind = Rfc | Adr | Note | Spec | Devlog | Api | Other;
+
+impl Show[SourceKind] for SourceKind {
+  fn render(x: SourceKind) => Bytes =
+    match x { Rfc => "Rfc", Adr => "Adr", Note => "Note", Spec => "Spec", Devlog => "Devlog", Api => "Api", Other => "Other" };
+};
+
+fn eq_SourceKind(a: SourceKind, b: SourceKind) => Binary{1} =
+  match a { Rfc => match b { Rfc => 0b1, _ => 0b0 }, Adr => match b { Adr => 0b1, _ => 0b0 }, Note => match b { Note => 0b1, _ => 0b0 }, Spec => match b { Spec => 0b1, _ => 0b0 }, Devlog => match b { Devlog => 0b1, _ => 0b0 }, Api => match b { Api => 0b1, _ => 0b0 }, Other => match b { Other => 0b1, _ => 0b0 } };
+
+impl SourceKind {
+  // The canonical label.
+  // Declared: renamed `impl SourceKind { fn as_str }` -> `_10SourceKind6as_str` (D4 inherent-impl flat-fn desugar + DN-140 length-prefix mangle, M-664).
+  fn _10SourceKind6as_str(self: SourceKind) => Bytes = match self { Rfc => "rfc", Adr => "adr", Note => "note", Spec => "spec", Devlog => "devlog", Api => "api", Other => "other" };
+};
+
+// Where a node was projected from (append-only provenance, §9 — "generated from"). Metadata, **not
+// identity** (ADR-003): provenance is recorded but never perturbs the content hash, so re-flowing a
+// source line does not break a deep link.
+pub type Provenance = Provenance(Bytes, Binary{32});
+
+impl Show[Provenance] for Provenance {
+  fn render(x: Provenance) => Bytes =
+    match x { Provenance(p0, p1) => bytes_concat(bytes_concat(bytes_concat(bytes_concat("Provenance(", render(p0)), ", "), render(width_cast(p1, 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000))), ")") };
+};
+
+fn eq_Provenance(a: Provenance, b: Provenance) => Binary{1} =
+    match a { Provenance(p0, p1) => match b { Provenance(q0, q1) => and(bytes_eq(p0, q0), eq(p1, q1)) } };
+
+// How a cross-reference resolved against the model (the §4.1 `no-dead-xref` verdict).
+pub type XrefResolution = Unresolved | Internal(Bytes) | ExternalUrl | OutOfScope | Dead(Bytes);
+
+impl Show[XrefResolution] for XrefResolution {
+  fn render(x: XrefResolution) => Bytes =
+    match x { Unresolved => "Unresolved", Internal(p0) => bytes_concat(bytes_concat("Internal(", render(p0)), ")"), ExternalUrl => "ExternalUrl", OutOfScope => "OutOfScope", Dead(p0) => bytes_concat(bytes_concat("Dead(", render(p0)), ")") };
+};
+
+fn eq_XrefResolution(a: XrefResolution, b: XrefResolution) => Binary{1} =
+  match a { Unresolved => match b { Unresolved => 0b1, _ => 0b0 }, Internal(p0) => match b { Internal(q0) => bytes_eq(p0, q0), _ => 0b0 }, ExternalUrl => match b { ExternalUrl => 0b1, _ => 0b0 }, OutOfScope => match b { OutOfScope => 0b1, _ => 0b0 }, Dead(p0) => match b { Dead(q0) => bytes_eq(p0, q0), _ => 0b0 } };
+
+// The resolved-or-not target of a cross-reference.
+pub type XrefTarget = XrefTarget(Bytes, XrefResolution);
+
+impl Show[XrefTarget] for XrefTarget {
+  fn render(x: XrefTarget) => Bytes =
+    match x { XrefTarget(p0, p1) => bytes_concat(bytes_concat(bytes_concat(bytes_concat("XrefTarget(", render(p0)), ", "), render(p1)), ")") };
+};
+
+fn eq_XrefTarget(a: XrefTarget, b: XrefTarget) => Binary{1} =
+    match a { XrefTarget(p0, p1) => match b { XrefTarget(q0, q1) => and(bytes_eq(p0, q0), eq_XrefResolution(p1, q1)) } };
+
+impl XrefResolution {
+  // Declared: renamed `impl XrefResolution { fn tag }` -> `_14XrefResolution3tag` (D4 inherent-impl flat-fn desugar + DN-140 length-prefix mangle, M-664).
+  fn _14XrefResolution3tag(self: XrefResolution) => Binary{8} = match self { Unresolved => 0, Internal(_) => 1, ExternalUrl => 2, OutOfScope => 3, Dead(_) => 4 };
+};

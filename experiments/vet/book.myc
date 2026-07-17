@@ -1,0 +1,81 @@
+// nodule: doc.book
+// The **BOOK** output — M-363's output (b), *"the full language book"* (spec §4 `gen-book`): a
+// curated, linear, chaptered reading order over the doc-IR, with per-page prev/next navigation and a
+// client-side search index. This is a **fifth renderer alongside HTML/Typst/JSON**
+// ([`crate::emit`]) — it composes the *existing* honest per-page HTML projection into a book; it
+// does **not** re-author content (spec §4: "projection, not authorship").
+//
+// ## Curated ordering, not a parallel truth
+// A book needs a reading order the flat, alphabetical-by-`SourceKind` corpus index doesn't have
+// (the ratified spec §4 calls `gen-book` **"projection + light interpretation"** — sequencing is the
+// interpretive part; the *content* on each page is still pure projection). The order is a small,
+// committed manifest ([`docs/book-manifest.json`](../../../../docs/book-manifest.json)), **not**
+// hand-edited generated output: each chapter lists explicit `sources` (curated order) and/or
+// `globs` (drift-proof — a new stdlib/RFC/ADR/DN file is picked up automatically, the same
+// `tools/docgen/code_index.py` discipline). A manifest entry that resolves to **no** ingested
+// document is a **build error** (never a silently-dropped chapter, never a dead link — G2).
+//
+// ## Composing, not re-rendering
+// Each book page's body is the **same** `<article>` HTML [`crate::emit::html`] already produced for
+// the corpus site (byte-identical `data-cid` attributes and all) — this module renders a *scoped*
+// [`DocModel`] (exactly the book's pages) through [`crate::emit::html::render`] and re-wraps the
+// extracted article in a book-specific shell (chapter breadcrumb, prev/next, a ToC/search
+// sidebar link). Two non-corpus sources are honestly, explicitly composed in too:
+// - `CONTRIBUTING.md` (repo root, outside `docs/`) rides in via [`crate::build::BuildInput::extra_md_files`]
+//   so it is a genuine ingested [`Node`], not a special case here.
+// - `docs/spec/grammar/mycelium.ebnf` is not markdown, so [`crate::build::build`] never walks it; this
+//   module synthesizes a single [`Payload::Document`] node wrapping its content **verbatim** as an
+//   unchecked [`Payload::Example`] (grounded — the exact file bytes — never invented prose).
+//
+// No new dependency: manifest parsing reuses `serde`/`serde_json` (already vetted, KC-3); the search
+// index and its client-side filter are hand-rolled JSON + vanilla JS, the same "no heavy dep"
+// posture as the rest of this crate.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc.book;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: doc.ir) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type Level = Minimal | Medium | Detailed;
+type Provenance = Provenance(Bytes, Binary{32});
+type SourceKind = Rfc | Adr | Note | Spec | Devlog | Api | Other;
+
+// A never-silent book-build error (a broken manifest entry, a bad manifest, an anchor collision) —
+// surfaced with enough detail to fix it, never a silently-dropped chapter (G2).
+pub type BookError = BookError(Bytes);
+
+impl Show[BookError] for BookError {
+  fn render(x: BookError) => Bytes =
+    match x { BookError(p0) => bytes_concat(bytes_concat("BookError(", render(p0)), ")") };
+};
+
+fn eq_BookError(a: BookError, b: BookError) => Binary{1} =
+    match a { BookError(p0) => match b { BookError(q0) => bytes_eq(p0, q0) } };
+
+// The committed chapter manifest (`docs/book-manifest.json`) — curated order, drift-proof globs.
+pub type BookManifest = BookManifest(Bytes, Bytes, Vec[ChapterSpec]);
+
+fn show_vec_ChapterSpec(xs: Vec[ChapterSpec]) => Bytes =
+  match xs { Nil => "Nil", Cons(h, t) => bytes_concat("Cons(", bytes_concat(render(h), bytes_concat(", ", bytes_concat(show_vec_ChapterSpec(t), ")")))) };
+
+impl Show[BookManifest] for BookManifest {
+  fn render(x: BookManifest) => Bytes =
+    match x { BookManifest(p0, p1, p2) => bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat("BookManifest(", render(p0)), ", "), render(p1)), ", "), show_vec_ChapterSpec(p2)), ")") };
+};
+
+// One chapter: an ordered list of explicit sources, optionally extended by drift-proof globs.
+pub type ChapterSpec = ChapterSpec(Bytes, Vec[Bytes], Vec[Bytes], Vec[Bytes]);
+
+fn show_vec_Bytes(xs: Vec[Bytes]) => Bytes =
+  match xs { Nil => "Nil", Cons(h, t) => bytes_concat("Cons(", bytes_concat(render(h), bytes_concat(", ", bytes_concat(show_vec_Bytes(t), ")")))) };
+
+impl Show[ChapterSpec] for ChapterSpec {
+  fn render(x: ChapterSpec) => Bytes =
+    match x { ChapterSpec(p0, p1, p2, p3) => bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat("ChapterSpec(", render(p0)), ", "), show_vec_Bytes(p1)), ", "), show_vec_Bytes(p2)), ", "), show_vec_Bytes(p3)), ")") };
+};
+
+// One curated book page: a sticky header (with the theme toggle), a persistent **chapter-tree
+// sidebar** + reading `<main>` (the shared [`crate::theme`] layout, §5 — the same comfortable visual
+// language as the corpus site), and the book's own prev/next chrome inside `main`. `sidebar` is the
+// chapter tree; `breadcrumb`/pager live in `main`.
+fn book_shell(book_title: Bytes, page_title: Bytes, sidebar: Bytes, main: Bytes) => Bytes = book_document(book_title, page_title, "../", sidebar, main);

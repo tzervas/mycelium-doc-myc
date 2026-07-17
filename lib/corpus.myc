@@ -1,0 +1,29 @@
+// nodule: doc.corpus
+// Markdown → doc-IR projection (the `gen-manual` / `gen-book` corpus path, spec §4). Projects an
+// RFC/ADR/note/spec/devlog markdown file into a [`Node`] with `Payload::Document` — level-graded sections, prose,
+// checked-or-illustrative code examples, and cross-references — **verbatim projection, never a
+// rewrite** (the prose stays the corpus's; we only structure it). Dependency-free: a small,
+// purpose-built CommonMark *subset* parser (headings, fenced code, paragraphs, inline links) — the
+// same "honestly a subset, named as one" discipline as the manifest TOML reader.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc.corpus;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: doc.ir) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type Level = Minimal | Medium | Detailed;
+type Provenance = Provenance(Bytes, Binary{32});
+type SourceKind = Rfc | Adr | Note | Spec | Devlog | Api | Other;
+type XrefResolution = Unresolved | Internal(Bytes) | ExternalUrl | OutOfScope | Dead(Bytes);
+type XrefTarget = XrefTarget(Bytes, XrefResolution);
+
+// A tokenized markdown block (the parser's intermediate before the section tree is built).
+type Block = Heading(Binary{8}, Bytes, Binary{32}) | Code(Bytes, Bytes, Binary{32}) | Para(Bytes, Binary{32});
+
+impl Show[Block] for Block {
+  fn render(x: Block) => Bytes =
+    match x { Heading(p0, p1, p2) => bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat("Heading(", render(width_cast(p0, 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000))), ", "), render(p1)), ", "), render(width_cast(p2, 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000))), ")"), Code(p0, p1, p2) => bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat("Code(", render(p0)), ", "), render(p1)), ", "), render(width_cast(p2, 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000))), ")"), Para(p0, p1) => bytes_concat(bytes_concat(bytes_concat(bytes_concat("Para(", render(p0)), ", "), render(width_cast(p1, 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000))), ")") };
+};
+
+fn eq_Block(a: Block, b: Block) => Binary{1} =
+  match a { Heading(p0, p1, p2) => match b { Heading(q0, q1, q2) => and(and(eq(p0, q0), bytes_eq(p1, q1)), eq(p2, q2)), _ => 0b0 }, Code(p0, p1, p2) => match b { Code(q0, q1, q2) => and(and(bytes_eq(p0, q0), bytes_eq(p1, q1)), eq(p2, q2)), _ => 0b0 }, Para(p0, p1) => match b { Para(q0, q1) => and(bytes_eq(p0, q0), eq(p1, q1)), _ => 0b0 } };

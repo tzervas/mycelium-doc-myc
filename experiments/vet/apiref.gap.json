@@ -1,0 +1,149 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-doc/src/apiref.rs",
+  "emitted_items": [
+    "co-include:Level,Provenance,SourceKind"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/apiref.rs",
+      "line": 9,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_proj :: parse_header ;",
+      "reason": "`use mycelium_proj::parse_header` — `mycelium_proj` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/apiref.rs",
+      "line": 10,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use serde_json :: Value ;",
+      "reason": "`use serde_json::Value` — `serde_json` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/apiref.rs",
+      "line": 12,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: corpus :: AnchorAlloc ;",
+      "reason": "`use corpus::AnchorAlloc` — `AnchorAlloc` is not among sibling `corpus`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/apiref.rs",
+      "line": 13,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: ir :: { Level , Node , Payload , Provenance , SourceKind } ;",
+      "reason": "`use ir::Node` — `Node` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Level,Provenance,SourceKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/apiref.rs",
+      "line": 13,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: ir :: { Level , Node , Payload , Provenance , SourceKind } ;",
+      "reason": "`use ir::Payload` — `Payload` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Level,Provenance,SourceKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/apiref.rs",
+      "line": 15,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Project a `.myc` source into a [`Payload::Document`] (`source_kind: api`) of api-item nodes.\"] # [doc = \"\"] # [doc = \" Children: the nodule itself (signature + `@summary` or undocumented), one api-item per `fn`\"] # [doc = \" signature (currently undocumented — the doc-comment surface is later, spec §4 note), and the whole\"] # [doc = \" source as a *checked* example.\"] # [must_use] pub fn project_nodule (path : & str , src : & str , alloc : & mut AnchorAlloc) -> Node { let nodule_name = nodule_name (src) . unwrap_or_else (| | path_stem (path)) ; let doc_anchor = alloc . alloc (None , & format ! (\"api {nodule_name}\")) ; let summary = parse_header (src) . ok () . flatten () . and_then (| h | h . fields . summary) ; let mut children = Vec :: new () ; children . push (Node :: new (alloc . alloc (Some (& doc_anchor) , \"nodule\") , Some (format ! (\"nodule {nodule_name}\")) , Some (Level :: Medium) , Provenance { source : path . to_owned () , line : 1 , } , Payload :: ApiItem { signature : Some (format ! (\"nodule {nodule_name}\")) , summary , } , vec ! [] ,)) ; let lines : Vec < & str > = src . lines () . collect () ; for (sig , line) in fn_signatures (src) { let name = fn_name (& sig) . unwrap_or_else (| | \"fn\" . to_owned ()) ; children . push (Node :: new (alloc . alloc (Some (& doc_anchor) , & format ! (\"fn {name}\")) , Some (sig . clone ()) , Some (Level :: Detailed) , Provenance { source : path . to_owned () , line , } , Payload :: ApiItem { signature : Some (sig) , summary : preceding_doc (& lines , line) , } , vec ! [] ,)) ; } children . push (Node :: new (alloc . alloc (Some (& doc_anchor) , \"source\") , Some (\"Source\" . to_owned ()) , Some (Level :: Detailed) , Provenance { source : path . to_owned () , line : 1 , } , Payload :: Example { lang : \"myc\" . to_owned () , source : src . to_owned () , checked : true , } , vec ! [] ,)) ; Node :: new (doc_anchor , Some (format ! (\"nodule {nodule_name}\")) , None , Provenance { source : path . to_owned () , line : 1 , } , Payload :: Document { source_kind : SourceKind :: Api , } , children ,) }",
+      "reason": "method call `.unwrap_or_else(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__unwrap_or_else` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `unwrap_or_else(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "project_nodule"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/apiref.rs",
+      "line": 104,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" Project a JSON-schema file into a [`Payload::Document`] of api-item nodes (one per top-level\"] # [doc = \" property). A property with no `description` is an explicit undocumented api-item.\"] # [must_use] pub fn project_schema (path : & str , json : & str , alloc : & mut AnchorAlloc) -> Option < Node > { let v : Value = serde_json :: from_str (json) . ok () ? ; let title = v . get (\"title\") . and_then (Value :: as_str) . map_or_else (| | path_stem (path) , str :: to_owned) ; let doc_anchor = alloc . alloc (None , & format ! (\"schema {title}\")) ; let mut children = Vec :: new () ; if let Some (desc) = v . get (\"description\") . and_then (Value :: as_str) { children . push (Node :: new (alloc . alloc (Some (& doc_anchor) , \"overview\") , None , Some (Level :: Minimal) , Provenance { source : path . to_owned () , line : 1 , } , Payload :: Prose { text : desc . to_owned () , } , vec ! [] ,)) ; } if let Some (props) = v . get (\"properties\") . and_then (Value :: as_object) { for (name , spec) in props { let ty = spec . get (\"type\") . and_then (Value :: as_str) . unwrap_or (\"object\") . to_owned () ; let summary = spec . get (\"description\") . and_then (Value :: as_str) . map (str :: to_owned) ; children . push (Node :: new (alloc . alloc (Some (& doc_anchor) , & format ! (\"field {name}\")) , Some (format ! (\"{name}: {ty}\")) , Some (Level :: Detailed) , Provenance { source : path . to_owned () , line : 1 , } , Payload :: ApiItem { signature : Some (format ! (\"{name}: {ty}\")) , summary , } , vec ! [] ,)) ; } } Some (Node :: new (doc_anchor , Some (format ! (\"schema {title}\")) , None , Provenance { source : path . to_owned () , line : 1 , } , Payload :: Document { source_kind : SourceKind :: Api , } , children ,)) }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "project_schema"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/apiref.rs",
+      "line": 174,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" The dotted nodule name from a `nodule X.Y` declaration (or the `// nodule:` marker).\"] # [doc = \"\"] # [doc = \" `pub(crate)`: reused by [`crate::lib_index`] (the `docs/lib-index/` M-1004 extractor) rather\"] # [doc = \" than re-implemented — DRY, one nodule-name heuristic for both consumers.\"] pub (crate) fn nodule_name (src : & str) -> Option < String > { for line in src . lines () { let t = line . trim () ; if let Some (rest) = t . strip_prefix (\"nodule \") { return Some (rest . trim () . trim_end_matches (['{' , ';' , ' ']) . to_owned ()) ; } } for line in src . lines () { let t = line . trim () ; if let Some (rest) = t . strip_prefix (\"// nodule:\") { return Some (rest . trim () . to_owned ()) ; } } None }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "nodule_name"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/apiref.rs",
+      "line": 199,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" Extract `fn NAME(...) -> Ty` / `fn NAME(...) => Ty` signatures with their 1-based line numbers.\"] # [doc = \"\"] # [doc = \" A parameter list may itself span several lines (e.g. `lib/std/text.myc::decode_two`, where the\"] # [doc = \" closing `)` + return type + body `=` land a few lines below `fn decode_two(`) — found while\"] # [doc = \" building the M-1004 lib-index extractor, which was truncating ~1.3% of `lib/`'s signatures to\"] # [doc = \" their bare `fn NAME(` opening line. Handled by joining lines until the body-introducing bare `=`\"] # [doc = \" is found (never open-ended: bounded by the file's own line count).\"] # [doc = \"\"] # [doc = \" `pub(crate)`: reused by [`crate::lib_index`] (DRY — see [`nodule_name`]).\"] pub (crate) fn fn_signatures (src : & str) -> Vec < (String , u32) > { let lines : Vec < & str > = src . lines () . collect () ; let mut out = Vec :: new () ; let mut i = 0 ; while i < lines . len () { let t = lines [i] . trim () ; let Some (rest) = t . strip_prefix (\"fn \") else { i += 1 ; continue ; } ; let start_line = (i + 1) as u32 ; let mut acc = rest . to_owned () ; let mut j = i ; while body_separator (& acc) == acc . as_str () && j + 1 < lines . len () { j += 1 ; acc . push (' ') ; acc . push_str (lines [j] . trim ()) ; } let sig = clean_join_spacing (body_separator (& acc) . trim ()) ; out . push ((format ! (\"fn {sig}\") , start_line)) ; i = j + 1 ; } out }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "fn_signatures"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/apiref.rs",
+      "line": 233,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Undo the cosmetic artifact of joining indented continuation lines with a single space: a\"] # [doc = \" multi-line parameter list's own opening `(`/closing `)` picks up a stray adjacent space (e.g.\"] # [doc = \" `decode_two( b: Bytes, i: Binary{8} )` instead of `decode_two(b: Bytes, i: Binary{8})`). No\"] # [doc = \" real `.myc` signature uses this spacing (checked over every `lib/` file), so this is a safe,\"] # [doc = \" content-preserving cleanup, not a risk of eating meaningful whitespace.\"] fn clean_join_spacing (sig : & str) -> String { sig . replace (\"( \" , \"(\") . replace (\" )\" , \")\") }",
+      "reason": "method call `.replace(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__replace` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `replace(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "clean_join_spacing"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/apiref.rs",
+      "line": 242,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Split a `fn` line at its body-introducing bare `=`, keeping the return-type arrow `=>` intact.\"] # [doc = \"\"] # [doc = \" Mycelium's real surface syntax (every `.myc` file under `lib/`) writes the return type with a\"] # [doc = \" **fat arrow**: `fn f(x: T) => U = <body>`. A naive `split_once('=')` (the original M-736 cut)\"] # [doc = \" finds the `=` **inside** `=>` first and truncates the signature there, silently dropping the\"] # [doc = \" return type for every real `.myc` file — an accuracy bug, not a cosmetic one (found while\"] # [doc = \" building the M-1004 `docs/lib-index/` extractor, which reuses this function). Fixed here (once,\"] # [doc = \" DRY) rather than duplicated with a workaround in the caller: scan for the first `=` that is\"] # [doc = \" **not** immediately followed by `>` (i.e. not part of `=>`); that is the body separator. A\"] # [doc = \" signature with no such separator (e.g. truncated input) returns the line unchanged.\"] fn body_separator (rest : & str) -> & str { let bytes = rest . as_bytes () ; for (idx , & b) in bytes . iter () . enumerate () { if b == b'=' && bytes . get (idx + 1) != Some (& b'>') { return & rest [.. idx] ; } } rest }",
+      "reason": "method call `.as_bytes(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__as_bytes` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `as_bytes(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "body_separator"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/apiref.rs",
+      "line": 262,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" The contiguous `//` doc-comment block immediately above the `fn` at `fn_line` (1-based), over\"] # [doc = \" the already-split source `lines`. The scan walks backward, joining `//` comment lines into one\"] # [doc = \" summary, and stops at the first blank line, non-comment line, or header line (`// nodule…` /\"] # [doc = \" `// @key:` are metadata, not doc prose). Returns `None` when the `fn` has no preceding comment —\"] # [doc = \" an honest, explicit gap (never invented filler, G2). The text is taken verbatim from source, so\"] # [doc = \" it always traces to its provenance. Takes a `&[&str]` so the caller splits the source once.\"] # [doc = \"\"] # [doc = \" `pub(crate)`: reused by [`crate::lib_index`] (DRY — see [`nodule_name`]).\"] pub (crate) fn preceding_doc (lines : & [& str] , fn_line : u32) -> Option < String > { if fn_line == 0 || (fn_line as usize) > lines . len () { return None ; } let mut idx = (fn_line as usize) - 1 ; let mut collected : Vec < String > = Vec :: new () ; while idx > 0 { idx -= 1 ; let t = lines [idx] . trim () ; let Some (rest) = t . strip_prefix (\"//\") else { break ; } ; let rest = rest . trim () ; if rest . is_empty () || rest . starts_with ('@') || rest . starts_with (\"nodule\") { break ; } collected . push (rest . to_owned ()) ; } if collected . is_empty () { return None ; } collected . reverse () ; if collected [0] . starts_with ('─') { return None ; } Some (collected . join (\" \")) }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "preceding_doc"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/apiref.rs",
+      "line": 307,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The function name from a `fn NAME(...)` signature.\"] # [doc = \"\"] # [doc = \" `pub(crate)`: reused by [`crate::lib_index`] (DRY — see [`nodule_name`]).\"] pub (crate) fn fn_name (sig : & str) -> Option < String > { let rest = sig . strip_prefix (\"fn \") ? ; let name : String = rest . chars () . take_while (| c | c . is_alphanumeric () || * c == '_' || * c == '.') . collect () ; if name . is_empty () { None } else { Some (name) } }",
+      "reason": "unsupported expression form `sig . strip_prefix (\"fn \") ?`",
+      "item_name": "fn_name"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/apiref.rs",
+      "line": 323,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" `pub(crate)`: reused by [`crate::lib_index`] (DRY — see [`nodule_name`]).\"] pub (crate) fn path_stem (path : & str) -> String { let file = path . rsplit ('/') . next () . unwrap_or (path) ; file . rsplit_once ('.') . map_or (file , | (s , _) | s) . to_owned () }",
+      "reason": "method call `.unwrap_or(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__unwrap_or` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `unwrap_or(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "path_stem"
+    }
+  ],
+  "total_top_level_items": 13
+}

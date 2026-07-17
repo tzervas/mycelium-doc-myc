@@ -1,0 +1,49 @@
+// nodule: doc.lib_index
+// `docs/lib-index/` extraction (M-1004) — the `docs/api-index/` analogue for the self-hosted
+// `.myc` tree under `lib/`. Walks each phylum directory (`lib/std/`, `lib/compiler/`, and any
+// future sibling — `phylum_roots` discovers them, so a new phylum is never silently omitted),
+// extracts per-nodule symbol/doc info, and emits `docs/lib-index/{INDEX.md,index.json}` grouped
+// by phylum/nodule, mirroring the `docs/api-index/` shape (grep-friendly MD + machine JSON +
+// honesty tag + a never-silent `flagged` section, G2).
+//
+// **DRY, not a parallel heuristic:** the nodule-header scan, `fn`-signature extraction, and the
+// backward doc-comment joiner are the *exact same* `pub(crate)` functions [`crate::apiref`]
+// already uses for the corpus doc-IR (`nodule_name` / `fn_signatures` / `preceding_doc` /
+// `fn_name` / `path_stem`) — reused here, not reimplemented. Building this extractor surfaced a
+// real bug in that shared code (`fn_signatures` truncated every signature at Mycelium's `=>`
+// return-type arrow, since *every* real `.myc` file uses `=>`, not the `->` the pre-existing test
+// fixtures used) — fixed once in `apiref.rs`, not worked around here (see its `body_separator`).
+//
+// **What's genuinely new here** (not in `apiref.rs`, because its consumer — the corpus doc-IR
+// that feeds the HTML/Typst/JSON doc *site* — never needed it): `type NAME = Ctor1(...) |
+// Ctor2(...);` declaration extraction (single- or multi-line, with best-effort per-constructor
+// line attribution), and a forward-joining `full_summary` that recovers a multi-line `@summary`
+// header (`mycelium_proj::parse_header` only returns the first line — its own scan stops at the
+// first non-`@`-prefixed comment line, which is exactly the header's own continuation prose).
+// Both divergences are deliberate and documented, per the M-1004 issue's "if you must diverge,
+// record the divergence" instruction.
+//
+// Honesty (G2/VR-5): this is the same class of heuristic as `tools/docgen/code_index.py` — a
+// line/regex scan over source text, never a real parse; source is ground truth. Every extracted
+// item carries the same declared per-item `tag` ([`ITEM_TAG`]) — a uniform tag is exactly as
+// strong a claim as a shared heuristic basis supports; inventing finer per-item confidence would
+// be an unchecked upgrade (VR-5). An unhandled construct, a malformed header, or a file with no
+// nodule marker is a `flagged` entry, never a silent drop.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc.lib_index;
+
+// A construct the heuristic could not (or does not yet) extract — never silently dropped (G2).
+type Flagged = Flagged(Bytes, Bytes);
+
+impl Show[Flagged] for Flagged {
+  fn render(x: Flagged) => Bytes =
+    match x { Flagged(p0, p1) => bytes_concat(bytes_concat(bytes_concat(bytes_concat("Flagged(", render(p0)), ", "), render(p1)), ")") };
+};
+
+fn eq_Flagged(a: Flagged, b: Flagged) => Binary{1} =
+    match a { Flagged(p0, p1) => match b { Flagged(q0, q1) => and(bytes_eq(p0, q0), bytes_eq(p1, q1)) } };
+
+// One `type NAME[...] = Ctor1(...) | Ctor2(...);` declaration.
+type TypeDecl = TypeDecl(Bytes, Binary{32}, Bytes, Vec[(Bytes, Bytes, Binary{32})]);

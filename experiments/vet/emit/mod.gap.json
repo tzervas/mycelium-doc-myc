@@ -1,0 +1,87 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/mod.rs",
+  "emitted_items": [],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/mod.rs",
+      "line": 7,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod html ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "html"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/mod.rs",
+      "line": 8,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod json ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "json"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/mod.rs",
+      "line": 9,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod typst ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "typst"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/mod.rs",
+      "line": 11,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: collections :: BTreeMap ;",
+      "reason": "`use std.collections::BTreeMap` — `std.collections` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/mod.rs",
+      "line": 13,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" A set of generated artifacts: repo/out-relative path → file contents.\"] # [derive (Debug , Clone , Default)] pub struct Artifacts { # [doc = \" path → contents, deterministically ordered.\"] pub files : BTreeMap < String , String > , }",
+      "reason": "struct `Artifacts` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "Artifacts"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/mod.rs",
+      "line": 20,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl Artifacts { # [doc = \" A fresh, empty artifact set.\"] # [must_use] pub fn new () -> Self { Artifacts :: default () } # [doc = \" Add (or overwrite) one artifact.\"] pub fn put (& mut self , path : impl Into < String > , contents : impl Into < String >) { self . files . insert (path . into () , contents . into ()) ; } # [doc = \" Write every artifact under `out_dir`, creating parent directories. Never-silent: returns the\"] # [doc = \" first I/O error with its path.\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" Propagates the first filesystem error (with the offending path) — never a silent partial write.\"] pub fn write_to (& self , out_dir : & std :: path :: Path) -> std :: io :: Result < usize > { for (rel , contents) in & self . files { let path = out_dir . join (rel) ; if let Some (parent) = path . parent () { std :: fs :: create_dir_all (parent) . map_err (| e | { std :: io :: Error :: new (e . kind () , format ! (\"creating {}: {e}\" , parent . display ())) }) ? ; } std :: fs :: write (& path , contents) . map_err (| e | { std :: io :: Error :: new (e . kind () , format ! (\"writing {}: {e}\" , path . display ())) }) ? ; } Ok (self . files . len ()) } }",
+      "reason": "no member of this impl block could be transpiled (3 sub-issue(s)): impl method `new` body: qualified/associated-function call `Artifacts :: default` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133); impl method `put` signature: unsupported Rust type form `impl Into < String >`; impl method `write_to` signature: qualified type path `std :: path :: Path` — collapsing to its last segment would risk colliding with an unrelated same-named local type (e.g. `std::cmp::Ordering` vs a local `Ordering`); left an explicit gap rather than guessed (VR-5)",
+      "item_name": "Artifacts"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/mod.rs",
+      "line": 53,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Escape text for HTML body content / attribute values.\"] # [must_use] pub fn html_escape (s : & str) -> String { let mut out = String :: with_capacity (s . len ()) ; for ch in s . chars () { match ch { '&' => out . push_str (\"&amp;\") , '<' => out . push_str (\"&lt;\") , '>' => out . push_str (\"&gt;\") , '\"' => out . push_str (\"&quot;\") , '\\'' => out . push_str (\"&#39;\") , _ => out . push (ch) , } } out }",
+      "reason": "qualified/associated-function call `String :: with_capacity` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "html_escape"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/mod.rs",
+      "line": 70,
+      "col": 1,
+      "category": "TestItem",
+      "rust_construct": "TestItem",
+      "snippet": "# [cfg (test)] mod tests { use super :: * ; # [test] fn escaping_neutralizes_markup () { assert_eq ! (html_escape (\"<a href=\\\"x\\\">&'\") , \"&lt;a href=&quot;x&quot;&gt;&amp;&#39;\") ; } # [test] fn artifacts_keep_insertion_addressable () { let mut a = Artifacts :: new () ; a . put (\"index.html\" , \"<x>\") ; a . put (\"a/b.json\" , \"{}\") ; assert_eq ! (a . files . len () , 2) ; assert_eq ! (a . files . get (\"index.html\") . unwrap () , \"<x>\") ; } }",
+      "reason": "#[cfg(test)] item — out of scope for this PoC's transpilation surface (excluded from the expressible-fraction denominator, but recorded, never silently skipped)",
+      "item_name": "tests"
+    }
+  ],
+  "total_top_level_items": 8
+}

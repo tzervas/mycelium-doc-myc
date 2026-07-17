@@ -1,0 +1,269 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+  "emitted_items": [
+    "co-include:SourceKind,XrefResolution,XrefTarget"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 11,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: collections :: BTreeMap ;",
+      "reason": "`use std.collections::BTreeMap` — `std.collections` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 12,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: path :: { Path , PathBuf } ;",
+      "reason": "`use std.path::Path` — `std.path` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use std.path::PathBuf` — `std.path` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 14,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: corpus :: { ingest , AnchorAlloc } ;",
+      "reason": "`use corpus::ingest` — `ingest` is not among sibling `corpus`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use corpus::AnchorAlloc` — `AnchorAlloc` is not among sibling `corpus`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 15,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: ir :: { DocModel , Node , Payload , SourceKind , XrefResolution , XrefTarget } ;",
+      "reason": "`use ir::DocModel` — `DocModel` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:SourceKind,XrefResolution,XrefTarget"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 15,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: ir :: { DocModel , Node , Payload , SourceKind , XrefResolution , XrefTarget } ;",
+      "reason": "`use ir::Node` — `Node` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:SourceKind,XrefResolution,XrefTarget"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 15,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: ir :: { DocModel , Node , Payload , SourceKind , XrefResolution , XrefTarget } ;",
+      "reason": "`use ir::Payload` — `Payload` is not among sibling `ir`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:SourceKind,XrefResolution,XrefTarget"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 16,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: { apiref , emit } ;",
+      "reason": "`use ::apiref` — `apiref` is not among sibling ``'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use ::emit` — `emit` is not among sibling ``'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 18,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" EPUB is an honest deferral (spec §8 / §4.1 \\\"never a half-build\\\"). The build records this rather\"] # [doc = \" than emitting a broken e-book.\"] pub const EPUB_DEFERRAL : & str = \"EPUB is deferred (spec §8.5): the Typst path is the PDF fan-out for v0; an EPUB renderer is a \\\n     later, separate artifact — emitting a half-EPUB would violate the §4.1 'never a half-build' bar.\" ;",
+      "reason": "top-level `const EPUB_DEFERRAL` — co-emit (ORACLE-R1 A4) only covers plain unsigned integer types (`u8`/`u16`/`u32`/`u64`/`u128`/`usize`); other types have no const item production and no faithful zero-arg-fn encoding (gap, never fabricate)",
+      "item_name": "EPUB_DEFERRAL"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 24,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" What to ingest.\"] # [derive (Debug , Clone)] pub struct BuildInput { # [doc = \" The repo root (all source paths are recorded repo-relative to it — stable provenance).\"] pub repo_root : PathBuf , # [doc = \" The markdown corpus root (e.g. `docs`), if any.\"] pub corpus_root : Option < PathBuf > , # [doc = \" The JSON-schema root (e.g. `docs/spec/schemas`), if any.\"] pub schemas_root : Option < PathBuf > , # [doc = \" The research-evidence-base root (`research/`) — the T0.x/T1.x/T2.x prior-art surveys and\"] # [doc = \" findings every normative claim traces back to. Ingested the same way as `corpus_root` (a flat\"] # [doc = \" markdown walk; skip-graceful if absent), so its `*-RECORD.md` files join the shared anchor\"] # [doc = \" universe and the `tools/docgen/notebooklm/research.json` cluster manifest (which globs\"] # [doc = \" `research/*-RECORD.md`) resolves to real ingested pages instead of an always-empty subset\"] # [doc = \" (G2: was a silent source-ingestion gap, not a manifest bug — `BuildInput::conventional` below\"] # [doc = \" closes it for every command, not just `--manifest`).\"] pub research_root : Option < PathBuf > , # [doc = \" Example/project roots to project `.myc` nodules from (e.g. `examples`).\"] pub example_roots : Vec < PathBuf > , # [doc = \" Individual markdown files **outside** `corpus_root`/`research_root` to ingest through the\"] # [doc = \" same pipeline (so their cross-references resolve against the full anchor universe, same as\"] # [doc = \" everything under `docs/`). v0 use: `CONTRIBUTING.md` — needed both by the book output\"] # [doc = \" (§`crate::book`, for its Contributing chapter) and by `myc-doc build --manifest\"] # [doc = \" docs/book-manifest.json` (the same chapter, scoped-emission path) — both wire it in here so\"] # [doc = \" it rides the *same* ingest+resolve pipeline rather than each inventing its own bolt-on. A\"] # [doc = \" listed path that does not exist is skipped, not an error (the same skip-graceful posture as\"] # [doc = \" `example_roots`).\"] pub extra_md_files : Vec < PathBuf > , }",
+      "reason": "struct `BuildInput` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "BuildInput"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 54,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl BuildInput { # [doc = \" The conventional layout rooted at `repo_root`: `docs/`, `docs/spec/schemas/`, `research/`,\"] # [doc = \" `examples/`, and `lib/std/` (the self-hosted standard library — M-736). Every `.myc` nodule\"] # [doc = \" under `lib/std/` is projected into the API reference (per-module `fn` signatures +\"] # [doc = \" `@summary`), so the generated stdlib API docs grow as the E13-1 self-hosting migration lands\"] # [doc = \" modules. Today only `lib/std/result.myc` self-hosts; the remaining stdlib modules are\"] # [doc = \" Rust-first and appear here as they are ported (the gap is honest, not silent — G2).\"] # [must_use] pub fn conventional (repo_root : impl Into < PathBuf >) -> Self { let repo_root = repo_root . into () ; BuildInput { corpus_root : Some (repo_root . join (\"docs\")) , schemas_root : Some (repo_root . join (\"docs/spec/schemas\")) , research_root : Some (repo_root . join (\"research\")) , example_roots : vec ! [repo_root . join (\"examples\") , repo_root . join (\"lib/std\")] , extra_md_files : vec ! [repo_root . join (\"CONTRIBUTING.md\")] , repo_root , } } }",
+      "reason": "no member of this impl block could be transpiled (1 sub-issue(s)): impl method `conventional` signature: unsupported Rust type form `impl Into < PathBuf >`",
+      "item_name": "BuildInput"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 75,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Build the resolved doc model from the input.\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" Propagates the first filesystem error (with its path) — never a silent skip of a present source.\"] pub fn build (input : & BuildInput) -> std :: io :: Result < DocModel > { let mut alloc = AnchorAlloc :: new () ; let mut docs : Vec < Node > = Vec :: new () ; let mut file_index : BTreeMap < String , String > = BTreeMap :: new () ; if let Some (root) = & input . corpus_root { let mut md = collect_files (root , \"md\") ? ; md . sort () ; for path in md { if is_excluded (& path) { continue ; } let rel = repo_rel (& input . repo_root , & path) ; let src = std :: fs :: read_to_string (& path) ? ; let kind = classify (& rel) ; let node = ingest (& rel , & src , kind , & mut alloc) ; file_index . insert (rel . clone () , node . anchor . clone ()) ; docs . push (node) ; } } if let Some (root) = & input . research_root { let mut md = collect_files (root , \"md\") ? ; md . sort () ; for path in md { if is_excluded (& path) { continue ; } let rel = repo_rel (& input . repo_root , & path) ; let src = std :: fs :: read_to_string (& path) ? ; let kind = classify (& rel) ; let node = ingest (& rel , & src , kind , & mut alloc) ; file_index . insert (rel . clone () , node . anchor . clone ()) ; docs . push (node) ; } } for path in & input . extra_md_files { if ! path . exists () { continue ; } let rel = repo_rel (& input . repo_root , path) ; let src = std :: fs :: read_to_string (path) ? ; let kind = classify (& rel) ; let node = ingest (& rel , & src , kind , & mut alloc) ; file_index . insert (rel . clone () , node . anchor . clone ()) ; docs . push (node) ; } if let Some (root) = & input . schemas_root { let mut schemas = collect_files (root , \"json\") ? ; schemas . sort () ; for path in schemas { if is_excluded (& path) || ! ends_with (& path , \".schema.json\") { continue ; } let rel = repo_rel (& input . repo_root , & path) ; let src = std :: fs :: read_to_string (& path) ? ; if let Some (node) = apiref :: project_schema (& rel , & src , & mut alloc) { file_index . insert (rel . clone () , node . anchor . clone ()) ; docs . push (node) ; } } } for root in & input . example_roots { if ! root . exists () { continue ; } let mut myc = collect_files (root , \"myc\") ? ; myc . sort () ; for path in myc { if is_excluded (& path) { continue ; } let rel = repo_rel (& input . repo_root , & path) ; let src = std :: fs :: read_to_string (& path) ? ; let node = apiref :: project_nodule (& rel , & src , & mut alloc) ; file_index . insert (rel . clone () , node . anchor . clone ()) ; docs . push (node) ; } } let prelim = DocModel :: new (docs) ; let anchors : std :: collections :: BTreeSet < String > = prelim . anchors . keys () . cloned () . collect () ; let corpus_rel = input . corpus_root . as_ref () . map (| r | repo_rel (& input . repo_root , r)) ; let ctx = ResolveCtx { anchors , file_index , corpus_rel , } ; let resolved : Vec < Node > = prelim . documents . iter () . map (| d | resolve_node (d , & ctx)) . collect () ; Ok (DocModel :: new (resolved)) }",
+      "reason": "qualified type path `std :: io :: Result < DocModel >` — collapsing to its last segment would risk colliding with an unrelated same-named local type (e.g. `std::cmp::Ordering` vs a local `Ordering`); left an explicit gap rather than guessed (VR-5)",
+      "item_name": "build"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 193,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Emit every artifact (HTML site · Typst source · machine JSON · the EPUB deferral note).\"] # [doc = \"\"] # [doc = \" `semantic` (from the book manifest, via [`crate::book::resolve_manifest_chapters`]) drives the HTML\"] # [doc = \" sidebar's topical spine; pass `None` for the by-type-only tree.\"] # [must_use] pub fn emit_all (model : & DocModel , semantic : Option < emit :: html :: SemanticNav < '_ > > ,) -> emit :: Artifacts { let mut arts = emit :: Artifacts :: new () ; for (k , v) in emit :: html :: render (model , semantic) . files { arts . put (k , v) ; } for (k , v) in emit :: json :: render (model) . files { arts . put (k , v) ; } arts . put (\"doc.typ\" , emit :: typst :: render (model)) ; arts . put (\"EPUB-DEFERRED.txt\" , EPUB_DEFERRAL) ; arts }",
+      "reason": "qualified type path `emit :: html :: SemanticNav < '_ >` — collapsing to its last segment would risk colliding with an unrelated same-named local type (e.g. `std::cmp::Ordering` vs a local `Ordering`); left an explicit gap rather than guessed (VR-5)",
+      "item_name": "emit_all"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 216,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "pub (crate) struct ResolveCtx { pub (crate) anchors : std :: collections :: BTreeSet < String > , pub (crate) file_index : BTreeMap < String , String > , # [doc = \" The corpus root, repo-relative (e.g. `docs`) — internal links under it must resolve.\"] pub (crate) corpus_rel : Option < String > , }",
+      "reason": "struct `ResolveCtx` has a field type with no confirmed mapping (qualified type path `std :: collections :: BTreeSet < String >` — collapsing to its last segment would risk colliding with an unrelated same-named local type (e.g. `std::cmp::Ordering` vs a local `Ordering`); left an explicit gap rather than guessed (VR-5))",
+      "item_name": "ResolveCtx"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 223,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" Rebuild a node with its cross-references resolved (hashes repropagate from the leaves up).\"] fn resolve_node (node : & Node , ctx : & ResolveCtx) -> Node { let children : Vec < Node > = node . children . iter () . map (| c | resolve_node (c , ctx)) . collect () ; let payload = match & node . payload { Payload :: Xref { target } => Payload :: Xref { target : resolve_target (& target . raw , & node . anchor , & node . provenance . source , ctx) , } , other => other . clone () , } ; Node :: new (node . anchor . clone () , node . title . clone () , node . level , node . provenance . clone () , payload , children ,) }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "resolve_node"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 242,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The document anchor a sub-anchor belongs to (the prefix before the first `--`).\"] fn doc_of (anchor : & str) -> & str { anchor . split (\"--\") . next () . unwrap_or (anchor) }",
+      "reason": "method call `.unwrap_or(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__unwrap_or` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `unwrap_or(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "doc_of"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 247,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn resolve_target (raw : & str , here_anchor : & str , source : & str , ctx : & ResolveCtx) -> XrefTarget { let res = classify_target (raw , here_anchor , source , ctx) ; XrefTarget { raw : raw . to_owned () , resolution : res , } }",
+      "reason": "struct literal `XrefTarget { .. }` — not an in-file single-ctor struct or enum struct-variant that emits (no constructor to build; a cross-nodule variant is an honest DN-113/DN-134-OQ-2 resolvability gap, never a fabricated out-of-file reference — VR-5/G2)",
+      "item_name": "resolve_target"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 255,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "pub (crate) fn classify_target (raw : & str , here_anchor : & str , source : & str , ctx : & ResolveCtx ,) -> XrefResolution { if raw . starts_with (\"http://\") || raw . starts_with (\"https://\") { return XrefResolution :: ExternalUrl ; } if raw . starts_with (\"mailto:\") || raw . contains (\"://\") { return XrefResolution :: OutOfScope ; } let (path_part , frag) = match raw . split_once ('#') { Some ((p , f)) => (p , Some (f)) , None => (raw , None) , } ; if path_part . is_empty () { let here_doc = doc_of (here_anchor) ; return resolve_fragment (here_doc , frag , ctx) ; } let normalized = normalize_join (parent_dir (source) , path_part) ; if let Some (doc_anchor) = ctx . file_index . get (& normalized) { return resolve_fragment (doc_anchor , frag , ctx) ; } let is_md = ends_with_str (& normalized , \".md\") || ends_with_str (& normalized , \".markdown\") ; if is_md { if let Some (corpus) = & ctx . corpus_rel { if normalized . starts_with (& format ! (\"{corpus}/\")) { return XrefResolution :: Dead { reason : format ! (\"internal corpus link does not resolve to an ingested document: {raw}\") , } ; } } } XrefResolution :: OutOfScope }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "classify_target"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 300,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Resolve a fragment against a target document: the section anchor if it exists, else the document\"] # [doc = \" top (fragment-level anchoring is best-effort in v0; whole-document xrefs are enforced).\"] fn resolve_fragment (doc_anchor : & str , frag : Option < & str > , ctx : & ResolveCtx) -> XrefResolution { match frag { None => XrefResolution :: Internal { anchor : doc_anchor . to_owned () , } , Some (f) => { let candidate = format ! (\"{doc_anchor}--{}\" , crate :: corpus :: slugify (f)) ; if ctx . anchors . contains (& candidate) { XrefResolution :: Internal { anchor : candidate } } else { XrefResolution :: Internal { anchor : doc_anchor . to_owned () , } } } } }",
+      "reason": "struct literal `Internal { .. }` — not an in-file single-ctor struct or enum struct-variant that emits (no constructor to build; a cross-nodule variant is an honest DN-113/DN-134-OQ-2 resolvability gap, never a fabricated out-of-file reference — VR-5/G2)",
+      "item_name": "resolve_fragment"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 322,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "pub (crate) fn classify (rel : & str) -> SourceKind { if rel . contains (\"/rfcs/\") { SourceKind :: Rfc } else if rel . contains (\"/adr/\") { SourceKind :: Adr } else if rel . contains (\"/notes/\") { SourceKind :: Note } else if rel . contains (\"/devlog/\") { SourceKind :: Devlog } else if rel . contains (\"/spec/\") { SourceKind :: Spec } else { SourceKind :: Other } }",
+      "reason": "Rust `.contains()` has no verified bare-call kernel prim mapping in this pipeline; desugaring to `contains(recv, …)` would fabricate an unknown prim — gapped never-silently (M-1037, G2/VR-5)",
+      "item_name": "classify"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 338,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Intentionally-bad must-fail fixtures and the reject corpus are out of scope (gate discipline,\"] # [doc = \" Wave-A locked decision #3) — projecting them would wrongly redden the build.\"] fn is_excluded (path : & Path) -> bool { let s = path . to_string_lossy () ; s . contains (\"/tests/fixtures/\") || s . contains (\"/fixtures/\") || s . contains (\"/reject/\") || s . contains (\"/target/\") }",
+      "reason": "method call `.to_string_lossy(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__to_string_lossy` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `to_string_lossy(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "is_excluded"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 348,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn ends_with (path : & Path , suffix : & str) -> bool { path . to_string_lossy () . ends_with (suffix) }",
+      "reason": "method call `.ends_with(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__ends_with` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `ends_with(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "ends_with"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 352,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn ends_with_str (s : & str , suffix : & str) -> bool { s . ends_with (suffix) }",
+      "reason": "method call `.ends_with(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__ends_with` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `ends_with(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "ends_with_str"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 356,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Recursively collect files with the given extension under `root`.\"] fn collect_files (root : & Path , ext : & str) -> std :: io :: Result < Vec < PathBuf > > { let mut out = Vec :: new () ; if ! root . exists () { return Ok (out) ; } let mut stack = vec ! [root . to_path_buf ()] ; while let Some (dir) = stack . pop () { for entry in std :: fs :: read_dir (& dir) ? { let entry = entry ? ; let path = entry . path () ; if path . is_dir () { stack . push (path) ; } else if path . extension () . and_then (| e | e . to_str ()) == Some (ext) { out . push (path) ; } } } Ok (out) }",
+      "reason": "qualified type path `std :: io :: Result < Vec < PathBuf > >` — collapsing to its last segment would risk colliding with an unrelated same-named local type (e.g. `std::cmp::Ordering` vs a local `Ordering`); left an explicit gap rather than guessed (VR-5)",
+      "item_name": "collect_files"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 377,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" `path` made repo-relative (with `/` separators), or its lossy form if not under `repo_root`.\"] fn repo_rel (repo_root : & Path , path : & Path) -> String { path . strip_prefix (repo_root) . map (| p | p . to_string_lossy () . replace ('\\\\' , \"/\")) . unwrap_or_else (| _ | path . to_string_lossy () . replace ('\\\\' , \"/\")) }",
+      "reason": "method call `.unwrap_or_else(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__unwrap_or_else` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `unwrap_or_else(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "repo_rel"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 384,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The parent directory of a repo-relative path (`docs/rfcs/x.md` → `docs/rfcs`).\"] fn parent_dir (rel : & str) -> & str { rel . rsplit_once ('/') . map_or (\"\" , | (d , _) | d) }",
+      "reason": "method call `.map_or(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__map_or` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `map_or(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "parent_dir"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "line": 389,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" Join `base` (a dir) and a relative `link`, resolving `.`/`..`, returning a clean repo-relative path.\"] pub (crate) fn normalize_join (base : & str , link : & str) -> String { let mut parts : Vec < & str > = if base . is_empty () { Vec :: new () } else { base . split ('/') . collect () } ; for seg in link . split ('/') { match seg { \"\" | \".\" => { } \"..\" => { parts . pop () ; } s => parts . push (s) , } } parts . join (\"/\") }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "normalize_join"
+    }
+  ],
+  "total_top_level_items": 24
+}

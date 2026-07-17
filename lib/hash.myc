@@ -1,0 +1,16 @@
+// nodule: doc.hash
+// Content-addressing for the doc-IR (ADR-003). A node's identity is the BLAKE3 hash of its
+// *projected content* — the same `blake3:<hex>` shape the kernel uses ([`mycelium_core::ContentHash`]),
+// so a doc node addresses exactly like a value node. This is what makes the dual human/machine
+// projection (G11) checkable: HTML and JSON are two renderers of the *same* hashed node, and the
+// §4.1 `dual-projection-parity` lint fails the build if they ever desync.
+//
+// The encoding is **canonical + injective**: every field is written tagged and length-prefixed, so
+// two structurally-distinct nodes cannot collide on an encoding (the same discipline as the kernel's
+// private `Canon`, reproduced here because that encoder is `pub(crate)` to core).
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc.hash;
+
+

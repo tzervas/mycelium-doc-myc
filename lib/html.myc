@@ -1,0 +1,20 @@
+// nodule: doc.emit.html
+// The static-HTML renderer (spec §8.1 — static HTML path). One reviewed template (§5): a `<header>`
+// bar, a **persistent navigation `<nav>` sidebar** with client-side search, a level-graded `<main>`
+// within a readable measure, an **"on this page" table of contents**, and a provenance `<footer>` —
+// **semantic HTML by construction** (the §4.1 legibility/accessibility bar: heading order never
+// skips, code carries a `language-*` class, every nav is labelled). Every node element carries
+// `data-cid="blake3:…"`, its content address — the hook the dual-projection-parity lint checks
+// against the JSON view.
+//
+// The shared visual language (typography, light/dark palettes, tables, syntax colours) lives in one
+// self-contained, offline stylesheet ([`crate::theme::READING_CSS`]); Mycelium code examples are
+// coloured by the trusted L1 lexer ([`crate::highlight`]) with a never-silent plain-text fallback.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc.emit.html;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: doc.ir) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type SourceKind = Rfc | Adr | Note | Spec | Devlog | Api | Other;
+type XrefResolution = Unresolved | Internal(Bytes) | ExternalUrl | OutOfScope | Dead(Bytes);

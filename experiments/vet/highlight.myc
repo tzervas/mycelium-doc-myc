@@ -1,0 +1,31 @@
+// nodule: doc.highlight
+// **Lexical syntax highlighting** for `myc`/`myc-checked` code examples (wired into
+// [`crate::emit::html`]'s `Example` arm). Derived from the *trusted L1 lexer*
+// ([`mycelium_l1::lexer::lex_with_comments`]) — no new dependency, no re-lexing: each token is
+// wrapped in a `<span class="tok-…">` so the shared theme ([`crate::theme`]) can colour it.
+//
+// ## Scope & honesty (`Empirical/Declared`)
+// Classification is **purely lexical / token-kind** — exactly the honest scope of the LSP
+// semantic-tokens provider (`mycelium-lsp`), whose buckets this mirrors *locally* (this crate stays
+// disjoint from `mycelium-lsp`; the small map is reimplemented here, not shared). Because the lexer
+// has no semantic context, an identifier renders plain (default ink) **unless** it is immediately
+// followed by `(` — a single lexical fn-position heuristic that promotes it to `tok-fn`; no other
+// function/binding distinction is available (VR-5: never presented as type-aware). The `classify`
+// match is **exhaustive over every [`Tok`] variant** (no wildcard): a future lexer token that is not
+// mapped here fails to **compile** rather than silently rendering unhighlighted — the same
+// never-silent posture the LSP provider documents (G2).
+//
+// ## Never-silent fallback (G2)
+// [`highlight`] returns `Some(html)` **only** when it can honestly highlight: the language is
+// `myc`/`myc-checked`, the source is ASCII (so scalar columns are exact — the same UTF-16 stopgap
+// the LSP span layer takes), and the lexer accepts it. On *any* other case — a different language, a
+// lexer error, or a non-ASCII span — it returns `None` and the caller emits the plain escaped
+// source. It **never** fabricates or partially-highlights: the reconstructed text is byte-for-byte
+// the escaped original (tokens wrapped, nothing added or dropped), so a code block is always the
+// real source, coloured or plain — never a lie.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc.highlight;
+
+

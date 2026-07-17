@@ -1,0 +1,20 @@
+// nodule: doc.emit.typst
+// The Typst projection (spec §8.1/§8.2 — Typst is the ratified PDF engine). Renders the doc-IR to a
+// single `.typ` source; the actual PDF compile (`typst compile`) is an *optional* downstream step
+// that **skips gracefully when the `typst` binary is absent** (the env may lack it) — never a
+// half-build. Each block is preceded by a `// cid:` comment so the Typst view shares identity with
+// the HTML/JSON views (one content-addressed truth).
+//
+// **Print code legibility (§8.2).** Captured code blocks are tuned for *paper*, with a different
+// scale than the web theme: the body prose is ~10.5pt, but fenced/raw code is set ~0.82× body with
+// tighter leading so lines fit without wrapping, inside a **light tinted box with a hairline border**
+// (never a filled dark panel — print-ink-friendly), comfortable page margins, light-only (print has
+// no dark mode). Honest scope: the PDF path renders code as monospace **without** the web
+// highlighter's per-token colours (that would need per-token `#text(fill:)` emission or a bundled
+// theme — future work), so there is nothing to mis-colour.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc.emit.typst;
+
+

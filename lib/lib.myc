@@ -1,0 +1,39 @@
+// nodule: doc
+// `mycelium-doc` — **`myc-doc`**, the M-363 documentation BUILD pipeline (spec
+// `docs/spec/Narrative-Authoring-Pipeline.md`, Accepted).
+//
+// The architecture is **one content-addressed doc-IR, many renderers** (§3): the cited corpus
+// (RFCs/ADRs/notes/specs), the code + M-359 nodule-header metadata, and the JSON schemas are all
+// *projected* into one navigable [`ir::DocModel`], and HTML, Typst (→ PDF) and machine JSON are
+// *views of that one model* — never parallel truths (ADR-003/G11). Generation is **projection, not
+// authorship**: an item that cannot be grounded is **flagged "undocumented," never invented** (the
+// prose analogue of G2).
+//
+// On top of the model runs the **§4.1 quality-bar lint** ([`doc_lint`], spec §6): eight explicit
+// pass/fail checks (single-template conformance · navigability · progressive disclosure · checked
+// examples · no-dead-xref · dual-projection parity · no-hallucinated-prose · legibility/
+// accessibility). This is what activates the dormant lint named in `mycelium_lint`.
+//
+// KC-3: this is a tool **above the kernel** (no kernel change); it reuses the kernel's BLAKE3
+// `ContentHash` shape and the trusted L1 checker, and adds **no new workspace dependency**.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: doc.book) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type BookError = BookError(Bytes);
+type ChapterSpec = ChapterSpec(Bytes, Vec[Bytes], Vec[Bytes], Vec[Bytes]);
+type BookManifest = BookManifest(Bytes, Bytes, Vec[ChapterSpec]);
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: doc.doc_lint) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type CheckStatus = Active | PartiallyDormant(Bytes) | Dormant(Bytes);
+type Severity = Error | Warning | Info;
+type Finding = Finding(Bytes, Severity, Bytes, Bytes);
+type CheckOutcome = CheckOutcome(Bytes, CheckStatus, Bytes, Vec[Finding]);
+type DocLintReport = DocLintReport(Vec[CheckOutcome]);
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: doc.ir) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type Level = Minimal | Medium | Detailed;
+type Provenance = Provenance(Bytes, Binary{32});
+type SourceKind = Rfc | Adr | Note | Spec | Devlog | Api | Other;

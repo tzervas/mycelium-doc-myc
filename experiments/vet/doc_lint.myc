@@ -1,0 +1,89 @@
+// nodule: doc.doc_lint
+// The **§4.1 documentation quality-bar lint** (spec §6, M-363 §6) — eight explicit pass/fail checks
+// over the doc-IR, the never-silent analogue for docs (G2). Each check is `Active`, `PartiallyDormant`
+// (some sub-aspect needs machinery we don't have yet — honestly named, never faked green), or
+// `Dormant`. The gate fails on any **error-severity** finding; warnings/info are surfaced, not gated.
+//
+// This is what flips `mycelium_lint::doc_lint_status()` from *dormant-but-defined* to *active*: the
+// checks now run over a real, content-addressed model produced by [`mod@crate::build`].
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule doc.doc_lint;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: doc.ir) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type XrefResolution = Unresolved | Internal(Bytes) | ExternalUrl | OutOfScope | Dead(Bytes);
+
+// Finding severity (mirrors the lattice's never-silent posture: an error gates, a warning advises).
+pub type Severity = Error | Warning | Info;
+
+impl Show[Severity] for Severity {
+  fn render(x: Severity) => Bytes =
+    match x { Error => "Error", Warning => "Warning", Info => "Info" };
+};
+
+fn eq_Severity(a: Severity, b: Severity) => Binary{1} =
+  match a { Error => match b { Error => 0b1, _ => 0b0 }, Warning => match b { Warning => 0b1, _ => 0b0 }, Info => match b { Info => 0b1, _ => 0b0 } };
+
+impl Severity {
+  // The canonical label.
+  fn as_str(self: Severity) => Bytes = match self { Error => "error", Warning => "warning", Info => "info" };
+};
+
+// One finding from a check.
+pub type Finding = Finding(Bytes, Severity, Bytes, Bytes);
+
+impl Show[Finding] for Finding {
+  fn render(x: Finding) => Bytes =
+    match x { Finding(p0, p1, p2, p3) => bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat("Finding(", render(p0)), ", "), render(p1)), ", "), render(p2)), ", "), render(p3)), ")") };
+};
+
+fn eq_Finding(a: Finding, b: Finding) => Binary{1} =
+    match a { Finding(p0, p1, p2, p3) => match b { Finding(q0, q1, q2, q3) => and(and(and(bytes_eq(p0, q0), eq_Severity(p1, q1)), bytes_eq(p2, q2)), bytes_eq(p3, q3)) } };
+
+// Whether a check is fully active, partly dormant (named sub-aspects await machinery), or dormant.
+pub type CheckStatus = Active | PartiallyDormant(Bytes) | Dormant(Bytes);
+
+impl Show[CheckStatus] for CheckStatus {
+  fn render(x: CheckStatus) => Bytes =
+    match x { Active => "Active", PartiallyDormant(p0) => bytes_concat(bytes_concat("PartiallyDormant(", render(p0)), ")"), Dormant(p0) => bytes_concat(bytes_concat("Dormant(", render(p0)), ")") };
+};
+
+fn eq_CheckStatus(a: CheckStatus, b: CheckStatus) => Binary{1} =
+  match a { Active => match b { Active => 0b1, _ => 0b0 }, PartiallyDormant(p0) => match b { PartiallyDormant(q0) => bytes_eq(p0, q0), _ => 0b0 }, Dormant(p0) => match b { Dormant(q0) => bytes_eq(p0, q0), _ => 0b0 } };
+
+// The outcome of one check.
+pub type CheckOutcome = CheckOutcome(Bytes, CheckStatus, Bytes, Vec[Finding]);
+
+fn show_vec_Finding(xs: Vec[Finding]) => Bytes =
+  match xs { Nil => "Nil", Cons(h, t) => bytes_concat("Cons(", bytes_concat(render(h), bytes_concat(", ", bytes_concat(show_vec_Finding(t), ")")))) };
+
+impl Show[CheckOutcome] for CheckOutcome {
+  fn render(x: CheckOutcome) => Bytes =
+    match x { CheckOutcome(p0, p1, p2, p3) => bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat("CheckOutcome(", render(p0)), ", "), render(p1)), ", "), render(p2)), ", "), show_vec_Finding(p3)), ")") };
+};
+
+fn eq_vec_Finding(a: Vec[Finding], b: Vec[Finding]) => Binary{1} =
+  match a { Nil => match b { Nil => 0b1, Cons(_, _) => 0b0 }, Cons(ha, ta) => match b { Nil => 0b0, Cons(hb, tb) => and(eq_Finding(ha, hb), eq_vec_Finding(ta, tb)) } };
+
+fn eq_CheckOutcome(a: CheckOutcome, b: CheckOutcome) => Binary{1} =
+    match a { CheckOutcome(p0, p1, p2, p3) => match b { CheckOutcome(q0, q1, q2, q3) => and(and(and(bytes_eq(p0, q0), eq_CheckStatus(p1, q1)), bytes_eq(p2, q2)), eq_vec_Finding(p3, q3)) } };
+
+// The full §4.1 lint report.
+pub type DocLintReport = DocLintReport(Vec[CheckOutcome]);
+
+fn show_vec_CheckOutcome(xs: Vec[CheckOutcome]) => Bytes =
+  match xs { Nil => "Nil", Cons(h, t) => bytes_concat("Cons(", bytes_concat(render(h), bytes_concat(", ", bytes_concat(show_vec_CheckOutcome(t), ")")))) };
+
+impl Show[DocLintReport] for DocLintReport {
+  fn render(x: DocLintReport) => Bytes =
+    match x { DocLintReport(p0) => bytes_concat(bytes_concat("DocLintReport(", show_vec_CheckOutcome(p0)), ")") };
+};
+
+fn eq_vec_CheckOutcome(a: Vec[CheckOutcome], b: Vec[CheckOutcome]) => Binary{1} =
+  match a { Nil => match b { Nil => 0b1, Cons(_, _) => 0b0 }, Cons(ha, ta) => match b { Nil => 0b0, Cons(hb, tb) => and(eq_CheckOutcome(ha, hb), eq_vec_CheckOutcome(ta, tb)) } };
+
+fn eq_DocLintReport(a: DocLintReport, b: DocLintReport) => Binary{1} =
+    match a { DocLintReport(p0) => match b { DocLintReport(q0) => eq_vec_CheckOutcome(p0, q0) } };
+
+fn err(check: Bytes, anchor: Bytes, message: Bytes) => Finding = Finding((check), Error, (anchor), (message));

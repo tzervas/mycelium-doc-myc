@@ -1,0 +1,342 @@
+{
+  "records": [
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/apiref.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/apiref.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 13,
+      "emitted_items": 1
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/bin/myc-doc.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/bin/myc-doc.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 13,
+      "emitted_items": 6
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/book.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/book.rs",
+      "class": "CheckError",
+      "exit_code": 3,
+      "diagnostic": "check-error: check error in `book_shell`: unknown function/constructor/prim `book_document`",
+      "non_test_items": 36,
+      "emitted_items": 5
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/build.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/build.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 24,
+      "emitted_items": 1
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/cache.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/cache.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 11,
+      "emitted_items": 1
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/corpus.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/corpus.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 16,
+      "emitted_items": 2
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/doc_lint.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/doc_lint.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 24,
+      "emitted_items": 8
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/emit/html.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/html.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 35,
+      "emitted_items": 1
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/emit/json.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/json.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 8,
+      "emitted_items": 0
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/emit/mod.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/mod.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 4,
+      "emitted_items": 0
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/emit/typst.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/emit/typst.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 12,
+      "emitted_items": 0
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/hash.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/hash.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 4,
+      "emitted_items": 0
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/highlight.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/highlight.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 10,
+      "emitted_items": 0
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/inline.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/inline.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 14,
+      "emitted_items": 1
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/ir.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/ir.rs",
+      "class": "CheckError",
+      "exit_code": 3,
+      "diagnostic": "check-error: check error in `_14XrefResolution3tag`: a bare integer literal has no representation family (no cross-family defaulting, Q6) — write a binary/ternary literal, declare a `default paradigm` (RFC-0012), or ascribe a Dense element",
+      "non_test_items": 19,
+      "emitted_items": 8
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/label.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/label.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 8,
+      "emitted_items": 0
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/lib.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 6,
+      "emitted_items": 3
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/lib_index.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/lib_index.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 27,
+      "emitted_items": 2
+    },
+    {
+      "myc_file": "/tmp/myc-decompose/work/mycelium-doc-myc/experiments/vet/theme.myc",
+      "source_file": "/root/git/isolated/mycelium/crates/mycelium-doc/src/theme.rs",
+      "class": "Clean",
+      "exit_code": 0,
+      "diagnostic": "",
+      "non_test_items": 6,
+      "emitted_items": 0
+    }
+  ],
+  "total_non_test_items": 290,
+  "total_emitted_items": 39,
+  "total_checked_clean_items": 26,
+  "class_counts": {
+    "CheckError": 2,
+    "Clean": 17
+  },
+  "phylum": {
+    "ran": true,
+    "ok": false,
+    "nodules": [
+      {
+        "nodule": "doc.apiref",
+        "file": "apiref.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      },
+      {
+        "nodule": "doc.bin_kw.myc_u2D_doc",
+        "file": "bin/myc-doc.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      },
+      {
+        "nodule": "doc.book",
+        "file": "book.myc",
+        "class": "CheckError",
+        "site": "book_shell",
+        "on": null,
+        "message": "unknown function/constructor/prim `book_document`"
+      },
+      {
+        "nodule": "doc.build",
+        "file": "build.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      },
+      {
+        "nodule": "doc.cache",
+        "file": "cache.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      },
+      {
+        "nodule": "doc.corpus",
+        "file": "corpus.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      },
+      {
+        "nodule": "doc.doc_lint",
+        "file": "doc_lint.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      },
+      {
+        "nodule": "doc.emit.html",
+        "file": "emit/html.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      },
+      {
+        "nodule": "doc.emit.json",
+        "file": "emit/json.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      },
+      {
+        "nodule": "doc.emit",
+        "file": "emit/mod.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      },
+      {
+        "nodule": "doc.emit.typst",
+        "file": "emit/typst.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      },
+      {
+        "nodule": "doc.hash",
+        "file": "hash.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      },
+      {
+        "nodule": "doc.highlight",
+        "file": "highlight.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      },
+      {
+        "nodule": "doc.inline",
+        "file": "inline.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      },
+      {
+        "nodule": "doc.ir",
+        "file": "ir.myc",
+        "class": "CheckError",
+        "site": "_14XrefResolution3tag",
+        "on": null,
+        "message": "a bare integer literal has no representation family (no cross-family defaulting, Q6) — write a binary/ternary literal, declare a `default paradigm` (RFC-0012), or ascribe a Dense element"
+      },
+      {
+        "nodule": "doc.label",
+        "file": "label.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      },
+      {
+        "nodule": "doc",
+        "file": "lib.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      },
+      {
+        "nodule": "doc.lib_index",
+        "file": "lib_index.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      },
+      {
+        "nodule": "doc.theme",
+        "file": "theme.myc",
+        "class": "Clean",
+        "site": null,
+        "on": null,
+        "message": null
+      }
+    ],
+    "diagnostic": "unknown function/constructor/prim `book_document`"
+  },
+  "total_checked_clean_items_phylum": 26
+}
